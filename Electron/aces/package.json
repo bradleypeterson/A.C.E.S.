@@ -1,0 +1,19 @@
+{
+  "name": "aces",
+  "version": "0.0.1",
+  "description": "Anti-Cheat Enfrocement System",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [],
+  "author": "",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^7.1.11"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}

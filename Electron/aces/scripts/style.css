@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+html, body{
+    position: relative;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+
+#main-nav{
+    position: relative;
+    width: 200px;
+    height: 100%;
+    background-color: #492365;
+}
+
+#main-nav header{
+    padding: 20px;
+}
+
+#main-nav img{
+    width: 100%;
+}
+
+#main-nav hr{
+    margin: 0;
+    border-color: rgba(0,0,0,.2);
+}
+
+#main-nav a{
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+}

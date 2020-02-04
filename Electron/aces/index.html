@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ACES</title>
+    <script>
+      if (typeof module === 'object') {window.module = module; module = undefined;}
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>if (window.module) module = window.module;</script>
+
+    <link rel="stylesheet" href="D:\Documents\_School\2020_1_Spring\CS 4450 Software\Electron\aces\assets\fontawesome-free-5.12.0-web\css\all.min.css">
+    <link rel="stylesheet" href="scripts/style.css">
+  </head>
+  <body>
+    <noscript>Please Enable JavaScript</noscript>
+    <nav id="main-nav"></nav>
+    <header id="main-header"></header>
+    <script>
+      $('#main-nav').load('components/navigation.html');
+      $('#main-header').load('components/header.html');
+    </script>
+  </body>
+</html>
