@@ -1,36 +1,217 @@
 @charset "utf-8";
 
+*{
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+
+a{
+    cursor: pointer;
+}
+
 html, body{
     position: relative;
     height: 100%;
     padding: 0;
     margin: 0;
-    font-family: sans-serif;
-    letter-spacing: 1px;
+    background-color: #f9f9f9;
 }
 
-#main-nav{
-    position: relative;
+#page-nav{
+    position: fixed;
     width: 200px;
     height: 100%;
     background-color: #492365;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-#main-nav header{
-    padding: 20px;
-}
+#page-nav header{ padding: 20px; }
 
-#main-nav img{
-    width: 100%;
-}
-
-#main-nav hr{
+#page-nav hr{
     margin: 0;
     border-color: rgba(0,0,0,.2);
 }
 
-#main-nav a{
+#profile{ padding: 10px 0 10px 20px; }
+
+#profile img{ 
+    vertical-align: middle;
+    border-radius: 100%; 
+}
+
+#profile span{ 
+    vertical-align: middle;
+    display: inline-block; 
+}
+
+#profile-title{
+    font-size: .8em;
+    font-style: italic;
+    color: rgba(255,255,255,.8);
+}
+
+#page-nav a{
     display: block;
+    padding-left: 10px;
     color: #ffffff;
     text-decoration: none;
+}
+
+#page-nav a:hover{
+    background-color: rgba(255,255,255,.2);
+}
+
+#nav-main a{
+    line-height: 40px;
+}
+
+#page-subnav{
+    position: fixed;
+    left: 200px;
+    width: 0;
+    height: 100%;
+    background-color: #eeeeee;
+    border-right: 1px solid rgba(0,0,0,.2);
+    z-index: 3;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#close-subnav{
+    position: absolute;
+    top: 5px;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#page-subnav h2{
+    margin: 0;
+    padding: 10px 0 0 10px;
+}
+
+#page-subnav hr{
+    margin: 10px;
+}
+
+#page-subnav a{
+    display: block;
+    padding: 10px;
+    color: #000000;
+    text-decoration: none;
+}
+
+#page-subnav a:hover{
+    background-color: rgba(0,0,0,.1);
+}
+
+#page-header{
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    /* Margin only for Electron. For web browser, remove margin*/
+    margin-left: -17px;
+    cursor: default;
+    background-color: #f9f9f9;
+}
+
+#page-header section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 200px;
+    /* Padding only for Electron. For web browser, remove padding*/
+    padding-left: 17px;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+#header-main{ 
+    padding: 20px 20px 20px 0;
+    font-size: 20px;
+}
+
+#menu-toggle{
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+#header-main select{
+    padding: 5px;
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+
+#set-term{
+    padding: 6px 10px;
+    font-weight: bold;
+    background-color: #eeeeee;
+    border: 1px solid #aaaaaa;
+    cursor: pointer;
+}
+
+#header-nav a{ 
+    display: inline-block;
+    padding: 5px 10px; 
+    text-decoration: none;
+    color: #000000;
+}
+
+#header-section{ 
+    position: relative;
+    width: 140px; 
+    border-right: 1px solid rgba(0,0,0,.2);
+}
+
+#header-section:hover{
+    background-color: rgba(0,0,0,.2);
+}
+
+#header-section:after{
+    position: absolute;
+    right: 10px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0d7";
+}
+
+#header-run{ border-left: 1px solid rgba(0,0,0,.2); }
+#header-run:hover{ background-color: rgba(0,255,0,.2);}
+
+#page-main{
+    display: flex;
+    margin: 99px 0 0 200px;
+    height: 100%;
+}
+
+#page-content{
+    padding: 10px 10px 10px 10px;
+    flex: 2;
+}
+
+#content-nav{
+    width: 140px;
+    padding: 0 10px;
+    border-right: 1px solid rgba(0,0,0,.2);
+}
+
+#content-nav hr{
+    margin: 0;
+}
+
+#content-nav h2{
+    margin: 0;
+}
+
+#content-nav a{ 
+    display: inline-block;
+    width: 100%;
+    margin-left: -10px;
+    padding: 10px; 
+    text-decoration: none;
+    color: #000000;
+}
+
+#content-nav a:hover{
+    background-color: rgba(0,0,0,.1);
 }

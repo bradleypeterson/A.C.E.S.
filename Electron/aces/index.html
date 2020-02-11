@@ -6,19 +6,40 @@
     <script>
       if (typeof module === 'object') {window.module = module; module = undefined;}
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>if (window.module) module = window.module;</script>
+
+    <script src="scripts/ui.js"></script>
 
     <link rel="stylesheet" href="assets\fontawesome-free-5.12.0-web\css\all.min.css">
     <link rel="stylesheet" href="scripts/style.css">
   </head>
   <body>
     <noscript>Please Enable JavaScript</noscript>
-    <nav id="main-nav"></nav>
-    <header id="main-header"></header>
+    <header id="page-header"></header>
+    <nav id="page-nav"></nav>
+    <nav id="page-subnav"></nav>
+    <main id="page-main">
+    </main>
     <script>
-      $('#main-nav').load('components/navigation.html');
-      $('#main-header').load('components/header.html');
+      try{
+        const customTitlebar = require('custom-electron-titlebar');
+
+        let MyTitleBar = new customTitlebar.Titlebar({
+            backgroundColor: customTitlebar.Color.fromHex('#333333'),
+            icon: null,
+            titleHorizontalAlignment: 'left',
+            menu: null
+        });
+
+        MyTitleBar.updateTitle('A.C.E.S.');
+      }
+      catch{}
+      
+      $('#page-nav').load('components/navigation.html');
+      $('#page-header').load('components/header.html');
+      $('#page-main').load('components/main.html');
     </script>
   </body>
 </html>

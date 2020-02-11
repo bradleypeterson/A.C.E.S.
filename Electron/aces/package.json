@@ -14,6 +14,7 @@
     "electron": "^7.1.11"
   },
   "dependencies": {
+    "custom-electron-titlebar": "^3.2.2-hotfix62",
     "mysql": "^2.18.1"
   }
 }
