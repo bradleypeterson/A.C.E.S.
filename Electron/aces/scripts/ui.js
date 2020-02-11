@@ -54,3 +54,7 @@ function closeSubnav(){
     })
     $(document).off("click");
 }
+
+function addClass(){
+    
+}
