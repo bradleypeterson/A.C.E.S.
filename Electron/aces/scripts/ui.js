@@ -56,5 +56,5 @@ function closeSubnav(){
 }
 
 function addClass(){
-    
+    $("#page-popup").load("components/addCourse.html");
 }
