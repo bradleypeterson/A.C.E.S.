@@ -1,29 +1,23 @@
-<section id="header-main">
-    <div>
-        <i id="menu-toggle" class="fas fa-bars" onclick="toggleMenu();"></i> Overview
-    </div>
-    <div>
-        <select name="term" id="current-term">
-            <option value="Spring">Fall</option>
-            <option value="Spring">Spring</option>
-            <option value="Spring">Summer</option>
-            <option value="Spring">Block 1</option>
-            <option value="Spring">Block 2</option>
-        </select>
-        <select name="year" id="current-year">
-            <option value="2020">2020</option>
-            <option value="2020">2021</option>
-        </select>
-        <input id="set-term" type="button" value="Set Term">
-    </div>
-</section>
-<section id="header-nav">
-    <div>
-        <a id="header-section" onclick="sectionsNav();">Section 1</a>
-        <a>Overview</a>
-        <a>Assignments</a>
-    </div>
-    <div>
-        <a id="header-run"><i class="fas fa-play" style="color: green;"></i> Run Tests</a>
-    </div>
-</section>
+<h2>
+    <a href="javascript:void(0);">
+        <i id="menu-toggle" class="fas fa-bars" onclick="toggleMenu();"></i>
+    </a> 
+    <script>
+        $('#content-header h2').append(parameters['page'].replace("%20", " "));
+    </script>
+</h2>
+<div>
+    <!-- <select name="term" id="current-term">
+        <option value="Spring">Fall</option>
+        <option value="Spring">Spring</option>
+        <option value="Spring">Summer</option>
+        <option value="Spring">Block 1</option>
+        <option value="Spring">Block 2</option>
+    </select>
+    <select name="year" id="current-year">
+        <option value="2020">2020</option>
+        <option value="2020">2021</option>
+    </select>
+    <input id="set-term" type="button" value="Set Term"> -->
+    <a id="header-run"><i class="fas fa-play" style="color: green;"></i> Run Tests</a>
+</div>
