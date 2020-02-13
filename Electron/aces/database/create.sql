@@ -16,16 +16,35 @@ create table students(
    firstName VARCHAR(100) NOT NULL,
    lastName VARCHAR(100) NOT NULL,
    creationDate DATE,
-   PRIMARY KEY ( userID )
+   FOREIGN KEY (studentID) REFERENCES users(userID),
+   PRIMARY KEY ( studentID )
 );
 
-create table course(
+create table courses(
    courseID INT NOT NULL AUTO_INCREMENT,
    department VARCHAR(100) NOT NULL,
    courseNum VARCHAR(100) NOT NULL,
-   lastName VARCHAR(100) NOT NULL,
+   courseName VARCHAR(100) NOT NULL,
    creationDate DATE,
-   PRIMARY KEY ( userID )
+   PRIMARY KEY ( courseID )
+);
+
+create table sections(
+	sectionID INT NOT NULL AUTO_INCREMENT,
+	instructorID INT NOT NULL,
+	sectionCourseID INT NOT NULL,
+	FOREIGN KEY (sectionCourseID) REFERENCES courses(courseID),
+	FOREIGN KEY (instructorID) REFERENCES users(userID),
+	PRIMARY KEY (sectionID)
+);
+
+create table assignments(
+	assignmentID INT NOT NULL AUTO_INCREMENT,
+	assignmentSectionID INT NOT NULL,
+	assignmentStudentID INT NOT NULL,
+	FOREIGN KEY (assignmentSectionID) REFERENCES sections(sectionID),
+	FOREIGN KEY (assignmentStudentID) REFERENCES users(userID),
+	PRIMARY KEY (assignmentID)
 );
 
 
