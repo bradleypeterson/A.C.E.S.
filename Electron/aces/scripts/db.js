@@ -25,6 +25,7 @@ class Database{
 
 	addCourse(name, num, department){
 			var date = new Date();
+			//Convert date to MySQL format
 			date = date.getUTCFullYear() + '-' +
 				('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
 				('00' + date.getUTCDate()).slice(-2) + ' ' +

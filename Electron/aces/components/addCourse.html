@@ -1,10 +1,15 @@
 <h2>Add Course</h2>
 Course Name:
+<br>
 <input type="text" name="name" id="course-name">
+<br>
 Course Number (I.E. CS 4450):
+<br>
 <input type="text" name="num" id="course-num">
+<br>
 Deparment:
+<br>
 <input type="text" name="department" id="course-department">
+<br>
 <input type="button" value="Cancel" onclick="closePopup()">
-
 <input type="submit" onclick="db.addCourse($('#course-name').val(), $('#course-num').val(), $('#course-department').val()); closePopup();">
