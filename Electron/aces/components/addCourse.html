@@ -6,4 +6,5 @@ Course Number (I.E. CS 4450):
 Deparment:
 <input type="text" name="department" id="course-department">
 <input type="button" value="Cancel" onclick="closePopup()">
-<input type="submit" onclick="db.addCourse($('#course-name').val(), $('#course-num').val(), $('#course-department').val());">
+
+<input type="submit" onclick="db.addCourse($('#course-name').val(), $('#course-num').val(), $('#course-department').val()); closePopup();">

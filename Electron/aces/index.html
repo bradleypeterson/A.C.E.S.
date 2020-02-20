@@ -10,40 +10,24 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>if (window.module) module = window.module;</script>
 
-    <script src="scripts/ui.js"></script>
     <script src="scripts/db.js"></script>
-	<script></script>
+    <script src="scripts/ui.js"></script>
+
 
     <link rel="stylesheet" href="assets\fontawesome-free-5.12.0-web\css\all.min.css">
     <link rel="stylesheet" href="scripts/style.css">
   </head>
-  <body>
+  <body onload="init();">
     <noscript>Please Enable JavaScript</noscript>
-    <header id="page-header"></header>
     <nav id="page-nav"></nav>
     <nav id="page-subnav"></nav>
-    <main id="page-main"></main>
+    <main id="page-main">
+      <header id="content-header"></header>
+      <article id="content-main"></article>
+    </main>
     <aside id="page-popup"></aside>
+
     <script>
-      try{
-        const customTitlebar = require('custom-electron-titlebar');
-
-        let MyTitleBar = new customTitlebar.Titlebar({
-            backgroundColor: customTitlebar.Color.fromHex('#333333'),
-            icon: null,
-            titleHorizontalAlignment: 'left',
-            menu: null
-        });
-
-        MyTitleBar.updateTitle('A.C.E.S.');
-      }
-      catch{}
-
-      $('#page-nav').load('components/navigation.html');
-      $('#page-header').load('components/header.html');
-      $('#page-main').load('components/main.html');
-
-      db = new Database();
     </script>
   </body>
 </html>

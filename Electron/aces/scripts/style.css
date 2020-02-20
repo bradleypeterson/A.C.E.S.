@@ -106,34 +106,41 @@ html, body{
     background-color: rgba(0,0,0,.1);
 }
 
-#page-header{
-    position: fixed;
-    height: 100px;
-    width: 100%;
+#content-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* position: fixed; */
+    padding: 20px 10px;
+    /* width: 100%; */
     /* Margin only for Electron. For web browser, remove margin*/
-    margin-left: -17px;
+    /* margin-left: -17px; */
     cursor: default;
-    background-color: #f9f9f9;
+    border-bottom: 1px solid rgba(0,0,0,.2);
 }
 
-#page-header section{
+#content-header h2{
+    margin: 0;
+    text-transform: capitalize;
+}
+
+#content-header a{
+    color: #000000;
+    text-decoration: none;
+}
+
+/* #page-header section{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-left: 200px;
-    /* Padding only for Electron. For web browser, remove padding*/
+    /* Padding only for Electron. For web browser, remove padding
     padding-left: 17px;
     border-bottom: 1px solid rgba(0,0,0,.2);
-}
+} */
 
 #header-main{ 
     padding: 20px 20px 20px 0;
-    font-size: 20px;
-}
-
-#menu-toggle{
-    margin-left: 20px;
-    cursor: pointer;
 }
 
 #header-main select{
@@ -157,6 +164,10 @@ html, body{
     color: #000000;
 }
 
+#header-nav a:hover{
+    background-color: rgba(0,0,0,.1);
+}
+
 #header-section{ 
     position: relative;
     width: 140px; 
@@ -175,36 +186,33 @@ html, body{
     content: "\f0d7";
 }
 
-#header-run{ border-left: 1px solid rgba(0,0,0,.2); }
-#header-run:hover{ background-color: rgba(0,255,0,.2);}
-
 #page-main{
-    display: flex;
-    margin: 99px 0 0 200px;
+    margin-left: 200px;
+    padding: 0 20px;
     height: 100%;
 }
 
-#page-content{
-    padding: 10px 10px 10px 10px;
-    flex: 2;
+#content-main{
+    display: flex;
 }
 
 #content-nav{
     width: 140px;
     padding: 0 10px;
-    border-right: 1px solid rgba(0,0,0,.2);
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-#content-nav hr{
-    margin: 0;
+#content-section{
+    padding: 10px;
 }
 
 #content-nav h2{
-    margin: 0;
+    margin: 10px 0;
 }
 
 #content-nav a{ 
-    display: inline-block;
+    display: block;
     width: 100%;
     margin-left: -10px;
     padding: 10px; 
@@ -217,12 +225,14 @@ html, body{
 }
 
 #page-popup{
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 200px;
+    width: 300px;
     height: 200px;
-    margin: -100px 0 0 -100px;
+    padding: 20px;
+    margin: -100px 0 0 -150px;
     z-index: 100;
     background-color: #f9f9f9;
     border: 1px solid #000000;

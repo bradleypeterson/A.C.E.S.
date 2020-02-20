@@ -1,12 +1,19 @@
-<nav id="content-nav">
-    <h2>Section</h2>
-    <a href="">MW Morning</a>
-    <a href="">TT Evening</a>
-    <a onclick="addSection();">+ Add Section</a>
-</nav>
-<article id="page-content">
+<script>
+    if (parameters['view'] != 'overview'){
+        $('#content-main').prepend('<nav id="content-nav"></nav>');
+        $('#content-nav').append('<a href="">Overview</a>');
+        switch (parameters['view']){
+            case 'course':
+                $('#content-nav').append('<a href="">Sections</a>');
+                $('#content-nav').append('<a href="">Assignments</a>');
+                break;
+        }
+    }
+</script>
+
+<section id="content-section">
     <canvas id="myChart" width="400" height="400"></canvas>
-</article>
+</section>
 <script>
     // var ctx = document.getElementById('myChart').getContext('2d');
     // var myChart = new Chart(ctx, {
