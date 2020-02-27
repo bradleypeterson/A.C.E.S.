@@ -35,14 +35,14 @@ html, body{
 
 #profile{ padding: 10px 0 10px 20px; }
 
-#profile img{ 
+#profile img{
     vertical-align: middle;
-    border-radius: 100%; 
+    border-radius: 100%;
 }
 
-#profile span{ 
+#profile span{
     vertical-align: middle;
-    display: inline-block; 
+    display: inline-block;
 }
 
 #profile-title{
@@ -139,7 +139,7 @@ html, body{
     border-bottom: 1px solid rgba(0,0,0,.2);
 } */
 
-#header-main{ 
+#header-main{
     padding: 20px 20px 20px 0;
 }
 
@@ -157,9 +157,9 @@ html, body{
     cursor: pointer;
 }
 
-#header-nav a{ 
+#header-nav a{
     display: inline-block;
-    padding: 5px 10px; 
+    padding: 5px 10px;
     text-decoration: none;
     color: #000000;
 }
@@ -168,9 +168,9 @@ html, body{
     background-color: rgba(0,0,0,.1);
 }
 
-#header-section{ 
+#header-section{
     position: relative;
-    width: 140px; 
+    width: 140px;
     border-right: 1px solid rgba(0,0,0,.2);
 }
 
@@ -211,11 +211,11 @@ html, body{
     margin: 10px 0;
 }
 
-#content-nav a{ 
+#content-nav a{
     display: block;
     width: 100%;
     margin-left: -10px;
-    padding: 10px; 
+    padding: 10px;
     text-decoration: none;
     color: #000000;
 }
@@ -229,8 +229,21 @@ html, body{
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 300px;
-    height: 200px;
+    width: 500px;
+    height: 300px;
+    padding: 20px;
+    margin: -100px 0 0 -150px;
+    z-index: 100;
+    background-color: #f9f9f9;
+    border: 1px solid #000000;
+}
+#viewpage-popup{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    height: 500px;
     padding: 20px;
     margin: -100px 0 0 -150px;
     z-index: 100;

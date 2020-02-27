@@ -40,7 +40,7 @@ function initElectron(){
 function loadComponents(){
     $('#page-nav').load('components/navigation.html');
     $('#content-header').load('components/header.html');
-    
+
     switch (parameters['view']){
         case 'course':
             $('#content-main').load('components/course.html');
@@ -78,6 +78,7 @@ function toggleMenu(){
             paddingLeft: 0
         });
         $("#content-nav").addClass("hidden");
+        $("#content-nav").view
     }
 }
 
@@ -118,6 +119,11 @@ function closeSubnav(){
 function addClass(){
     $("#page-popup").css("display", "block");
     $("#page-popup").load("components/addCourse.html");
+}
+
+function viewClass(){
+  $("#page-popup").css("display", "block");
+  $("#page-popup").load("components/viewCourse.html");
 }
 
 function addSection(){

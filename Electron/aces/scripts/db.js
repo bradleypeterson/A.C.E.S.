@@ -13,10 +13,40 @@ class Database{
 		});
 
 		this.connection.connect();
-
+		var results, x = "";
 		this.connection.query(sql, function (error, results, fields) {
 		  if (error) throw error;
 		  console.log(results);
+			var txt = "<table><tr><th>ID</th><th>Department</th><th>Course Number</th>";
+	    txt += "<th>Course Name</th><th>Creation Date</th></tr>"
+
+	    for (x in results){
+				console.log(results[x]);
+	      txt += "<tr><td>" + results[x].courseID + "</td> <td>" + results[x].department + "</td> <td>" + results[x].courseNum + "</td> <td>" + results[x].courseName + "</td> <td>" + results[x].creationDate + "</td></tr>";
+	    }
+	    txt += "</table>";
+	    document.getElementById("id02").innerHTML = txt;
+		  //$('#resultDiv').text(results[0].username);
+		});
+
+		this.connection.end();
+	}
+
+	getResultFromDB(sql, callback){
+		// Add the credentials to access your database
+		this.connection = this.mysql.createConnection({
+			host     : 'localhost',
+			user     : 'admin',
+			password : 'ACES2.0password', // or the original password : 'apaswword'
+			database : 'ACES'
+		});
+
+		this.connection.connect();
+		var stuff;
+		this.connection.query(sql, function (error, results, fields) {
+		  if (error) throw error;
+		  console.log(results);
+			return callback(results);
 		  //$('#resultDiv').text(results[0].username);
 		});
 
@@ -72,13 +102,15 @@ class Database{
 viewStudents(){
 	var sql = 'SELECT * FROM students'
 
-	this.getFromDB(sql);
+	result = this.getFromDB(sql);
+	return result;
 }
 
 viewCourses(){
 	var sql = 'SELECT * FROM courses'
 
-	this.getFromDB(sql);
+	var result = this.getFromDB(sql);
+	return result;
 }
 
 viewSections(){
