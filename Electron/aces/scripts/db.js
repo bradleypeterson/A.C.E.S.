@@ -107,6 +107,34 @@ class Database{
 		this.connection.end();
 	}
 
+	getAssignmentsFromDB(sql){
+		// Add the credentials to access your database
+		this.connection = this.mysql.createConnection({
+			host     : 'localhost',
+			user     : 'admin',
+			password : 'ACES2.0password', // or the original password : 'apaswword'
+			database : 'ACES'
+		});
+
+		this.connection.connect();
+		var results, x = "";
+		this.connection.query(sql, function (error, results, fields) {
+			if (error) throw error;
+			console.log(results);
+			var txt = "<table><tr><th>Assignment ID</th><th>Section ID</th><th>Student ID</th></tr>";
+
+			for (x in results){
+				console.log(results[x]);
+				txt += "<tr><td>" + results[x].assignmentID + "</td> <td>" + results[x].assignmentSectionID + "</td> <td>" + results[x].assignmentStudentID + "</td></tr>";
+			}
+			txt += "</table>";
+			document.getElementById("id02").innerHTML = txt;
+			//$('#resultDiv').text(results[0].username);
+		});
+
+		this.connection.end();
+	}
+
 //MySQL add classes
 	addCourse(name, num, department){
 			var date = new Date();
@@ -177,7 +205,8 @@ viewSections(){
 viewAssignments(){
 	var sql = 'SELECT * FROM assignments'
 
-	this.getFromDB(sql);
+	result = this.getAssignmentsFromDB(sql);
+	return result;
 }
 
 }

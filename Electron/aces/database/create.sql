@@ -33,7 +33,7 @@ create table assignments(
 	assignmentSectionID INT NOT NULL,
 	assignmentStudentID INT NOT NULL,
 	FOREIGN KEY (assignmentSectionID) REFERENCES sections(sectionID),
-	FOREIGN KEY (assignmentStudentID) REFERENCES users(userID),
+	FOREIGN KEY (assignmentStudentID) REFERENCES students(studentID),
 	PRIMARY KEY (assignmentID)
 );
 

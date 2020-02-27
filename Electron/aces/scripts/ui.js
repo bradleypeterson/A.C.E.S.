@@ -147,6 +147,16 @@ function viewSection(){
   $("#page-popup").load("components/viewSection.html");
 }
 
+function addAssignment(){
+    $("#page-popup").css("display", "block");
+    $("#page-popup").load("components/addAssignment.html");
+}
+
+function viewAssignment(){
+  $("#page-popup").css("display", "block");
+  $("#page-popup").load("components/viewAssignment.html");
+}
+
 
 function closePopup(){
     $("#page-popup").css("display", "none");
