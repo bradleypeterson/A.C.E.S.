@@ -23,10 +23,8 @@ create table courses(
 
 create table sections(
 	sectionID INT NOT NULL AUTO_INCREMENT,
-	instructorID INT NOT NULL,
 	sectionCourseID INT NOT NULL,
 	FOREIGN KEY (sectionCourseID) REFERENCES courses(courseID),
-	FOREIGN KEY (instructorID) REFERENCES users(userID),
 	PRIMARY KEY (sectionID)
 );
 

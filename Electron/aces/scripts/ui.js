@@ -126,15 +126,27 @@ function viewClass(){
   $("#page-popup").load("components/viewCourse.html");
 }
 
-function addSection(){
-    $("#page-popup").css("display", "block");
-    $("#page-popup").load("components/addSection.html");
-}
 
 function addStudent(){
     $("#page-popup").css("display", "block");
     $("#page-popup").load("components/addStudent.html");
 }
+
+function viewStudent(){
+  $("#page-popup").css("display", "block");
+  $("#page-popup").load("components/viewStudent.html");
+}
+
+function addSection(){
+    $("#page-popup").css("display", "block");
+    $("#page-popup").load("components/addSection.html");
+}
+
+function viewSection(){
+  $("#page-popup").css("display", "block");
+  $("#page-popup").load("components/viewSection.html");
+}
+
 
 function closePopup(){
     $("#page-popup").css("display", "none");

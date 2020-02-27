@@ -64,12 +64,40 @@ class Database{
 		this.connection.query(sql, function (error, results, fields) {
 			if (error) throw error;
 			console.log(results);
-			var txt = "<table><tr><th>ID</th><th>Github</th><th>First Name</th>";
+			var txt = "<table><tr><th>ID</th><th>Github Username</th><th>First Name</th>";
 			txt += "<th>Last Name</th><th>Creation Date</th></tr>"
 
 			for (x in results){
 				console.log(results[x]);
 				txt += "<tr><td>" + results[x].studentID + "</td> <td>" + results[x].ghUsername + "</td> <td>" + results[x].firstName + "</td> <td>" + results[x].lastName + "</td> <td>" + results[x].creationDate + "</td></tr>";
+			}
+			txt += "</table>";
+			document.getElementById("id02").innerHTML = txt;
+			//$('#resultDiv').text(results[0].username);
+		});
+
+		this.connection.end();
+	}
+
+	getSectionsFromDB(sql){
+		// Add the credentials to access your database
+		this.connection = this.mysql.createConnection({
+			host     : 'localhost',
+			user     : 'admin',
+			password : 'ACES2.0password', // or the original password : 'apaswword'
+			database : 'ACES'
+		});
+
+		this.connection.connect();
+		var results, x = "";
+		this.connection.query(sql, function (error, results, fields) {
+			if (error) throw error;
+			console.log(results);
+			var txt = "<table><tr><th>Section ID</th><th>Course ID</th></tr>";
+
+			for (x in results){
+				console.log(results[x]);
+				txt += "<tr><td>" + results[x].sectionID + "</td> <td>" + results[x].sectionCourseID + "</td></tr>";
 			}
 			txt += "</table>";
 			document.getElementById("id02").innerHTML = txt;
@@ -111,8 +139,8 @@ class Database{
 			this.getFromDB(sql);
 	}
 
-	addSection(instructorID, sectionCourseID){
-			var sql = 'INSERT INTO sections (instructorID, sectionCourseID) VALUES ("' + instructorID + '", "' + sectionCourseID +'");';
+	addSection(sectionCourseID){
+			var sql = 'INSERT INTO sections (sectionCourseID) VALUES ("' + sectionCourseID +'");';
 
 			this.getFromDB(sql);
 	}
@@ -128,7 +156,7 @@ class Database{
 viewStudents(){
 	var sql = 'SELECT * FROM students'
 
-	result = this.getFromDB(sql);
+	result = this.getStudentsFromDB(sql);
 	return result;
 }
 
@@ -142,7 +170,8 @@ viewCourses(){
 viewSections(){
 	var sql = 'SELECT * FROM sections'
 
-	this.getFromDB(sql);
+	result = this.getSectionsFromDB(sql);
+	return result;
 }
 
 viewAssignments(){
