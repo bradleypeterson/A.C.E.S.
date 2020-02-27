@@ -1,0 +1,15 @@
+<h2>Add Student</h2>
+Github Username:
+<br>
+<input type="text" name="username" id="student-username">
+<br>
+First Name:
+<br>
+<input type="text" name="firstname" id="student-firstname">
+<br>
+Last Name:
+<br>
+<input type="text" name="lastname" id="student-lastname">
+<br>
+<input type="button" value="Cancel" onclick="closePopup()">
+<input type="submit" onclick="db.addStudent($('#student-firstname').val(), $('#student-lastname').val(), $('#student-username').val()); closePopup();">

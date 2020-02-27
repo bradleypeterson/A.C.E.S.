@@ -131,6 +131,11 @@ function addSection(){
     $("#page-popup").load("components/addSection.html");
 }
 
+function addStudent(){
+    $("#page-popup").css("display", "block");
+    $("#page-popup").load("components/addStudent.html");
+}
+
 function closePopup(){
     $("#page-popup").css("display", "none");
 }

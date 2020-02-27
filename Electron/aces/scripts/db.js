@@ -3,6 +3,24 @@ class Database{
 		this.mysql = require('mysql');
 	}
 
+	getFromDB(sql){
+		this.connection = this.mysql.createConnection({
+			host     : 'localhost',
+			user     : 'admin',
+			password : 'ACES2.0password', // or the original password : 'apaswword'
+			database : 'ACES'
+		});
+		this.connection.connect();
+		this.connection.query(sql, function (error, results, fields) {
+		  if (error) throw error;
+		  console.log(results);
+		  //$('#resultDiv').text(results[0].username);
+		});
+
+		this.connection.end();
+	}
+
+
 	getCoursesFromDB(sql){
 		// Add the credentials to access your database
 		this.connection = this.mysql.createConnection({
@@ -32,7 +50,7 @@ class Database{
 		this.connection.end();
 	}
 
-	getResultFromDB(sql, callback){
+	getStudentsFromDB(sql){
 		// Add the credentials to access your database
 		this.connection = this.mysql.createConnection({
 			host     : 'localhost',
@@ -42,12 +60,20 @@ class Database{
 		});
 
 		this.connection.connect();
-		var stuff;
+		var results, x = "";
 		this.connection.query(sql, function (error, results, fields) {
-		  if (error) throw error;
-		  console.log(results);
-			return callback(results);
-		  //$('#resultDiv').text(results[0].username);
+			if (error) throw error;
+			console.log(results);
+			var txt = "<table><tr><th>ID</th><th>Github</th><th>First Name</th>";
+			txt += "<th>Last Name</th><th>Creation Date</th></tr>"
+
+			for (x in results){
+				console.log(results[x]);
+				txt += "<tr><td>" + results[x].studentID + "</td> <td>" + results[x].ghUsername + "</td> <td>" + results[x].firstName + "</td> <td>" + results[x].lastName + "</td> <td>" + results[x].creationDate + "</td></tr>";
+			}
+			txt += "</table>";
+			document.getElementById("id02").innerHTML = txt;
+			//$('#resultDiv').text(results[0].username);
 		});
 
 		this.connection.end();
