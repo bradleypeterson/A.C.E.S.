@@ -2,14 +2,6 @@ CREATE DATABASE ACES;
 
 USE ACES;
 
-create table users(
-   userID INT NOT NULL AUTO_INCREMENT,
-   username VARCHAR(100) NOT NULL,
-   password VARCHAR(40) NOT NULL,
-   creationDate DATE,
-   PRIMARY KEY ( userID )
-);
-
 create table students(
    studentID INT NOT NULL AUTO_INCREMENT,
    ghUsername VARCHAR(100) NOT NULL,

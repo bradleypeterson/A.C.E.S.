@@ -3,7 +3,7 @@ class Database{
 		this.mysql = require('mysql');
 	}
 
-	getFromDB(sql){
+	getCoursesFromDB(sql){
 		// Add the credentials to access your database
 		this.connection = this.mysql.createConnection({
 			host     : 'localhost',
@@ -109,7 +109,7 @@ viewStudents(){
 viewCourses(){
 	var sql = 'SELECT * FROM courses'
 
-	var result = this.getFromDB(sql);
+	var result = this.getCoursesFromDB(sql);
 	return result;
 }
 
