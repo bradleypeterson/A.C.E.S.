@@ -38,11 +38,11 @@ create table assignments(
 );
 
 
-INSERT INTO users(username, password, creationDate)
-VALUES('RobertPickard','coolpassword',curdate());
+-- INSERT INTO users(username, password, creationDate)
+-- VALUES('RobertPickard','coolpassword',curdate());
 
-DELETE FROM `users` WHERE `username` = 'Test';
+-- DELETE FROM `users` WHERE `username` = 'Test';
 
 ALTER USER 'admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ACES2.0password'
 
-flush privileges;
+-- flush privileges;
