@@ -64,7 +64,7 @@ function initElectron(){
 function loadComponents(){
     $('#page-nav').load('components/navigation.html');
     $('#content-header').load('components/header.html');
-    
+
     switch (parameters['view']){
         case 'course':
             $('#content-main').load('components/course.html');
@@ -102,6 +102,7 @@ function toggleMenu(){
             paddingLeft: 0
         });
         $("#content-nav").addClass("hidden");
+        $("#content-nav").view
     }
 }
 
@@ -144,10 +145,42 @@ function addClass(){
     $("#page-popup").load("components/addCourse.html");
 }
 
+function viewClass(){
+  $("#page-popup").css("display", "block");
+  $("#page-popup").load("components/viewCourse.html");
+}
+
+
+function addStudent(){
+    $("#page-popup").css("display", "block");
+    $("#page-popup").load("components/addStudent.html");
+}
+
+function viewStudent(){
+  $("#page-popup").css("display", "block");
+  $("#page-popup").load("components/viewStudent.html");
+}
+
 function addSection(){
     $("#page-popup").css("display", "block");
     $("#page-popup").load("components/addSection.html");
 }
+
+function viewSection(){
+  $("#page-popup").css("display", "block");
+  $("#page-popup").load("components/viewSection.html");
+}
+
+function addAssignment(){
+    $("#page-popup").css("display", "block");
+    $("#page-popup").load("components/addAssignment.html");
+}
+
+function viewAssignment(){
+  $("#page-popup").css("display", "block");
+  $("#page-popup").load("components/viewAssignment.html");
+}
+
 
 function closePopup(){
     $("#page-popup").css("display", "none");
