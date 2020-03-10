@@ -10,15 +10,19 @@ function createWindow () {
   window = new BrowserWindow({
     width: 800,
     height: 600,
-    frame: false,
+    //frame: false,
     fullscreenable: false,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
+  window.setMenu(null)
+
   // and load the index.html of the app.
   window.loadFile('index.html')
+  
+  window.maximize()
 
   // Open the DevTools.
   window.webContents.openDevTools()

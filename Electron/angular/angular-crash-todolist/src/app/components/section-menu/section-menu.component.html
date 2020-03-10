@@ -1,0 +1,9 @@
+<nav id="app-section-menu" class="hidden">
+    <h2>Sections</h2>
+    <i id="close-subnav" class="fas fa-times" onclick="closeSubnav();"></i>
+    <hr>
+    <a *ngIf="sections.length == 0">No Sections</a>
+    <a href="/section/{{section}}" *ngFor="let section of sections">{{section}}</a>
+    <hr>
+    <a href="/manage-sections">Manage Sections</a>
+</nav>

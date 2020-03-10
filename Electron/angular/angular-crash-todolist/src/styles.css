@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+
+html, body { 
+    position: relative;
+    height: 100%; 
+}
+
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #f9f9f9; 
+}
+
+a{
+    cursor: pointer;
+}
+
+article{
+    padding: 10px;
+}

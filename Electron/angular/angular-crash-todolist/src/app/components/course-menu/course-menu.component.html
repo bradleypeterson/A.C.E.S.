@@ -1,0 +1,9 @@
+<nav id="app-submenu" class="hidden">
+    <h2>Courses</h2>
+    <i id="close-subnav" class="fas fa-times" onclick="closeSubnav();"></i>
+    <hr>
+    <a *ngIf="courses.length == 0">No Courses</a>
+    <a *ngFor="let course of courses">{{course}}</a>
+    <hr>
+    <a href="/manage-courses">Manage Courses</a>
+</nav>
