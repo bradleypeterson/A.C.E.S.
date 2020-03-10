@@ -1,0 +1,26 @@
+﻿@page
+@model A.C.E.S.Pages.StudentsModel
+@{
+}
+
+<table>
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Status</td>
+            <td>Archive</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.students)
+        {
+        <tr>
+            <td>@student</td>
+            <td></td>
+            <td>Good</td>
+            <td><i class="fas "</td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,179 @@
+﻿/***************************************/
+/* Global                              */
+/***************************************/
+    * {
+        font-family: sans-serif;
+        letter-spacing: 1px;
+    }
+
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    article {
+        padding: 10px;
+    }
+
+    table{
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead{
+        border-bottom: 1px solid #000000;
+    }
+
+    tbody tr:nth-child(2n+1){
+        background-color: rgba(0,0,0,.05);
+    }
+
+    tbody td{
+        padding: 5px;
+    }
+
+/***************************************/
+/* Header                              */
+/***************************************/
+    #app-main {
+        padding-left: 200px;
+    }
+
+    #app-menu {
+        position: fixed;
+        width: 200px;
+        height: 100%;
+        background-color: #492365;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    #app-menu header {
+        padding: 20px;
+    }
+
+    #app-menu hr {
+        margin: 0;
+        border-color: rgba(0,0,0,.2);
+    }
+
+    #app-menu a {
+        display: block;
+        padding: 10px;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    #app-menu a.disabled {
+        color: #aaaaaa;
+        cursor: not-allowed;
+    }
+
+    #app-menu a:hover {
+        background-color: rgba(255,255,255,.2);
+    }
+
+    #app-menu #app-user {
+        display: flex;
+        align-items: center;
+    }
+
+    #app-menu #app-user img {
+        margin-right: 10px;
+        border-radius: 100%;
+    }
+
+/***************************************/
+/* Header                              */
+/***************************************/
+    #app-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 10px;
+        cursor: default;
+        border-bottom: 1px solid rgba(0,0,0,.2);
+    }
+
+    #app-header h2 {
+        margin: 0;
+        text-transform: capitalize;
+    }
+
+    #app-header a {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    #header-main {
+        padding: 20px 20px 20px 0;
+    }
+
+    #header-main select {
+        padding: 5px;
+        background-color: #eeeeee;
+        cursor: pointer;
+    }
+
+/***************************************/
+/* Nav                                 */
+/***************************************/
+    #app-nav {
+        position: fixed;
+        width: 200px;
+        height: 100%;
+        background-color: #492365;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    #app-nav header {
+        padding: 20px;
+    }
+
+    #app-nav hr {
+        margin: 0;
+        border-color: rgba(0,0,0,.2);
+    }
+
+    #app-nav a {
+        display: block;
+        padding: 10px;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    #app-nav a.disabled {
+        color: #aaaaaa;
+        cursor: not-allowed;
+    }
+
+    #app-nav a:hover {
+        background-color: rgba(255,255,255,.2);
+    }
+
+    #app-nav #app-user {
+        display: flex;
+        align-items: center;
+    }
+
+    #app-nav #app-user img {
+        margin-right: 10px;
+        border-radius: 100%;
+    }
+
+#profile-title {
+    font-size: .8em;
+    font-style: italic;
+    color: rgba(255,255,255,.8);
+}
