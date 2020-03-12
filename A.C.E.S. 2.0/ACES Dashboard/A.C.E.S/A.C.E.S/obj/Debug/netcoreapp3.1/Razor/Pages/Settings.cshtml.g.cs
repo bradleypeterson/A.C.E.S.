@@ -13,7 +13,7 @@ namespace A.C.E.S.Pages
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\_ViewImports.cshtml"
+#line 1 "D:\School\CS4450\ACES\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\_ViewImports.cshtml"
 using A.C.E.S;
 
 #line default
@@ -28,7 +28,7 @@ using A.C.E.S;
         {
 #nullable restore
 #line 3 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Settings.cshtml"
-  
+
     ViewData["Title"] = "Settings";
 
 #line default
