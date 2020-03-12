@@ -1,0 +1,72 @@
+﻿@page
+@model A.C.E.S.Pages.Students.IndexModel
+@{
+    ViewData["Title"] = "Students";
+}
+
+<section id="top-bar">
+    <div>
+        <input id="filter-student-name" type="text" placeholder="Search Student" onkeyup="LoadList()"/>
+        <select id="filter-student-standing" onchange="LoadList()">
+            <option>All Standing</option>
+            <option>Good Standing</option>
+            <option>Moderate Standing</option>
+            <option>Bad Standing</option>
+        </select>
+    </div>
+    <div>
+        <a class="button">+ Add Student</a>
+    </div>
+</section>
+<section id="active-students">
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Standing</td>
+            </tr>
+        </thead>
+        <tbody id="student-list">
+        </tbody>
+    </table>
+</section>
+
+<script>
+    function LoadList() {
+        var name = document.getElementById('filter-student-name').value;
+        var standing = document.getElementById('filter-student-standing').selectedIndex;
+        console.log({ name, standing });
+
+        var elem = document.getElementById('student-list');
+        elem.innerHTML = "";
+
+        var students = JSON.parse('@Json.Serialize(Model.students)');
+        for (var student of students) {
+            if (student.archived) continue;
+            if (!student.name.toLowerCase().includes(name.toLowerCase())) continue;
+            if (standing != 0 && student.standing != standing - 1) continue;
+
+            var tr = document.createElement("tr");
+            tr.innerHTML += '<td><a href="/student/' + student.id + '">' + student.name + '</a></td>';
+            tr.innerHTML += '<td>' + student.email + '</td>';
+            switch (student.standing) {
+                case 0:
+                    tr.innerHTML += '<td><i class="green-text fas fa-fw fa-check"></i>Good</td>';
+                    break;
+                case 1:
+                    tr.innerHTML += '<td><i class="orange-text fas fa-fw fa-question"></i>Moderate</td>';
+                    break;
+                case 2:
+                    tr.innerHTML += '<td><i class="red-text fas fa-fw fa-exclamation"></i>Bad</td>';
+                    break;
+                default:
+                    tr.innerHTML += '<td></td>';
+                    break;
+            }
+            elem.appendChild(tr);
+        }
+    }
+
+    LoadList();
+</script>
