@@ -8,7 +8,7 @@ using A.C.E.S.Models;
 
 namespace A.C.E.S.Pages.Students
 {
-    public class IndexModel : PageModel
+    public class StudentsModel : PageModel
     {
         public List<Student> students { get; set; }
         public void OnGet()

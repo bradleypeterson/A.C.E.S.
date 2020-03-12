@@ -2,19 +2,14 @@
 /* Global                              */
 /***************************************/
     * {
-        font-family: sans-serif;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
         letter-spacing: 1px;
     }
 
     html, body {
         position: relative;
         height: 100%;
-    }
-
-    body {
         margin: 0;
-        font-family: Roboto, "Helvetica Neue", sans-serif;
-        background-color: #f9f9f9;
     }
 
     a {
@@ -226,13 +221,17 @@
         text-decoration: none;
     }
 
-    #app-nav a.disabled {
-        color: #aaaaaa;
-        cursor: not-allowed;
+    #app-nav a:hover {
+        background-color: rgba(0,0,0,.2);
     }
 
-    #app-nav a:hover {
-        background-color: rgba(255,255,255,.2);
+    #app-nav a.selected {
+        color: #492365;
+        background-color: #ffffff;
+    }
+
+    #app-nav a.selected:hover {
+        background-color: #ffffff;
     }
 
     #app-nav #app-user {

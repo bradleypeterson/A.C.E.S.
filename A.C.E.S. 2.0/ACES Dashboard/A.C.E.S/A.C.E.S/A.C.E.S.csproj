@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Assignments\" />
     <Folder Include="wwwroot\Assets\" />
   </ItemGroup>
 
