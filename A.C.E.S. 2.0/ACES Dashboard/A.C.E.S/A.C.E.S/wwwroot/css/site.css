@@ -100,6 +100,17 @@
         cursor: pointer;
     }
 
+    .pop-up{
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 400px;
+        padding: 10px;
+        background-color: #ffffff;
+        box-shadow: -2px 0 2px rgba(0,0,0,.2);
+    }
+
 /***************************************/
 /* Header                              */
 /***************************************/
