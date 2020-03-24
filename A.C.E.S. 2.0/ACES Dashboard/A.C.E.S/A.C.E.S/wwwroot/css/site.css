@@ -66,20 +66,40 @@
     }
 
     .accordion{
-        max-width: 400px;
-        margin: 10px;
         box-shadow: 2px 2px 2px rgba(0,0,0,.2);
+        margin-bottom: 10px;
     }
 
     .accordion-header{
+        position: relative;
         padding: 10px;
         background-color: #cfcfcf;
         cursor: pointer;
     }
 
+    .accordion-header:after {
+        position: absolute;
+        right: 10px;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 600;
+        content: "\f078";
+        -moz-transition: transform .5s;
+        -webkit-transition: transform .5s;
+        transition: transform .5s;
+        transform: rotate(0deg);
+    }
+
+    .accordion-header.expanded:after {
+        -moz-transition: transform .5s;
+        -webkit-transition: transform .5s;
+        transition: transform .5s;
+        transform: rotate(-180deg);
+    }
+
     .accordion-content{
-        padding: 10px;
+        padding: 5px 10px;
         background-color: #dfdfdf;
+        line-height: 2em;
     }
 
     .hide{

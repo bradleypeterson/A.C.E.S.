@@ -7,13 +7,13 @@
 <h2>Academic Standing</h2>
 @switch (@Model.student.Standing)
 {
-    case Models.Status.Good:
+    case Models.Standing.Good:
         <p><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</p>
         break;
-    case Models.Status.Moderate:
+    case Models.Standing.Moderate:
         <p><i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate</p>
         break;
-    case Models.Status.Bad:
+    case Models.Standing.Bad:
         <p><i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad</p>
         break;
     default:

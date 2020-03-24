@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\School\\CS4450\\ACES\\A.C.E.S.-2.0\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj": {}
+    "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj": {}
   },
   "projects": {
-    "D:\\School\\CS4450\\ACES\\A.C.E.S.-2.0\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj": {
+    "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\School\\CS4450\\ACES\\A.C.E.S.-2.0\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj",
+        "projectUniqueName": "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj",
         "projectName": "A.C.E.S",
-        "projectPath": "D:\\School\\CS4450\\ACES\\A.C.E.S.-2.0\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj",
-        "packagesPath": "C:\\Users\\picka\\.nuget\\packages\\",
-        "outputPath": "D:\\School\\CS4450\\ACES\\A.C.E.S.-2.0\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\obj\\",
+        "projectPath": "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj",
+        "packagesPath": "C:\\Users\\josep\\.nuget\\packages\\",
+        "outputPath": "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\picka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\josep\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,9 +41,9 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[1.2.7, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
@@ -59,6 +62,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.1, )"
+            },
+            "MySql.Data.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.19, )"
             }
           },
           "imports": [
@@ -79,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

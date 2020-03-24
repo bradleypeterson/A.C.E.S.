@@ -7,64 +7,43 @@
 
 <section id="top-bar">
     <div>
-        <input id="filter-student-name" type="text" placeholder="Search Student" onkeyup="LoadList()" />
-        <select id="filter-student-standing" onchange="LoadList()">
-            <option>All Standing</option>
-            <option>Good Standing</option>
-            <option>Moderate Standing</option>
-            <option>Bad Standing</option>
-        </select>
+        <input id="filter-course-name" type="text" placeholder="Search Course" onkeyup="LoadList()" />
+        <input id="filter-assignment-name" type="text" placeholder="Search Assignment" onkeyup="LoadList()" />
     </div>
     <div>
         <a class="button" href="./Courses/Add">+ Add Course</a>
     </div>
 </section>
-<section id="active-students">
-    <table>
-        <thead>
-            <tr>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Standing</td>
-            </tr>
-        </thead>
-        <tbody id="student-list">
-        </tbody>
-    </table>
+<section id="course-list">
+
 </section>
 <script>
     function LoadList() {
-        var name = document.getElementById('filter-student-name').value;
-        var standing = document.getElementById('filter-student-standing').selectedIndex;
-        console.log({ name, standing });
+        var cname = document.getElementById('filter-course-name').value;
+        var aname = document.getElementById('filter-assignment-name').value;
 
-        var elem = document.getElementById('student-list');
+        var elem = document.getElementById('course-list');
         elem.innerHTML = "";
 
-        var students = JSON.parse('@Json.Serialize(Model.Courses)');
-        for (var student of students) {
-            if (student.archived) continue;
-            if (!student.name.toLowerCase().includes(name.toLowerCase())) continue;
-            if (standing != 0 && student.standing != standing - 1) continue;
+        var courses = JSON.parse('@Json.Serialize(Model.Courses)');
+        for (var course of courses) {
+            if (course.archived) continue;
+            if (!course.name.toLowerCase().includes(cname.toLowerCase())) continue;
 
-            var tr = document.createElement("tr");
-            tr.innerHTML += '<td><a href="/Student/' + student.id + '">' + student.name + '</a></td>';
-            tr.innerHTML += '<td>' + student.email + '</td>';
-            switch (student.standing) {
-                case 0:
-                    tr.innerHTML += '<td><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</td>';
-                    break;
-                case 1:
-                    tr.innerHTML += '<td><i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate</td>';
-                    break;
-                case 2:
-                    tr.innerHTML += '<td><i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad</td>';
-                    break;
-                default:
-                    tr.innerHTML += '<td></td>';
-                    break;
+            var accordion = document.createElement('div');
+            accordion.classList.add('accordion');
+            accordion.innerHTML += `<div class="accordion-header">${course.name}</div>`;
+
+            var content = document.createElement('div');
+            content.classList.add('accordion-content');
+
+            for (var assignment of course.assignments) {
+                content.innerHTML += `<div><a href="/Courses/${course.id}/Assignments/${assignment.id}">${assignment.name}</a></div>`;
             }
-            elem.appendChild(tr);
+            content.innerHTML += `<div><a href="/Courses/${course.id}/Assignments/Add">Add Assignment</a></div>`;
+
+            accordion.appendChild(content);
+            elem.appendChild(accordion);
         }
     }
 

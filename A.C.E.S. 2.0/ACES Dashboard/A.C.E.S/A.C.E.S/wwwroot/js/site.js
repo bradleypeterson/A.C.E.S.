@@ -21,6 +21,7 @@ $(document).ready(function () {
     $('.accordion-content').hide();
     $(".accordion-header").click(function () {
         $(this).next().slideToggle();
+        $(this).toggleClass('expanded');
         //$(this).next().slideToggle(function () {
         //    if ($(this).is(':visible'))
         //        $(this).css('display', 'flex');

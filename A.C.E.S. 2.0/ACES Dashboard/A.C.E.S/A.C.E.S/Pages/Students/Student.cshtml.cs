@@ -16,7 +16,7 @@ namespace A.C.E.S.Pages.Students
         public Student student { get; set; }
         public void OnGet()
         {
-            student = new Student(ID, "josephhwang@mail.weber.edu", "Joseph Hwang", Status.Good);
+            student = new Student(ID, "josephhwang@mail.weber.edu", "Joseph Hwang", Standing.Good);
         }
     }
 }

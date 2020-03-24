@@ -1,4 +1,53 @@
 ﻿@page "/Sections"
 @model A.C.E.S.Pages.Sections.SectionsModel
 @{
+    ViewData["Title"] = "Sections";
 }
+
+<section id="top-bar">
+    <div>
+        <input id="filter-section-name" type="text" placeholder="Search Section" onkeyup="LoadList()" />
+        <select id="filter-section-status" onchange="LoadList()">
+            <option>Current</option>
+            <option>Planned</option>
+            <option>Past</option>
+        </select>
+    </div>
+    <div>
+        <a class="button" href="./Section/Add">+ Add Section</a>
+    </div>
+</section>
+<section id="course-list">
+</section>
+<script>
+    function LoadList() {
+        var name = document.getElementById('filter-section-name').value;
+        var status = document.getElementById('filter-section-status').value;
+
+        var elem = document.getElementById('course-list');
+        elem.innerHTML = "";
+
+        var sections = JSON.parse('@Json.Serialize(Model.Sections)');
+        for (var section of sections) {
+            if (section.archived) continue;
+            if (!section.name.toLowerCase().includes(name.toLowerCase())) continue;
+
+            var accordion = document.createElement('div');
+            accordion.classList.add('accordion');
+            accordion.innerHTML += `<div class="accordion-header">${section.name}</div>`;
+
+            var content = document.createElement('div');
+            content.classList.add('accordion-content');
+
+            console.log(section);
+            for (var student of section.students) {
+            }
+            content.innerHTML += '<div><a href="#">Add Student</a></div>';
+
+            accordion.appendChild(content);
+            elem.appendChild(accordion);
+        }
+    }
+
+    LoadList();
+</script>

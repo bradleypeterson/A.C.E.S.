@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace A.C.E.S.Models
 {
-    public enum Status { Good, Moderate, Bad }
+    public enum Standing { Good, Moderate, Bad }
 
     public class Student
     {
         public ushort ID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public Status Standing { get; set; }
+        public Standing Standing { get; set; }
         public bool Archived { get; set; }
 
-        public Student(ushort id, string email, string name, Status standing)
+        public Student(ushort id, string email, string name, Standing standing)
         {
             ID = id;
             Name = name;

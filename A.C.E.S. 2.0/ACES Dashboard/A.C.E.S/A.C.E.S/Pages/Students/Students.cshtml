@@ -35,12 +35,16 @@
     function LoadList() {
         var name = document.getElementById('filter-student-name').value;
         var standing = document.getElementById('filter-student-standing').selectedIndex;
-        console.log({ name, standing });
 
         var elem = document.getElementById('student-list');
         elem.innerHTML = "";
 
         var students = JSON.parse('@Json.Serialize(Model.students)');
+        if (students.length == 0) {
+            var tr = document.createElement('tr');
+            tr.innerHTML('<td colspan="4"><center>No Result.</center></td>');
+        }
+
         for (var student of students) {
             if (student.archived) continue;
             if (!student.name.toLowerCase().includes(name.toLowerCase())) continue;

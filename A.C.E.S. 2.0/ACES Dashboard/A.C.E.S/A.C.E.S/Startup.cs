@@ -41,6 +41,7 @@ namespace A.C.E.S
                 app.UseHsts();
             }
 
+            app.UseStatusCodePages("text/html", "<h1>Error {0}: You've done goofed!</h1>");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
