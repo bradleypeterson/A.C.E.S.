@@ -10,9 +10,9 @@ namespace A.C.E.S.Pages.Courses.Assignments
 {
     public class AssignmentModel : PageModel
     {
-        public ushort CourseID;
+        public int CourseID;
         public Assignment Assignment { get; set; }
-        public void OnGet(ushort courseID, ushort ID)
+        public void OnGet(int courseID, int ID)
         {
             CourseID = courseID;
             Assignment = new Assignment(ID, "Assignment");
