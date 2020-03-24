@@ -10,11 +10,8 @@ namespace A.C.E.S.Pages.Students
 {
     public class StudentModel : PageModel
     {
-        [BindProperty(SupportsGet = true)]
-        public ushort ID { get; set; }
-
         public Student student { get; set; }
-        public void OnGet()
+        public void OnGet(ushort ID)
         {
             student = new Student(ID, "josephhwang@mail.weber.edu", "Joseph Hwang", Standing.Good);
         }

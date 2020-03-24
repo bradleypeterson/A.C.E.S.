@@ -1,11 +1,14 @@
-﻿@page "Courses/{course}/Assignments/Add"
+﻿@page "/Courses/{Course:int}/Assignments/Add"
 @model A.C.E.S.Pages.Assignments.AddModel
 @{
-    ViewData["Title"] = "Add Assignment";
+    ViewData["Title"] = $"{Model.Course}: Add Assignment";
 }
 
 <form>
     <label>Name <input type="text" /></label>
+    <label>Grade <input type="number" /></label>
+    <label>Files <input type="file" /></label>
+    <label>Unit Tester <input type="file" /></label>
     <input type="submit" value="Add" />
     <input type="button" value="Cancel" />
 </form>

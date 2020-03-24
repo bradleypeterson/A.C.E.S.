@@ -9,8 +9,10 @@ namespace A.C.E.S.Pages.Assignments
 {
     public class AddModel : PageModel
     {
-        public void OnGet()
+        public ushort Course;
+        public void OnGet(ushort course)
         {
+            Course = course;
         }
     }
 }
