@@ -18,7 +18,6 @@ function Select(element, singleSelect) {
 }
 
 $(document).ready(function () {
-    $('.accordion-content').hide();
     $(".accordion-header").click(function () {
         $(this).next().slideToggle();
         $(this).toggleClass('expanded');
