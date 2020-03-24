@@ -9,13 +9,13 @@ namespace A.C.E.S.Models
 
     public class Student
     {
-        public ushort ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public Standing Standing { get; set; }
         public bool Archived { get; set; }
 
-        public Student(ushort id, string email, string name, Standing standing)
+        public Student(int id, string email, string name, Standing standing)
         {
             ID = id;
             Name = name;

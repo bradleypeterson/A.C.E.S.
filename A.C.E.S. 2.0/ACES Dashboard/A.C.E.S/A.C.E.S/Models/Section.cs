@@ -8,12 +8,12 @@ namespace A.C.E.S.Models
     public class Section
     {
 
-        public ushort ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public bool Archived { get; set; }
         public List<Student> Students { get; set; }
 
-        public Section(ushort id, string name, bool archived)
+        public Section(int id, string name, bool archived)
         {
             ID = id;
             Name = name;
