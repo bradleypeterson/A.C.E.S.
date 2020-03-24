@@ -71,5 +71,15 @@
         }
     }
 
+    function AddStudent() {
+        document.body.innerHTML += '<div id="add-student" class="pop-up"></div>';
+        var popup = document.getElementById('add-student');
+        var form = document.createElement("form");
+        form.innerHTML += '<label>Name <input type="text" /></label>';
+        form.innerHTML += '<input type="submit" value="Add" />';
+        form.innerHTML += '<input type="button" value="Cancel" />';
+        popup.appendChild(form);
+    }
+
     LoadList();
 </script>

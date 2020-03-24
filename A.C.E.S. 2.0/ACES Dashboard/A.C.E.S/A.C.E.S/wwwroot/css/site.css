@@ -40,6 +40,11 @@
         padding: 10px;
     }
 
+    label{
+        display: block;
+        margin: 10px 0;
+    }
+
     .table-archive{
         width: 20px;
     }
