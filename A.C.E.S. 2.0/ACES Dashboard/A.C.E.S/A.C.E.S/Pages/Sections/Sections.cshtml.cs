@@ -15,9 +15,9 @@ namespace A.C.E.S.Pages.Sections
         public void OnGet()
         {
             Sections = new List<Section>();
-            Sections.Add(new Section(1000, "CS 1410 Summer 2020", false));
-            Sections.Add(new Section(1000, "CS 2420 Summer 2020", true));
-            Sections.Add(new Section(1000, "CS 4550 Summer 2020", false));
+            //Sections.Add(new Section(1000, "CS 1410 Summer 2020", false));
+            //Sections.Add(new Section(1000, "CS 2420 Summer 2020", true));
+            //Sections.Add(new Section(1000, "CS 4550 Summer 2020", false));
         }
     }
 }

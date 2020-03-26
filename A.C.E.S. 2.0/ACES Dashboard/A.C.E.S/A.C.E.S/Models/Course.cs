@@ -9,14 +9,14 @@ namespace A.C.E.S.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<Assignment> Assignments { get; set; }
+        public ICollection<Assignment> Assignments { get; set; }
         public bool Archived { get; set; }
 
-        public Course(int id, string name)
-        {
-            ID = id;
-            Name = name;
-            Assignments = new List<Assignment>();
-        }
+        //public Course(int id, string name)
+        //{
+        //    ID = id;
+        //    Name = name;
+        //    Assignments = new List<Assignment>();
+        //}
     }
 }

@@ -20,8 +20,7 @@ namespace A.C.E.S.Data
 
             var students = new Student[]
             {
-                new Student (0,"TestEmail", "TestName", Standing.Bad)
-
+                new Student { Name = "Test Student", Email = "test@test.com", Standing = Standing.Bad, Archived = false }
             };
 
             foreach (Student s in students)

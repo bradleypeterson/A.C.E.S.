@@ -15,7 +15,7 @@ namespace A.C.E.S.Pages.Courses.Assignments
         public void OnGet(int courseID, int ID)
         {
             CourseID = courseID;
-            Assignment = new Assignment(ID, "Assignment");
+            //Assignment = new Assignment(ID, "Assignment");
         }
     }
 }
