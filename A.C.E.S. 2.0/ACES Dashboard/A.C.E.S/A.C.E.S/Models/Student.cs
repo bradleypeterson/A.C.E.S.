@@ -15,13 +15,13 @@ namespace A.C.E.S.Models
         public Standing Standing { get; set; }
         public bool Archived { get; set; }
 
-        public Student(int id, string email, string name, Standing standing)
-        {
-            ID = id;
-            Name = name;
-            Email = email;
-            Standing = standing;
-            Archived = false;
-        }
+        //public Student(int id, string email, string name, Standing standing)
+        //{
+        //    ID = id;
+        //    Name = name;
+        //    Email = email;
+        //    Standing = standing;
+        //    Archived = false;
+        //}
     }
 }
