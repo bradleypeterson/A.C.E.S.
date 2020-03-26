@@ -36,6 +36,9 @@
         elem.innerHTML = "";
 
         var courses = JSON.parse('@Json.Serialize(Model.Courses)');
+        if (courses.length == 0) {
+            elem.innerHTML = '<div>There are no courses.</div>';
+        }
         for (var course of courses) {
             if (course.archived) continue;
             if (!course.name.toLowerCase().includes(cname.toLowerCase())) continue;

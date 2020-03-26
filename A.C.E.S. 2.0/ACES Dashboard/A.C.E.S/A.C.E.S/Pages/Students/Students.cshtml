@@ -54,8 +54,7 @@
 
         var students = JSON.parse('@Json.Serialize(Model.students)');
         if (students.length == 0) {
-            var tr = document.createElement('tr');
-            tr.innerHTML('<td colspan="4"><center>No Result.</center></td>');
+            elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
         }
 
         for (var student of students) {

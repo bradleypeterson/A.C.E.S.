@@ -57,6 +57,9 @@
         elem.innerHTML = "";
 
         var sections = JSON.parse('@Json.Serialize(Model.Sections)');
+        if (sections.length == 0) {
+            elem.innerHTML = '<div>There are no semesters</div>';
+        }
         for (var section of sections) {
             if (section.archived) continue;
             if (!section.name.toLowerCase().includes(name.toLowerCase())) continue;
