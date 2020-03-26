@@ -15,7 +15,7 @@
         </select>
     </div>
     <div>
-        <a class="button" href="./Students/Add">+ Add Student</a>
+        <a class="button" onclick="$('.pop-up').animate({ width: 'toggle' });">+ Add Student</a>
     </div>
 </section>
 <section id="active-students">
@@ -31,6 +31,19 @@
         </tbody>
     </table>
 </section>
+<aside class="pop-up">
+    <h2>Add Student</h2>
+    <form action="/Students/Add">
+        <div><label for="name">Name:</label></div>
+        <div><input id="name" name="name" type="text" /></div>
+        <div><label for="email">Email:</label></div>
+        <div><input id="email" name="email" type="email" /></div>
+        <p>
+            <input type="submit" value="Add" />
+            <input type="button" value="Cancel" onclick="$('.pop-up').animate({ width: 'toggle' });" />
+        </p>
+    </form>
+</aside>
 <script>
     function LoadList() {
         var name = document.getElementById('filter-student-name').value;
@@ -69,16 +82,6 @@
             }
             elem.appendChild(tr);
         }
-    }
-
-    function AddStudent() {
-        document.body.innerHTML += '<div id="add-student" class="pop-up"></div>';
-        var popup = document.getElementById('add-student');
-        var form = document.createElement("form");
-        form.innerHTML += '<label>Name <input type="text" /></label>';
-        form.innerHTML += '<input type="submit" value="Add" />';
-        form.innerHTML += '<input type="button" value="Cancel" />';
-        popup.appendChild(form);
     }
 
     LoadList();

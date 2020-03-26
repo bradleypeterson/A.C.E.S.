@@ -14,11 +14,40 @@
         </select>
     </div>
     <div>
-        <a class="button" href="./Sections/Add">+ Add Section</a>
+        <a class="button" onclick="$('.pop-up').animate({ width: 'toggle' });">+ Add Section</a>
     </div>
 </section>
 <section id="course-list">
 </section>
+<aside class="pop-up">
+    <h2>Add Section</h2>
+    <form action="/Sections/Add">
+        <div><label for="name">Name:</label></div>
+        <div><input id="name" name="name" type="text" /></div>
+        <div><label>Term</label></div>
+        <div>
+            <select>
+                <option>Spring</option>
+                <option>Summer</option>
+                <option>Fall</option>
+            </select>
+            <select>
+                <option>Full</option>
+                <option>1<sup>st</sup> Block</option>
+                <option>2<sup>nd</sup> Block</option>
+            </select>
+            <select>
+                @for (int i = 0; i < 3; i++) {
+                    <option>@(DateTime.Now.Year + i)</option>
+                }
+            </select>
+        </div>
+        <p>
+            <input type="submit" value="Add" />
+            <input type="button" value="Cancel" onclick="$('.pop-up').animate({ width: 'toggle' });" />
+        </p>
+    </form>
+</aside>
 <script>
     function LoadList() {
         var name = document.getElementById('filter-section-name').value;

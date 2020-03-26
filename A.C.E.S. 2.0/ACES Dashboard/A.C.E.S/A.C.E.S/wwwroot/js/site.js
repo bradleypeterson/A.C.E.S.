@@ -18,6 +18,7 @@ function Select(element, singleSelect) {
 }
 
 $(document).ready(function () {
+    $('.pop-up').animate({ width: 'toggle' }, 0);
     $(".accordion-header").click(function () {
         $(this).next().slideToggle();
         $(this).toggleClass('expanded');

@@ -125,10 +125,20 @@
         top: 0;
         right: 0;
         height: 100%;
-        width: 400px;
+        width: 300px;
         padding: 10px;
         background-color: #ffffff;
         box-shadow: -2px 0 2px rgba(0,0,0,.2);
+        white-space: nowrap;
+    }
+
+    .pop-up input[type=text]{
+        width: 100%;
+    }
+
+    .canvas-wrapper{
+        width: 400px;
+        height: 400px;
     }
 
 /***************************************/
