@@ -11,12 +11,22 @@
         <input id="filter-assignment-name" type="text" placeholder="Search Assignment" onkeyup="LoadList()" />
     </div>
     <div>
-        <a class="button" href="./Courses/Add">+ Add Course</a>
+        <a class="button" onclick="$('.pop-up').animate({ width: 'toggle' });">+ Add Course</a>
     </div>
 </section>
 <section id="course-list">
-
 </section>
+<aside class="pop-up">
+    <h2>Add Course</h2>
+    <form action="/Courses/Add">
+        <div><label for="name">Name:</label></div>
+        <div><input id="name" name="name" type="text" /></div>
+        <p>
+            <input type="submit" value="Add" />
+            <input type="button" value="Cancel" onclick="$('.pop-up').animate({ width: 'toggle' });" />
+        </p>
+    </form>
+</aside>
 <script>
     function LoadList() {
         var cname = document.getElementById('filter-course-name').value;

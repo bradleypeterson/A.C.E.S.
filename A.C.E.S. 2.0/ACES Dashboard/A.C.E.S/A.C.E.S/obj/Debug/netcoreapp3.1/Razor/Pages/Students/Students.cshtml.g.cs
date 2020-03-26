@@ -13,7 +13,7 @@ namespace A.C.E.S.Pages.Students
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\_ViewImports.cshtml"
+#line 1 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\_ViewImports.cshtml"
 using A.C.E.S;
 
 #line default
@@ -45,12 +45,14 @@ using A.C.E.S;
             }
         }
         private global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 3 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Students.cshtml"
-  
+#line 3 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Students.cshtml"
+
     ViewData["Title"] = "Students";
 
 #line default
@@ -112,11 +114,8 @@ using A.C.E.S;
             }
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral(@"
-        </select>
-    </div>
-    <div>
-        <a class=""button"" href=""./Students/Add"">+ Add Student</a>
+            WriteLiteral("\r\n        </select>\r\n    </div>\r\n    <div>\r\n");
+            WriteLiteral(@"        <a class=""button"" onclick=""$('.pop-up').animate({ width: 'toggle' });"">+ Add Student</a>
     </div>
 </section>
 <section id=""active-students"">
@@ -132,6 +131,35 @@ using A.C.E.S;
         </tbody>
     </table>
 </section>
+<aside class=""pop-up"">
+    <h2>Add Student</h2>
+    ");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d539b262140d2b60f012b43c31800a92c25ca6228382", async() => {
+                WriteLiteral(@"
+        <div><label for=""name"">Name:</label></div>
+        <div><input id=""name"" name=""name"" type=""text"" /></div>
+        <div><label for=""email"">Email:</label></div>
+        <div><input id=""email"" name=""email"" type=""email"" /></div>
+        <p>
+            <input type=""submit"" value=""Add"" />
+            <input type=""button"" value=""Cancel"" onclick=""$('.pop-up').animate({ width: 'toggle' });"" />
+        </p>
+    ");
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            WriteLiteral(@"
+</aside>
 <script>
     function LoadList() {
         var name = document.getElementById('filter-student-name').value;
@@ -142,7 +170,7 @@ using A.C.E.S;
 
         var students = JSON.parse('");
 #nullable restore
-#line 42 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Students.cshtml"
+#line 56 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Students.cshtml"
                               Write(Json.Serialize(Model.students));
 
 #line default
