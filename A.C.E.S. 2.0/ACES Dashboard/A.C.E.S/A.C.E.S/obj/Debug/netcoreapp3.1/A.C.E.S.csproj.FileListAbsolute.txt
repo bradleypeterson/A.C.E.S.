@@ -869,3 +869,9 @@ D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Da
 D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.csproj.CoreCompileInputs.cache
 D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.MvcApplicationPartsAssemblyInfo.cs
 D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.MvcApplicationPartsAssemblyInfo.cache
+S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
