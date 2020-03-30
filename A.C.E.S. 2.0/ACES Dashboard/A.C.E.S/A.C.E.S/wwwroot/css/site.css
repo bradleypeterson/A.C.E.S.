@@ -132,7 +132,7 @@
         white-space: nowrap;
     }
 
-    .pop-up input[type=text]{
+    .pop-up input[type=text], .pop-up input[type=email] {
         width: 100%;
     }
 
