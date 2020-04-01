@@ -13,11 +13,11 @@
     <hr>
     @if (Context.Request.Path.StartsWithSegments("/"))
     {
-        <a href="/" class="selected"><i class="fas fa-fw fa-home"></i> Overview</a>
+        <a href="/" class="selected"><i class="fas fa-fw fa-chalkboard-teacher"></i> Sections</a>
     }
     else
     {
-        <a href="/"><i class="fas fa-fw fa-home"></i> Overview</a>
+        <a href="/"><i class="fas fa-fw fa-chalkboard-teacher"></i> Sections</a>
     }
     @if (Context.Request.Path.StartsWithSegments("/Courses"))
     {
@@ -26,14 +26,6 @@
     else
     {
         <a href="/Courses"><i class="fas fa-fw fa-book"></i> Courses</a>
-    }
-    @if (Context.Request.Path.StartsWithSegments("/Sections"))
-    {
-        <a href="/Sections" class="selected"><i class="fas fa-fw fa-chalkboard-teacher"></i> Sections</a>
-    }
-    else
-    {
-        <a href="/Sections"><i class="fas fa-fw fa-chalkboard-teacher"></i> Sections</a>
     }
     @if (Context.Request.Path.StartsWithSegments("/Students"))
     {
@@ -44,11 +36,11 @@
         <a href="/Students"><i class="fas fa-fw fa-user-graduate"></i> Students</a>
     }
     @*@if (Context.Request.Path.StartsWithSegments("/Settings"))
-    {
-        <a href="/Settings" class="selected"><i class="fas fa-fw fa-cog"></i> Settings</a>
-    }
-    else
-    {
-        <a href="/Settings"><i class="fas fa-fw fa-cog"></i> Settings</a>
-    }*@
+        {
+            <a href="/Settings" class="selected"><i class="fas fa-fw fa-cog"></i> Settings</a>
+        }
+        else
+        {
+            <a href="/Settings"><i class="fas fa-fw fa-cog"></i> Settings</a>
+        }*@
 </nav>

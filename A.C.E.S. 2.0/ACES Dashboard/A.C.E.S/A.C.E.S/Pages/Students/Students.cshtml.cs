@@ -14,6 +14,12 @@ namespace A.C.E.S.Pages.Students
         public void OnGet()
         {
             students = new List<Student>();
+            students.Add(new Student());
+            students[0].ID = 1000;
+            students[0].Name = "John Doe";
+            students[0].Email = "johndoe@school.edu";
+            students[0].Standing = Standing.Good;
+            students[0].Archived = false;
         }
     }
 }
