@@ -13,7 +13,7 @@ namespace A.C.E.S.Pages.Shared.Components
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\_ViewImports.cshtml"
+#line 1 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\_ViewImports.cshtml"
 using A.C.E.S;
 
 #line default
@@ -99,7 +99,7 @@ using A.C.E.S;
 #nullable disable
             WriteLiteral("        <a href=\"/\" class=\"selected\"><i class=\"fas fa-fw fa-chalkboard-teacher\"></i> Sections</a>\r\n");
 #nullable restore
-#line 17 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
+#line 17 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
     }
     else
     {
@@ -109,14 +109,14 @@ using A.C.E.S;
 #nullable disable
             WriteLiteral("        <a href=\"/\"><i class=\"fas fa-fw fa-chalkboard-teacher\"></i> Sections</a>\r\n");
 #nullable restore
-#line 21 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
+#line 21 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
     }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 22 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
+#line 22 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
      if (Context.Request.Path.StartsWithSegments("/Courses"))
     {
 
@@ -125,7 +125,7 @@ using A.C.E.S;
 #nullable disable
             WriteLiteral("        <a href=\"/Courses\" class=\"selected\"><i class=\"fas fa-fw fa-book\"></i> Courses</a>\r\n");
 #nullable restore
-#line 25 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
+#line 25 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
     }
     else
     {
@@ -135,14 +135,14 @@ using A.C.E.S;
 #nullable disable
             WriteLiteral("        <a href=\"/Courses\"><i class=\"fas fa-fw fa-book\"></i> Courses</a>\r\n");
 #nullable restore
-#line 29 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
+#line 29 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
     }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 30 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
+#line 30 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
      if (Context.Request.Path.StartsWithSegments("/Students"))
     {
 
@@ -151,7 +151,7 @@ using A.C.E.S;
 #nullable disable
             WriteLiteral("        <a href=\"/Students\" class=\"selected\"><i class=\"fas fa-fw fa-user-graduate\"></i> Students</a>\r\n");
 #nullable restore
-#line 33 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
+#line 33 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
     }
     else
     {
@@ -161,7 +161,7 @@ using A.C.E.S;
 #nullable disable
             WriteLiteral("        <a href=\"/Students\"><i class=\"fas fa-fw fa-user-graduate\"></i> Students</a>\r\n");
 #nullable restore
-#line 37 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
+#line 37 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Shared\Components\Nav.cshtml"
     }
 
 #line default
