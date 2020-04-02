@@ -11,6 +11,9 @@ namespace A.C.E.S.Pages.Students
     public class StudentsModel : PageModel
     {
         public List<Student> students { get; set; }
+
+        [BindProperty]
+        public Student Student { get; set; }
         public void OnGet()
         {
             students = new List<Student>();
