@@ -5,14 +5,12 @@ using System.Threading.Tasks;
 
 namespace A.C.E.S.Models
 {
-    public enum Standing { Good, Moderate, Bad }
 
     public class Student
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public Standing Standing { get; set; }
         public List<Section> Sections { get; set; }
         public List<Submission> Submissions { get; set; }
         public bool Archived { get; set; }

@@ -14,7 +14,6 @@ namespace A.C.E.S.Data
         public DbSet<Section> Sections { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Submission> Submissions { get; set; }
-        public DbSet<StudentAssignment> StudentAssignments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,7 +21,6 @@ namespace A.C.E.S.Data
             modelBuilder.Entity<Assignment>().ToTable("Assignment");
             modelBuilder.Entity<Submission>().ToTable("Submission");
             modelBuilder.Entity<Student>().ToTable("Student");
-            modelBuilder.Entity<StudentAssignment>().ToTable("StudentAssignment");
             modelBuilder.Entity<Section>().ToTable("Section");
         }
     }

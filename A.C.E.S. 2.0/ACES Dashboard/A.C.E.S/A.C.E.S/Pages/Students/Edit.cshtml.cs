@@ -54,7 +54,7 @@ namespace A.C.E.S.Pages.Students
             if (await TryUpdateModelAsync<Student>(
                  studentToUpdate,
                  "student",   // Prefix for form value.
-                   c => c.Name, c => c.Email, c => c.Standing))
+                   c => c.Name, c => c.Email))
             {
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Students");

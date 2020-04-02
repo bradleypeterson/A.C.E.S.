@@ -32,7 +32,7 @@ namespace A.C.E.S.Pages.Students
             if (await TryUpdateModelAsync<Student>(
                 emptyStudent,
                 "student",   // Prefix for form value.
-                s => s.Name, s => s.Email, s => s.Standing, s => s.Archived))
+                s => s.Name, s => s.Email, s => s.Archived))
             {
                 _context.Students.Add(emptyStudent);
                 await _context.SaveChangesAsync();

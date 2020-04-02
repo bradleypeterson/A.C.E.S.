@@ -12,6 +12,7 @@ namespace A.C.E.S.Models
         public string Name { get; set; }
         public string Files { get; set; }
         public string UnitTesters { get; set; }
+        public int Grade { get; set; }
 
         //public Assignment(int id, string name)
         //{
