@@ -13,6 +13,8 @@ namespace A.C.E.S.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public Standing Standing { get; set; }
+        public List<Section> Sections { get; set; }
+        public List<Submission> Submissions { get; set; }
         public bool Archived { get; set; }
 
         //public Student(int id, string email, string name, Standing standing)
