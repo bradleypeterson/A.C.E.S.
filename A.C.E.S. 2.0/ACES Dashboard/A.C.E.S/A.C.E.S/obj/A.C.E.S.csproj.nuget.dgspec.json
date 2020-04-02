@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj": {}
+    "S:\\My Stuff\\School\\CS 4450\\A.C.E.S.-2.0\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj": {
+    "S:\\My Stuff\\School\\CS 4450\\A.C.E.S.-2.0\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj",
+        "projectUniqueName": "S:\\My Stuff\\School\\CS 4450\\A.C.E.S.-2.0\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj",
         "projectName": "A.C.E.S",
-        "projectPath": "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj",
-        "packagesPath": "C:\\Users\\josep\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\obj\\",
+        "projectPath": "S:\\My Stuff\\School\\CS 4450\\A.C.E.S.-2.0\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj",
+        "packagesPath": "C:\\Users\\picka\\.nuget\\packages\\",
+        "outputPath": "S:\\My Stuff\\School\\CS 4450\\A.C.E.S.-2.0\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\josep\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\picka\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

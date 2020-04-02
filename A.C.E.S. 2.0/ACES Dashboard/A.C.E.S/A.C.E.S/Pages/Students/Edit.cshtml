@@ -21,3 +21,7 @@
         <input type="button" value="Cancel" />
     </div>
 </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

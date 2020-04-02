@@ -11,8 +11,6 @@ namespace A.C.E.S.Pages.Students
 {
     public class EditModel : PageModel
     {
-        public Student student { get; set; }
-
         private readonly A.C.E.S.Data.ACESContext _context;
 
         public EditModel(A.C.E.S.Data.ACESContext context)
@@ -20,25 +18,44 @@ namespace A.C.E.S.Pages.Students
             _context = context;
         }
 
-        public async Task OnGetAsync(int id)
+        [BindProperty]
+        public Student student { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            student = await _context.Students
-                .Where(s => s.ID == id)
-                .AsNoTracking()
-                .FirstOrDefaultAsync();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            student = await _context.Students.FindAsync(id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            var emptyStudent = new Student();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var studentToUpdate = await _context.Students.FindAsync(id);
+
+            if (studentToUpdate == null)
+            {
+                return NotFound();
+            }
 
             if (await TryUpdateModelAsync<Student>(
-                emptyStudent,
-                "student",   // Prefix for form value.
-                s => s.Name, s => s.Email, s => s.Standing, s => s.Archived))
+                 studentToUpdate,
+                 "student",   // Prefix for form value.
+                   c => c.Name, c => c.Email, c => c.Standing))
             {
-                //_context.Students.Where(s => s.ID == student.ID).FirstOrDefault() = student;
-                _context.Students.Add(emptyStudent);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Students");
             }
