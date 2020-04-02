@@ -873,3 +873,4 @@ S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Assignments\Add.cshtml.g.cs
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Assignments\Assignment.cshtml.g.cs
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Assignments\Assignments.cshtml.g.cs
+S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Sections\Section.cshtml.g.cs
