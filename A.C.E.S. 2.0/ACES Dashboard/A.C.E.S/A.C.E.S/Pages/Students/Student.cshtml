@@ -18,7 +18,7 @@
     </div>
 </section>
 <h2>Academic Standing</h2>
-@switch (@Model.student.Standing)
+@*@switch (@Model.student.Standing)
 {
     case Models.Standing.Good:
         <p><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</p>
@@ -32,7 +32,7 @@
     default:
         <p><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A</p>
         break;
-}
+}*@
 <h2>Contact</h2>
 <p><i class="far fa-fw fa-envelope"></i> @Model.student.Email</p>
 <h2>Sections</h2>
