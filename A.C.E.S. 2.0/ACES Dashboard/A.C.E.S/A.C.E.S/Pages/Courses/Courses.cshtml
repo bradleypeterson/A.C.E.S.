@@ -9,6 +9,10 @@
     <div>
         <input id="filter-course-name" type="text" placeholder="Search Course" onkeyup="LoadList()" />
         <input id="filter-assignment-name" type="text" placeholder="Search Assignment" onkeyup="LoadList()" />
+        <select id="filter-course-status" onchange="LoadList()">
+            <option>Active</option>
+            <option>Archived</option>
+        </select>
     </div>
     <div>
         <a class="button" onclick="$('.pop-up').animate({ width: 'toggle' });">+ Add Course</a>
@@ -31,6 +35,7 @@
     function LoadList() {
         var cname = document.getElementById('filter-course-name').value;
         var aname = document.getElementById('filter-assignment-name').value;
+        var status = document.getElementById('filter-course-status').value;
 
         var elem = document.getElementById('course-list');
         elem.innerHTML = "";
@@ -40,7 +45,8 @@
             elem.innerHTML = '<div>There are no courses.</div>';
         }
         for (var course of courses) {
-            if (course.archived) continue;
+            if (course.archived && status == "Active") continue;
+            if (!course.archived && status == "Archived") continue;
             if (!course.name.toLowerCase().includes(cname.toLowerCase())) continue;
 
             var accordion = document.createElement('div');

@@ -26,6 +26,10 @@ namespace A.C.E.S
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddMvc().AddRazorPagesOptions(option =>
+            {
+                option.Conventions.AddPageRoute("/Sections/Sections", "");
+            });
             services.AddDbContext<ACESContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ACESContext")));
         }

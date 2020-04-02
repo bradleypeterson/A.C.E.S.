@@ -1,7 +1,7 @@
-﻿@page "/Students"
-@model A.C.E.S.Pages.Students.StudentsModel
+﻿@page "/Assignments"
+@model A.C.E.S.Pages.Assignments.AssignmentsModel
 @{
-    ViewData["Title"] = "Students";
+    ViewData["Title"] = "Assignments";
 }
 
 <section id="top-bar">
@@ -13,22 +13,13 @@
             <option>Moderate Standing</option>
             <option>Bad Standing</option>
         </select>
-        <select id="filter-student-status" onchange="LoadList()">
-            <option>Active</option>
-            <option>Archived</option>
-        </select>
     </div>
     <div>
         <a class="button" onclick="$('.pop-up').animate({ width: 'toggle' });">+ Add Student</a>
     </div>
 </section>
-<section>
-    <table id="student-table">
-        <colgroup>
-            <col style="width:30%;" />
-            <col style="width:40%;" />
-            <col style="width:30%;" />
-        </colgroup>
+<section id="active-students">
+    <table>
         <thead>
             <tr>
                 <td>Name</td>
@@ -54,25 +45,22 @@
     </form>
 </aside>
 <script>
-    function LoadList() {
-        var count = 0;
-
+    @*function LoadList() {
         var name = document.getElementById('filter-student-name').value;
         var standing = document.getElementById('filter-student-standing').selectedIndex;
-        var status = document.getElementById('filter-student-status').value;
 
         var elem = document.getElementById('student-list');
         elem.innerHTML = "";
 
         var students = JSON.parse('@Json.Serialize(Model.students)');
+        if (students.length == 0) {
+            elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
+        }
 
         for (var student of students) {
-            if (student.archived && status == "Active") continue;
-            if (!student.archived && status == "Archived") continue;
+            if (student.archived) continue;
             if (!student.name.toLowerCase().includes(name.toLowerCase())) continue;
             if (standing != 0 && student.standing != standing - 1) continue;
-
-            count++;
 
             var tr = document.createElement("tr");
             tr.innerHTML += '<td><a href="/Students/' + student.id + '">' + student.name + '</a></td>';
@@ -93,10 +81,7 @@
             }
             elem.appendChild(tr);
         }
-        if (count == 0) {
-            elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
-        }
     }
 
-    LoadList();
+    LoadList();*@
 </script>
