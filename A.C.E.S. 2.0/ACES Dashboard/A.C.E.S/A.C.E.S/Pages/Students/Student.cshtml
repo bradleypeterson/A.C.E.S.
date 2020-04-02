@@ -4,6 +4,19 @@
     ViewData["Title"] = "Student: " + Model.student.Name;
 }
 
+<section id="top-bar">
+    <div>
+        <input id="filter-course-name" type="text" placeholder="Search Course" onkeyup="LoadList()" />
+        <input id="filter-assignment-name" type="text" placeholder="Search Assignment" onkeyup="LoadList()" />
+        <select id="filter-course-status" onchange="LoadList()">
+            <option>Active</option>
+            <option>Archived</option>
+        </select>
+    </div>
+    <div>
+        <a href="/Students/@Model.ID/Edit" class="button">+ Edit</a>
+    </div>
+</section>
 <h2>Academic Standing</h2>
 @switch (@Model.student.Standing)
 {

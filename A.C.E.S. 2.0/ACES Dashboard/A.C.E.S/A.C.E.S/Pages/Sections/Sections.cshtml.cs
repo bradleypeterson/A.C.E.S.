@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using A.C.E.S.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -13,20 +14,31 @@ namespace A.C.E.S.Pages.Sections
         public List<Section> Sections { get; set; }
         public List<Student> Students { get; set; }
 
-        public void OnGet()
+        private readonly A.C.E.S.Data.ACESContext _context;
+
+        public SectionsModel(A.C.E.S.Data.ACESContext context)
         {
-            Sections = new List<Section>();
-            Sections.Add(new Section());
-            Sections[0].ID = 1000;
-            Sections[0].Name = "CS 2420 Summer 2020";
-            Sections[0].Archived = false;
-            Sections[0].Students = new List<Student>();
-            Sections[0].Students.Add(new Student());
-            Sections[0].Students.ToList()[0].ID = 1000;
-            Sections[0].Students.ToList()[0].Name = "John Doe";
-            Sections[0].Students.ToList()[0].Email = "johndoe@school.edu";
-            Sections[0].Students.ToList()[0].Standing = Standing.Good;
-            Sections[0].Students.ToList()[0].Archived = false;
+            _context = context;
+        }
+
+        public async Task OnGetAsync()
+        {
+            Sections = await _context.Sections
+                .Include(s => s.Students)
+                .AsNoTracking()
+                .ToListAsync();
+            //Sections = new List<Section>();
+            //Sections.Add(new Section());
+            //Sections[0].ID = 1000;
+            //Sections[0].Name = "CS 2420 Summer 2020";
+            //Sections[0].Archived = false;
+            //Sections[0].Students = new List<Student>();
+            //Sections[0].Students.Add(new Student());
+            //Sections[0].Students.ToList()[0].ID = 1000;
+            //Sections[0].Students.ToList()[0].Name = "John Doe";
+            //Sections[0].Students.ToList()[0].Email = "johndoe@school.edu";
+            //Sections[0].Students.ToList()[0].Standing = Standing.Good;
+            //Sections[0].Students.ToList()[0].Archived = false;
             //Sections.Add(new Section());
             //Sections[1].ID = 1000;
             //Sections[1].Name = "CS 2420 Spring 2020";

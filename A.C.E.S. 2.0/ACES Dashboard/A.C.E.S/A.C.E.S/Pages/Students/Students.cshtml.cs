@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using A.C.E.S.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace A.C.E.S.Pages.Students
 {
@@ -14,15 +15,19 @@ namespace A.C.E.S.Pages.Students
 
         [BindProperty]
         public Student Student { get; set; }
-        public void OnGet()
+
+        private readonly A.C.E.S.Data.ACESContext _context;
+
+        public StudentsModel(A.C.E.S.Data.ACESContext context)
         {
-            students = new List<Student>();
-            students.Add(new Student());
-            students[0].ID = 1000;
-            students[0].Name = "John Doe";
-            students[0].Email = "johndoe@school.edu";
-            students[0].Standing = Standing.Good;
-            students[0].Archived = false;
+            _context = context;
+        }
+
+        public async Task OnGetAsync()
+        {
+            students = await _context.Students
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

@@ -32,10 +32,10 @@
 <section>
     <table id="student-table">
         <colgroup>
-            <col style="width:10%;" />
-            <col style="width:30%;" />
-            <col style="width:30%;"/>
-            <col style="width:30%;" />
+            <col style="width:110px;" />
+            <col />
+            <col style="width:45%;" />
+            <col style="width:130px;" />
         </colgroup>
         <thead>
             <tr>
@@ -75,6 +75,7 @@
                     break;
                 }
             }
+            if (status == "Enrolled" && section.students.length == 0) continue;
             if (filter) continue;
             if (!student.name.toLowerCase().includes(name.toLowerCase())) continue;
             if (standing != 0 && student.standing != standing - 1) continue;
@@ -85,7 +86,7 @@
             if (status == "Enrolled") 
                 tr.innerHTML += '<td><a class="button" onclick="">Remove</a></td>';
             else
-                tr.innerHTML += '<td><a class="button" onclick="">Add</a></td>';
+                tr.innerHTML += '<td><a class="button" onclick="">Enroll</a></td>';
             tr.innerHTML += '<td><a href="/Students/' + student.id + '">' + student.name + '</a></td>';
             tr.innerHTML += '<td>' + student.email + '</td>';
             switch (student.standing) {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jeL+x0Z/8GBI9oZDUZgIHlUfAbtbeZ8xZPzkwn7RjpVzmkKTn2LYiAkKWyYyO/TylwPzSD3xbLR0U8zF0WFyuw==",
+  "dgSpecHash": "MmRcqIJQY6O9AnDD9v2KD+tZnCttHIbiqjgFq5BQjt5YWbWoShdVGx+eF3YGiiz+klzrt9LQBKaH/p/Fe+SYcA==",
   "success": true,
   "projectFilePath": "D:\\Documents\\_School\\2020_1_Spring\\CS 4450 Software\\A.C.E.S\\A.C.E.S. 2.0\\ACES Dashboard\\A.C.E.S\\A.C.E.S\\A.C.E.S.csproj",
   "expectedPackageFiles": [
@@ -32,7 +32,7 @@
     "C:\\Users\\josep\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.1.0\\microsoft.aspnetcore.webutilities.2.1.0.nupkg.sha512",
     "C:\\Users\\josep\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\josep\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
-    "C:\\Users\\josep\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\2.9.8\\microsoft.codeanalysis.analyzers.2.9.8.nupkg.sha512",
+    "C:\\Users\\josep\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.0.0\\microsoft.codeanalysis.analyzers.3.0.0.nupkg.sha512",
     "C:\\Users\\josep\\.nuget\\packages\\microsoft.codeanalysis.common\\3.3.1\\microsoft.codeanalysis.common.3.3.1.nupkg.sha512",
     "C:\\Users\\josep\\.nuget\\packages\\microsoft.codeanalysis.csharp\\3.3.1\\microsoft.codeanalysis.csharp.3.3.1.nupkg.sha512",
     "C:\\Users\\josep\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\3.3.1\\microsoft.codeanalysis.csharp.workspaces.3.3.1.nupkg.sha512",

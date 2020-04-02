@@ -25,6 +25,11 @@
     table {
         width: 100%;
         border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    td{
+        overflow-wrap: break-word;
     }
 
     label{
@@ -128,6 +133,11 @@
     .canvas-wrapper{
         width: 400px;
         height: 400px;
+    }
+
+    .one-third{
+        display: inline-block;
+        width: 30%;
     }
 
 /***************************************/

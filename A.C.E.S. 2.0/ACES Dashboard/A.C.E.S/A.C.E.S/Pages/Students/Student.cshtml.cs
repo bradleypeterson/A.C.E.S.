@@ -5,20 +5,29 @@ using System.Threading.Tasks;
 using A.C.E.S.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace A.C.E.S.Pages.Students
 {
     public class StudentModel : PageModel
     {
+        public int ID { get; set; }
         public Student student { get; set; }
-        public void OnGet(int ID)
+
+        private readonly A.C.E.S.Data.ACESContext _context;
+
+        public StudentModel(A.C.E.S.Data.ACESContext context)
         {
-            student = new Student();
-            student.ID = ID;
-            student.Name = "John Doe";
-            student.Email = "johndoe@school.edu";
-            student.Standing = Standing.Good;
-            student.Archived = false;
+            _context = context;
+        }
+
+        public async Task OnGetAsync(int id)
+        {
+            ID = id;
+            student = await _context.Students
+                .Where(s => s.ID == id)
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
         }
     }
 }
