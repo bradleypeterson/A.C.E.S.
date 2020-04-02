@@ -441,13 +441,9 @@ S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.TagHelpers.output.cache
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.RazorCoreGenerate.cache
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Courses\Add.cshtml.g.cs
-S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Courses\Assignments\Add.cshtml.g.cs
-S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Courses\Assignments\Assignment.cshtml.g.cs
-S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Courses\Assignments\Assignments.cshtml.g.cs
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Courses\Courses.cshtml.g.cs
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Error.cshtml.g.cs
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Errors\404.cshtml.g.cs
-S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Index.cshtml.g.cs
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Sections\Add.cshtml.g.cs
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Sections\Sections.cshtml.g.cs
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Settings.cshtml.g.cs
@@ -874,3 +870,6 @@ S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Assignments\Add.cshtml.g.cs
+S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Assignments\Assignment.cshtml.g.cs
+S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Assignments\Assignments.cshtml.g.cs
