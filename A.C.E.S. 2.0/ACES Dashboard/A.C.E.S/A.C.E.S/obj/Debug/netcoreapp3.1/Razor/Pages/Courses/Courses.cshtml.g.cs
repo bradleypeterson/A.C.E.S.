@@ -53,7 +53,7 @@ using A.C.E.S;
         {
 #nullable restore
 #line 3 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Courses\Courses.cshtml"
-
+  
     ViewData["Title"] = "Courses";
 
 #line default
