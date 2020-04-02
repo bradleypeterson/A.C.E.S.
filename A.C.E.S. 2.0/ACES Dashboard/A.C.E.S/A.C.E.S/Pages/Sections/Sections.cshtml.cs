@@ -26,10 +26,16 @@ namespace A.C.E.S.Pages.Sections
             Sections[0].Students.ToList()[0].Email = "johndoe@school.edu";
             Sections[0].Students.ToList()[0].Standing = Standing.Good;
             Sections[0].Students.ToList()[0].Archived = false;
-            Sections.Add(new Section());
-            Sections[1].ID = 1000;
-            Sections[1].Name = "CS 2420 Spring 2020";
-            Sections[1].Archived = true;
+            //Sections.Add(new Section());
+            //Sections[1].ID = 1000;
+            //Sections[1].Name = "CS 2420 Spring 2020";
+            //Sections[1].Archived = true;
+            //Sections[1].Students.Add(new Student());
+            //Sections[1].Students.ToList()[0].ID = 1000;
+            //Sections[1].Students.ToList()[0].Name = "John Doe";
+            //Sections[1].Students.ToList()[0].Email = "johndoe@school.edu";
+            //Sections[1].Students.ToList()[0].Standing = Standing.Good;
+            //Sections[1].Students.ToList()[0].Archived = false;
             //Sections.Add(new Section(1000, "CS 2420 Summer 2020", true));
             //Sections.Add(new Section(1000, "CS 4550 Summer 2020", false));
         }

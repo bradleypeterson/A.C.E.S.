@@ -13,12 +13,12 @@
         </select>
     </div>
     <div>
-        <a class="button" onclick="$('.pop-up').animate({ width: 'toggle' });">+ Add Section</a>
+        <a class="button" onclick="$('#add-course').animate({ width: 'toggle' });">+ Add Section</a>
     </div>
 </section>
 <section id="course-list">
 </section>
-<aside class="pop-up">
+<aside id="add-course" class="pop-up">
     <h2>Add Section</h2>
     <form action="/Sections/Add">
         <div><label for="name">Name:</label></div>
@@ -43,26 +43,29 @@
         </div>
         <p>
             <input type="submit" value="Add" />
-            <input type="button" value="Cancel" onclick="$('.pop-up').animate({ width: 'toggle' });" />
+            <input type="button" value="Cancel" onclick="$('#add-course').animate({ width: 'toggle' });" />
         </p>
     </form>
 </aside>
+<aside id="add-student" class="pop-up"></aside>
 <script>
+    sections = JSON.parse('@Json.Serialize(Model.Sections)');
+
     function LoadList() {
+        var count = 0;
+
         var name = document.getElementById('filter-section-name').value;
         var status = document.getElementById('filter-section-status').value;
 
         var elem = document.getElementById('course-list');
         elem.innerHTML = "";
 
-        var sections = JSON.parse('@Json.Serialize(Model.Sections)');
-        if (sections.length == 0) {
-            elem.innerHTML = '<div>There are no semesters</div>';
-        }
         for (var section of sections) {
             if (section.archived && status == "Active") continue;
             if (!section.archived && status == "Archived") continue;
             if (!section.name.toLowerCase().includes(name.toLowerCase())) continue;
+
+            count++;
 
             var accordion = document.createElement('div');
             accordion.classList.add('accordion');
@@ -71,8 +74,13 @@
             var content = document.createElement('div');
             content.classList.add('accordion-content');
 
-
             var table = document.createElement('table');
+            var colgroup = document.createElement('colgroup');
+            colgroup.innerHTML += '<col style="width:30%;" />';
+            colgroup.innerHTML += '<col style="width:40%;" />';
+            colgroup.innerHTML += '<col style="width:30%;" />';
+            table.appendChild(colgroup);
+
             var tbody = document.createElement('tbody');
             tbody.id = "student-list";
             for (var student of section.students) {
@@ -97,7 +105,7 @@
                 }
                 tbody.appendChild(tr);
             }
-            tbody.innerHTML += '<tr><td colspan="3"><a href="#">Add Student</a></td></tr>';
+            tbody.innerHTML += `<tr><td colspan="3"><a onclick="AddStudent('${section}');">Add Student</a></td></tr>`;
 
             table.appendChild(tbody);
             content.appendChild(table);
@@ -105,11 +113,30 @@
             accordion.appendChild(content);
             elem.appendChild(accordion);
         }
+        if (count == 0) {
+            elem.innerHTML = '<div>There are no semesters</div>';
+        }
         $(".accordion-header").click(function () {
             $(this).next().slideToggle();
             $(this).toggleClass('expanded');
         });
         //$('.accordion-content').hide();
+    }
+
+    function ToggleAddCourse() {
+        if ($('#add-student').is(':visible')) $('#add-student').animate({ width: 'toggle' });
+        $('#add-course').animate({ width: 'toggle' });
+    }
+
+    function ToggleAddStudent(id) {
+        if ($('#add-course').is(':visible')) $('#add-course').animate({ width: 'toggle' });
+        $('#add-student').animate({ width: 'toggle' });
+        if ($('#add-student').is(':visible')) LoadStudentList(id);
+    }
+
+    function LoadStudentList(id) {
+        var elem = document.getElementById("add-student");
+        elem.innerHTML = `<h2>Students in ${section.name}</h2>`;
     }
 
     LoadList();

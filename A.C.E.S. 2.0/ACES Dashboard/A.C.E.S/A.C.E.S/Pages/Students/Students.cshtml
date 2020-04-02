@@ -24,6 +24,11 @@
 </section>
 <section>
     <table id="student-table">
+        <colgroup>
+            <col style="width:30%;" />
+            <col style="width:40%;" />
+            <col style="width:30%;" />
+        </colgroup>
         <thead>
             <tr>
                 <td>Name</td>
@@ -50,6 +55,8 @@
 </aside>
 <script>
     function LoadList() {
+        var count = 0;
+
         var name = document.getElementById('filter-student-name').value;
         var standing = document.getElementById('filter-student-standing').selectedIndex;
         var status = document.getElementById('filter-student-status').value;
@@ -58,15 +65,14 @@
         elem.innerHTML = "";
 
         var students = JSON.parse('@Json.Serialize(Model.students)');
-        if (students.length == 0) {
-            elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
-        }
 
         for (var student of students) {
             if (student.archived && status == "Active") continue;
             if (!student.archived && status == "Archived") continue;
             if (!student.name.toLowerCase().includes(name.toLowerCase())) continue;
             if (standing != 0 && student.standing != standing - 1) continue;
+
+            count++;
 
             var tr = document.createElement("tr");
             tr.innerHTML += '<td><a href="/Students/' + student.id + '">' + student.name + '</a></td>';
@@ -86,6 +92,9 @@
                     break;
             }
             elem.appendChild(tr);
+        }
+        if (count == 0) {
+            elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
         }
     }
 
