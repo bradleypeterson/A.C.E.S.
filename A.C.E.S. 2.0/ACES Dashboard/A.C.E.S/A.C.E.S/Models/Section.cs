@@ -13,7 +13,7 @@ namespace A.C.E.S.Models
         public string Semester { get; set; }
         public string Length { get; set; }
         public int Year { get; set; }
-        public List<Student> Students { get; set; }
+        public virtual List<SectionStudent> Students { get; set; }
         public bool Archived { get; set; }
 
         //public Section(int id, string name, bool archived)

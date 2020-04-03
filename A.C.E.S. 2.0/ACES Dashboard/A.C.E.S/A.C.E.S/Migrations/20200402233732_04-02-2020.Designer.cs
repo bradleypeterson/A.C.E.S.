@@ -4,14 +4,16 @@ using A.C.E.S.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace A.C.E.S.Migrations
 {
     [DbContext(typeof(ACESContext))]
-    partial class ACESContextModelSnapshot : ModelSnapshot
+    [Migration("20200402233732_04-02-2020")]
+    partial class _04022020
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,28 +100,6 @@ namespace A.C.E.S.Migrations
                     b.ToTable("Section");
                 });
 
-            modelBuilder.Entity("A.C.E.S.Models.SectionStudent", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("SectionID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("SectionID");
-
-                    b.HasIndex("StudentID");
-
-                    b.ToTable("SectionStudent");
-                });
-
             modelBuilder.Entity("A.C.E.S.Models.Student", b =>
                 {
                     b.Property<int>("ID")
@@ -184,21 +164,6 @@ namespace A.C.E.S.Migrations
                     b.HasOne("A.C.E.S.Models.Student", null)
                         .WithMany("Sections")
                         .HasForeignKey("StudentID");
-                });
-
-            modelBuilder.Entity("A.C.E.S.Models.SectionStudent", b =>
-                {
-                    b.HasOne("A.C.E.S.Models.Section", "Section")
-                        .WithMany("Students")
-                        .HasForeignKey("SectionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("A.C.E.S.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("A.C.E.S.Models.Submission", b =>
