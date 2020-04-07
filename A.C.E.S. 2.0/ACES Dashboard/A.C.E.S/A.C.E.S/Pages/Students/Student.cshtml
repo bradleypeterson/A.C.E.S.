@@ -4,49 +4,57 @@
     ViewData["Title"] = Model.student.Name;
 }
 
-<section class="flex">
-    <div class="profile">
-        <img class="avatar" src="~/assets/avatar.png" width="100" />
+<section class="flex-space margin">
+    <div>
+        <h3>Contact</h3>
+        <p><a href="mailto:@Model.student.Email">@Model.student.Email</a></p>
     </div>
     <div>
-        <h2>@Model.student.Name</h2>
-        <h3>@Model.student.Email</h3>
         <h3>Academic Standing:</h3>
         <p>Accademic standing should be computed here.</p>
-        @*@switch (@Model.student.Standing)
-            {
-                case Models.Standing.Good:
-                    <i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good
-                    break;
-                case Models.Standing.Moderate:
-                    <i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate
-                    break;
-                case Models.Standing.Bad:
-                    <i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad
-                    break;
-                default:
-                    <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A
-                    break;
-            }*@
     </div>
+    <div>
+        <a href="/Students/@Model.student.ID/Edit" class="button">Edit</a>
+    </div>
+    @*@switch (@Model.student.Standing)
+        {
+            case Models.Standing.Good:
+                <i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good
+                break;
+            case Models.Standing.Moderate:
+                <i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate
+                break;
+            case Models.Standing.Bad:
+                <i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad
+                break;
+            default:
+                <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A
+                break;
+        }*@
 </section>
 
-<h2>Recent Submissions</h2>
-@for (int i = 0; i < 5 && i < Model.student.Submissions.Count; i++)
-{
-    <p>@Model.student.Submissions[i].Standing</p>
-}
-<h2>Past Submissions</h2>
-<section id="top-bar">
-    <div>
-        <input id="filter-course-name" type="text" placeholder="Search Course" onkeyup="LoadList()" />
-        <input id="filter-assignment-name" type="text" placeholder="Search Assignment" onkeyup="LoadList()" />
-        <select id="filter-course-status" onchange="LoadList()">
-            <option>Active</option>
-            <option>Archived</option>
-        </select>
-    </div>
-    <div>
-        <a href="/Students/@Model.ID/Edit" class="button">+ Edit</a>
-    </div>
+<section class="margin">
+    <h2>Recent Submissions</h2>
+    @if (Model.student.Submissions.Count == 0)
+    {
+        <p>There are no assignment submissions for this student.</p>
+    }
+    @for (int i = 0; i < 5 && i < Model.student.Submissions.Count; i++)
+    {
+        <p>@Model.student.Submissions[i].Standing</p>
+    }
+</section>
+
+<section class="margin">
+    <h2>Past Submissions</h2>
+    @if (Model.student.Submissions.Count == 0)
+    {
+        <p>There are no assignment submissions for this student.</p>
+    }
+    @* 
+        To Do:
+            Display Sections the student has enrolled in as an accordion.
+            The accordion content should be the assignments for that section.
+            When user clicks on a assignment, it should take the user to the submissions page.
+    *@
 </section>

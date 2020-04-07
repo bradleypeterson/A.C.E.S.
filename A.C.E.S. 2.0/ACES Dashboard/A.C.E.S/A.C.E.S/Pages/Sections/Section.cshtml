@@ -4,21 +4,24 @@
     ViewData["title"] = Model.section.Name + " " + Model.section.Course.Name;
 }
 
-<section id="top-bar">
-    <div>
-        <input id="filter-student-name" type="text" placeholder="Search Student" onkeyup="LoadList()" />
-        <select id="filter-student-standing" onchange="LoadList()">
-            <option>All Standing</option>
-            <option>Good Standing</option>
-            <option>Moderate Standing</option>
-            <option>Bad Standing</option>
-        </select>
-        <select id="filter-student-status" onchange="LoadList()">
-            <option>Enrolled</option>
-            <option>Not Enrolled</option>
-        </select>
-    </div>
-</section>
+    <section id="top-bar">
+        <div>
+            <input id="filter-student-name" type="text" placeholder="Search Student" onkeyup="LoadList()" />
+            <select id="filter-student-standing" onchange="LoadList()">
+                <option>All Standing</option>
+                <option>Good Standing</option>
+                <option>Moderate Standing</option>
+                <option>Bad Standing</option>
+            </select>
+            <select id="filter-student-status" onchange="LoadList()">
+                <option>Enrolled</option>
+                <option>Not Enrolled</option>
+            </select>
+        </div>
+        <div>
+            <a href="/Students/@Model.section.ID/Edit" class="button">Edit</a>
+        </div>
+    </section>
 <section>
     <table class="table">
         <colgroup>

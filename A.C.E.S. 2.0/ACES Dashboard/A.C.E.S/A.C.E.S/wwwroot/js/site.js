@@ -19,13 +19,15 @@ function Select(element, singleSelect) {
 
 function ToggleMenu() {
     var nav = $('#app-nav');
-    if ($(window).outerWidth() >= 900) {
-        if (nav.is(":hidden")) {
-            $('#app-header').animate({ marginLeft: 210 });
+    if (nav.is(":hidden")) {
+        $('#app-header').animate({ marginLeft: 210 });
+        if ($(window).outerWidth() >= 900) {
             $('#app-main').animate({ marginLeft: 210 });
         }
-        else {
-            $('#app-header').animate({ marginLeft: 10 });
+    }
+    else {
+        $('#app-header').animate({ marginLeft: 10 });
+        if ($(window).outerWidth() >= 900) {
             $('#app-main').animate({ marginLeft: 10 });
         }
     }
