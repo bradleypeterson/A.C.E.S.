@@ -28,6 +28,11 @@ namespace A.C.E.S.Pages.Students
                 .Where(s => s.ID == id)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
+            student.Submissions = await _context.Submissions
+                .Where(s => s.StudentID == id)
+                .OrderBy(s => s.DateTime)
+                .AsNoTracking()
+                .ToArrayAsync();
         }
     }
 }

@@ -27,6 +27,11 @@ namespace A.C.E.S.Pages.Courses
                 .Include(c => c.Assignments)
                 .AsNoTracking()
                 .ToListAsync();
+            foreach (var course in Courses)
+            {
+                course.Assignments = new List<Assignment>();
+                course.Sections = new List<Section>();
+            }
         }
     }
 }

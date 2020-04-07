@@ -26,7 +26,7 @@ namespace A.C.E.S.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CourseID")
+                    b.Property<int>("CourseID")
                         .HasColumnType("int");
 
                     b.Property<string>("Files")
@@ -76,6 +76,9 @@ namespace A.C.E.S.Migrations
                     b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
+                    b.Property<int>("CourseID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Length")
                         .HasColumnType("nvarchar(max)");
 
@@ -92,6 +95,8 @@ namespace A.C.E.S.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CourseID");
 
                     b.HasIndex("StudentID");
 
@@ -160,7 +165,7 @@ namespace A.C.E.S.Migrations
                     b.Property<int>("Standing")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentID")
+                    b.Property<int>("StudentID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -174,13 +179,21 @@ namespace A.C.E.S.Migrations
 
             modelBuilder.Entity("A.C.E.S.Models.Assignment", b =>
                 {
-                    b.HasOne("A.C.E.S.Models.Course", null)
+                    b.HasOne("A.C.E.S.Models.Course", "Course")
                         .WithMany("Assignments")
-                        .HasForeignKey("CourseID");
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("A.C.E.S.Models.Section", b =>
                 {
+                    b.HasOne("A.C.E.S.Models.Course", "Course")
+                        .WithMany("Sections")
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("A.C.E.S.Models.Student", null)
                         .WithMany("Sections")
                         .HasForeignKey("StudentID");
@@ -209,7 +222,9 @@ namespace A.C.E.S.Migrations
 
                     b.HasOne("A.C.E.S.Models.Student", "Student")
                         .WithMany("Submissions")
-                        .HasForeignKey("StudentID");
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

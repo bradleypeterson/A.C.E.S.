@@ -1,9 +1,42 @@
 ﻿@page "/Students/{ID:int}"
 @model A.C.E.S.Pages.Students.StudentModel
 @{
-    ViewData["Title"] = "Student: " + Model.student.Name;
+    ViewData["Title"] = Model.student.Name;
 }
 
+<section class="flex">
+    <div class="profile">
+        <img class="avatar" src="~/assets/avatar.png" width="100" />
+    </div>
+    <div>
+        <h2>@Model.student.Name</h2>
+        <h3>@Model.student.Email</h3>
+        <h3>Academic Standing:</h3>
+        <p>Accademic standing should be computed here.</p>
+        @*@switch (@Model.student.Standing)
+            {
+                case Models.Standing.Good:
+                    <i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good
+                    break;
+                case Models.Standing.Moderate:
+                    <i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate
+                    break;
+                case Models.Standing.Bad:
+                    <i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad
+                    break;
+                default:
+                    <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A
+                    break;
+            }*@
+    </div>
+</section>
+
+<h2>Recent Submissions</h2>
+@for (int i = 0; i < 5 && i < Model.student.Submissions.Count; i++)
+{
+    <p>@Model.student.Submissions[i].Standing</p>
+}
+<h2>Past Submissions</h2>
 <section id="top-bar">
     <div>
         <input id="filter-course-name" type="text" placeholder="Search Course" onkeyup="LoadList()" />
@@ -17,22 +50,3 @@
         <a href="/Students/@Model.ID/Edit" class="button">+ Edit</a>
     </div>
 </section>
-<h2>Academic Standing</h2>
-@*@switch (@Model.student.Standing)
-{
-    case Models.Standing.Good:
-        <p><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</p>
-        break;
-    case Models.Standing.Moderate:
-        <p><i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate</p>
-        break;
-    case Models.Standing.Bad:
-        <p><i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad</p>
-        break;
-    default:
-        <p><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A</p>
-        break;
-}*@
-<h2>Contact</h2>
-<p><i class="far fa-fw fa-envelope"></i> @Model.student.Email</p>
-<h2>Sections</h2>

@@ -28,6 +28,10 @@ namespace A.C.E.S.Pages.Sections
                 .Where(s => s.ID == id)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
+            section.Course = await _context.Courses
+                .Where(c => c.ID == section.CourseID)
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
             students = await _context.Students
                 .AsNoTracking()
                 .ToListAsync();

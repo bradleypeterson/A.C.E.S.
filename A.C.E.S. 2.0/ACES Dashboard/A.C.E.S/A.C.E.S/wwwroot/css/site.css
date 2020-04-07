@@ -12,6 +12,10 @@
         margin: 0;
     }
 
+    h2, h3, p{
+        margin: 0;
+    }
+
     a {
         cursor: pointer;
         color: #0080CC;
@@ -56,6 +60,10 @@
     .green-text { color: #00aa00; }
     .bold-text{ font-weight: bold; }
     .align-right{ text-align: right; }
+
+    .flex{
+        display: flex;
+    }
 
     .flex-space {
         display: flex;
@@ -140,11 +148,33 @@
         width: 30%;
     }
 
+    .table tbody tr {
+        border-top: 1px solid rgba(0,0,0,.4);
+        border-bottom: 1px solid rgba(0,0,0,.4);
+    }
+
+    .table tbody tr:nth-child(2n+1) {
+        background-color: #ffffff;
+    }
+
+    .table td {
+        padding: 10px;
+    }
+
+    .avatar{
+        border-radius: 100%;
+    }
+
+    .profile{
+        margin-right: 20px;
+    }
+
 /***************************************/
 /* Header                              */
 /***************************************/
     #app-main {
-        padding: 0 10px 0 210px;
+        margin-left: 200px;
+        padding: 0 10px;
     }
 
     #app-content{
@@ -202,6 +232,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin: 0 10px 0 210px;
         padding: 20px 10px;
         cursor: default;
         border-bottom: 1px solid rgba(0,0,0,.2);
@@ -322,20 +353,6 @@
     }
 
     #top-bar input, #top-bar select {
-        width: 200px;
         padding: 8px;
         font-size: 14px;
-    }
-
-    #student-table tbody tr {
-        border-top: 1px solid rgba(0,0,0,.4);
-        border-bottom: 1px solid rgba(0,0,0,.4);
-    }
-
-    #student-table tbody tr:nth-child(2n+1) {
-        background-color: #ffffff;
-    }
-
-    #student-table td {
-        padding: 10px;
     }

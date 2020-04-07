@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A.C.E.S - @ViewData["Title"]</title>
+    <title>@ViewData["Title"]</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -14,8 +14,8 @@
 </head>
 <body>
     <partial name="Components/Nav" />
+    <partial name="Components/Header" />
     <main id="app-main" role="main">
-        <partial name="Components/Header" />
         <article id="app-content">
             @RenderBody()
         </article>

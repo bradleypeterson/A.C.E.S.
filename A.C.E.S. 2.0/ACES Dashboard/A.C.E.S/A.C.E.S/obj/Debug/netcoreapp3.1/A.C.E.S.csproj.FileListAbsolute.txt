@@ -877,3 +877,13 @@ S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.
 D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.csproj.CoreCompileInputs.cache
 D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.MvcApplicationPartsAssemblyInfo.cs
 D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.MvcApplicationPartsAssemblyInfo.cache
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\refs\Microsoft.Win32.Registry.dll
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\refs\System.Diagnostics.EventLog.dll
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\refs\System.IO.Pipelines.dll
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\refs\System.Security.AccessControl.dll
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\refs\System.Security.Cryptography.Cng.dll
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\refs\System.Security.Cryptography.Xml.dll
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\refs\System.Security.Permissions.dll
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\refs\System.Security.Principal.Windows.dll
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\bin\Debug\netcoreapp3.1\refs\System.Windows.Extensions.dll
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Courses\Course.cshtml.g.cs

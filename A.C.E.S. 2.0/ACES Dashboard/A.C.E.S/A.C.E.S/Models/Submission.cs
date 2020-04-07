@@ -8,6 +8,7 @@ namespace A.C.E.S.Models
     public class Submission
     {
         public int ID { get; set; }
+        public int StudentID { get; set; }
         public Student Student { get; set; }
         public Assignment Assignment { get; set; }
         public int Grade { get; set; }

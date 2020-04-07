@@ -1,7 +1,7 @@
 ﻿@page "/Sections/{ID:int}"
 @model A.C.E.S.Pages.Sections.SectionModel
 @{
-    ViewData["title"] = "Section: " + Model.section.Name;
+    ViewData["title"] = Model.section.Name + " " + Model.section.Course.Name;
 }
 
 <section id="top-bar">
@@ -14,23 +14,13 @@
             <option>Bad Standing</option>
         </select>
         <select id="filter-student-status" onchange="LoadList()">
-            <option>Not Enrolled</option>
             <option>Enrolled</option>
+            <option>Not Enrolled</option>
         </select>
-    </div>
-    <div>
-        @if (Model.section.Archived)
-        {
-            <a class="button" onclick="">Restore Section</a>
-        }
-        else
-        {
-            <a class="button" onclick="">Archive Section</a>
-        }
     </div>
 </section>
 <section>
-    <table id="student-table">
+    <table class="table">
         <colgroup>
             <col style="width:110px;" />
             <col />

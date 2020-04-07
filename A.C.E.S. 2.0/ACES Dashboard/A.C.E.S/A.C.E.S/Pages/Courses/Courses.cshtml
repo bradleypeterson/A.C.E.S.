@@ -8,7 +8,6 @@
 <section id="top-bar">
     <div>
         <input id="filter-course-name" type="text" placeholder="Search Course" onkeyup="LoadList()" />
-        <input id="filter-assignment-name" type="text" placeholder="Search Assignment" onkeyup="LoadList()" />
         <select id="filter-course-status" onchange="LoadList()">
             <option>Active</option>
             <option>Archived</option>
@@ -17,6 +16,26 @@
     <div>
         <a asp-page="Add" class="button">+ Add Course</a>
     </div>
+</section>
+<section>
+    <table class="table">
+        <colgroup>
+            <col />
+            <col />
+            <col />
+            <col style="width:110px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td># Sections</td>
+                <td># Assignments</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody id="course-list2">
+        </tbody>
+    </table>
 </section>
 <section id="course-list">
 </section>
@@ -33,56 +52,37 @@
 </aside>
 <script>
     function LoadList() {
-        var cname = document.getElementById('filter-course-name').value;
-        var aname = document.getElementById('filter-assignment-name').value;
-        var status = document.getElementById('filter-course-status').value;
-
         var count = 0;
 
-        var elem = document.getElementById('course-list');
+        var cname = document.getElementById('filter-course-name').value;
+        var status = document.getElementById('filter-course-status').value;
+
+        var elem = document.getElementById('course-list2');
         elem.innerHTML = "";
 
         var courses = JSON.parse('@Json.Serialize(Model.Courses)');
+
         for (var course of courses) {
             if (course.archived && status == "Active") continue;
             if (!course.archived && status == "Archived") continue;
             if (!course.name.toLowerCase().includes(cname.toLowerCase())) continue;
-            var filter = true;
-            for (var assignment of course.assignments) {
-                if (assignment.name.toLowerCase().includes(aname.toLowerCase())) {
-                    filter = false;
-                    break;
-                }
-            }
-            if (filter) continue;
 
             count++;
 
-            var accordion = document.createElement('div');
-            accordion.classList.add('accordion');
-            accordion.innerHTML += `<div class="accordion-header">${course.name}</div>`;
+            var tr = document.createElement("tr");
+            tr.innerHTML += '<td><a href="/Courses/' + course.id + '">' + course.name + '</a></td>';
+            tr.innerHTML += '<td>' + course.sections.length + '</td>';
+            tr.innerHTML += '<td>' + course.assignments.length + '</td>';
 
-            var content = document.createElement('div');    
-            content.classList.add('accordion-content');
-
-            for (var assignment of course.assignments) {
-                content.innerHTML += `<div><a href="/Courses/${course.id}/Assignments/${assignment.id}">${assignment.name}</a></div>`;
-            }
-            content.innerHTML += `<div><a href="/Courses/${course.id}/Assignments/Add">Add Assignment</a></div>`;
-
-            accordion.appendChild(content);
-            elem.appendChild(accordion);
+            if (status == "Active")
+                tr.innerHTML += '<td><a class="button" onclick="">Archive</a></td>';
+            else
+                tr.innerHTML += '<td><a class="button" onclick="">Restore</a></td>';
+            elem.appendChild(tr);
         }
         if (count == 0) {
-            elem.innerHTML = '<div>There are no courses.</div>';
+            elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
         }
-        if (aname != "") {
-            $(".accordion-content").show();
-        }
-        $(".accordion-header").click(function () {
-            $(this).next().slideToggle();
-            $(this).toggleClass('expanded');
-        });
     }
 
     LoadList();

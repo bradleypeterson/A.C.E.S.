@@ -27,6 +27,13 @@ namespace A.C.E.S.Pages.Sections
                 .Include(s => s.Students)
                 .AsNoTracking()
                 .ToListAsync();
+            foreach (var section in Sections)
+            {
+                section.Course = await _context.Courses
+                    .Where(c => c.ID == section.CourseID)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync();
+            }
         }
     }
 }

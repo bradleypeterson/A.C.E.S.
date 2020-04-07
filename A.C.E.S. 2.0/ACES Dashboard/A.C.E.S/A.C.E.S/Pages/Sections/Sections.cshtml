@@ -13,8 +13,28 @@
         </select>
     </div>
     <div>
-        <a asp-page ="Add" class="button" >+ Add Section</a>
+        <a asp-page="Add" class="button">+ Add Section</a>
     </div>
+</section>
+<section>
+    <table class="table">
+        <colgroup>
+            <col />
+            <col />
+            <col style="width:200px;" />
+            <col style="width:110px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Course</td>
+                <td>Semester</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody id="section-list">
+        </tbody>
+    </table>
 </section>
 <section id="course-list">
 </section>
@@ -36,7 +56,8 @@
                 <option>2<sup>nd</sup> Block</option>
             </select>
             <select>
-                @for (int i = 0; i < 3; i++) {
+                @for (int i = 0; i < 3; i++)
+                {
                     <option>@(DateTime.Now.Year + i)</option>
                 }
             </select>
@@ -57,7 +78,7 @@
         var name = document.getElementById('filter-section-name').value;
         var status = document.getElementById('filter-section-status').value;
 
-        var elem = document.getElementById('course-list');
+        var elem = document.getElementById('section-list');
         elem.innerHTML = "";
 
         for (var section of sections) {
@@ -67,81 +88,20 @@
 
             count++;
 
-            var accordion = document.createElement('div');
-            accordion.classList.add('accordion');
-            accordion.innerHTML += `<div class="accordion-header"><a href="/Sections/${section.id}">${section.name}</a></div>`;
+            var tr = document.createElement("tr");
+            tr.innerHTML += '<td><a href="/Sections/' + section.id + '">' + section.name + '</a></td>';
+            tr.innerHTML += '<td>' + section.course.name + '</td>';
+            tr.innerHTML += `<td>${section.semester} ${section.year}</td>`;
 
-            var content = document.createElement('div');
-            content.classList.add('accordion-content');
-
-            var table = document.createElement('table');
-            var colgroup = document.createElement('colgroup');
-            colgroup.innerHTML += '<col style="width:30%;" />';
-            colgroup.innerHTML += '<col style="width:40%;" />';
-            colgroup.innerHTML += '<col style="width:30%;" />';
-            table.appendChild(colgroup);
-
-            var tbody = document.createElement('tbody');
-            tbody.id = "student-list";
-            for (var student of section.students) {
-                if (student.archived) continue;
-
-                var tr = document.createElement("tr");
-                tr.innerHTML += '<td><a href="/Students/' + student.id + '">' + student.name + '</a></td>';
-                tr.innerHTML += '<td>' + student.email + '</td>';
-                switch (student.standing) {
-                    case 0:
-                        tr.innerHTML += '<td><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</td>';
-                        break;
-                    case 1:
-                        tr.innerHTML += '<td><i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate</td>';
-                        break;
-                    case 2:
-                        tr.innerHTML += '<td><i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad</td>';
-                        break;
-                    default:
-                        tr.innerHTML += '<td><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A</td>';
-                        break;
-                }
-                tbody.appendChild(tr);
-            }
-            //tbody.innerHTML += `<tr><td colspan="3"><a onclick="ToggleManageStudents('${section.id}');">Add Student</a></td></tr>`;
-
-            table.appendChild(tbody);
-            content.appendChild(table);
-
-            accordion.appendChild(content);
-            elem.appendChild(accordion);
+            if (status == "Active")
+                tr.innerHTML += '<td><a class="button" onclick="">Archive</a></td>';
+            else
+                tr.innerHTML += '<td><a class="button" onclick="">Restore</a></td>';
+            elem.appendChild(tr);
         }
         if (count == 0) {
-            elem.innerHTML = '<div>There are no semesters</div>';
+            elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
         }
-        $(".accordion-header").click(function () {
-            $(this).next().slideToggle();
-            $(this).toggleClass('expanded');
-        });
-    }
-
-    function ToggleAddCourse() {
-        if ($('#add-student').is(':visible')) $('#add-student').animate({ width: 'toggle' });
-        $('#add-course').animate({ width: 'toggle' });
-    }
-
-    function ToggleManageStudents(id) {
-        if ($('#add-course').is(':visible')) $('#add-course').animate({ width: 'toggle' });
-        $('#add-student').animate({ width: 'toggle' });
-        if ($('#add-student').is(':visible')) LoadStudentList(id);
-    }
-
-    function LoadStudentList(id) {
-        var elem = document.getElementById("add-student");
-        var section = null;
-        for(var s of sections) {
-            if (s.id == id) section = s;
-        }
-        if (section == null) return;
-
-        elem.innerHTML = `<h2>Students in ${section.name}</h2>`;
     }
 
     LoadList();
