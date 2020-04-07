@@ -4,15 +4,18 @@
     ViewData["title"] = Model.Course.Name;
 }
 
-<section id="top-bar">
-    <div>
-        <input id="filter-assignment-name" type="text" placeholder="Search assignment" onkeyup="LoadList()" />
-        <select id="filter-assignment-status" onchange="LoadList()">
-            <option>Active</option>
-            <option>Archived</option>
-        </select>
-    </div>
-</section>
+    <section id="top-bar">
+        <div>
+            <input id="filter-assignment-name" type="text" placeholder="Search assignment" onkeyup="LoadList()" />
+            <select id="filter-assignment-status" onchange="LoadList()">
+                <option>Active</option>
+                <option>Archived</option>
+            </select>
+        </div>
+        <div>
+            <a href="/Courses/@Model.Course.ID/Edit" class="button">Edit Course</a>
+        </div>
+    </section>
 <section>
     <table class="table">
         <colgroup>
