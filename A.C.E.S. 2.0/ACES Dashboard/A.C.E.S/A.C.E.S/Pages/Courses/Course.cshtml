@@ -14,21 +14,18 @@
         </div>
         <div>
             <a href="/Courses/@Model.Course.ID/Edit" class="button">Edit Course</a>
+            <a href="/Courses/@Model.Course.ID/Assignments/Add" class="button">Edit Course</a>
         </div>
     </section>
 <section>
     <table class="table">
         <colgroup>
-            <col style="width:110px;" />
             <col />
-            <col style="width:45%;" />
             <col style="width:130px;" />
         </colgroup>
         <thead>
             <tr>
                 <td>Name</td>
-                <td>Grade</td>
-                <td>Standing</td>
                 <td></td>
             </tr>
         </thead>
@@ -46,9 +43,9 @@
         var elem = document.getElementById('student-list');
         elem.innerHTML = "";
 
-        var assignments = JSON.parse('@Json.Serialize(Model.Course.Assignments)');
+        var course = JSON.parse('@Json.Serialize(Model.Course)');
 
-        for (var assignment of assignments) {
+        for (var assignment of course.assignments) {
             if (status == 'Active' && assignment.archived) continue;
             if (status == 'Archived' && !assignment.archived) continue;
             if (!assignment.name.toLowerCase().includes(name.toLowerCase())) continue;
@@ -56,26 +53,11 @@
             count++;
 
             var tr = document.createElement("tr");
-            if (status == "Enrolled") 
-                tr.innerHTML += '<td><a class="button" onclick="">Remove</a></td>';
+            tr.innerHTML += '<td><a href="/Courses/' + course.id + '/Assignments/' + assignment.id + '">' + assignment.name + '</a></td>';
+            if (status == "Archived")
+                tr.innerHTML += '<td><a class="button" onclick="">Restore</a></td>';
             else
-                tr.innerHTML += '<td><a class="button" onclick="">Enroll</a></td>';
-            tr.innerHTML += '<td><a href="/Students/' + student.id + '">' + student.name + '</a></td>';
-            tr.innerHTML += '<td>' + student.email + '</td>';
-            switch (student.standing) {
-                case 0:
-                    tr.innerHTML += '<td><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</td>';
-                    break;
-                case 1:
-                    tr.innerHTML += '<td><i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate</td>';
-                    break;
-                case 2:
-                    tr.innerHTML += '<td><i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad</td>';
-                    break;
-                default:
-                    tr.innerHTML += '<td><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A</td>';
-                    break;
-            }
+                tr.innerHTML += '<td><a class="button" onclick="">Archive</a></td>';
             elem.appendChild(tr);
         }
         if (count == 0) {

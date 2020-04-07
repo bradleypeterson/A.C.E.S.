@@ -21,16 +21,46 @@ namespace A.C.E.S.Pages.Courses.Assignments
             _context = context;
         }
 
-        public async Task OnGetAsync(int courseID, int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            CourseName = (await _context.Courses
-                .Where(c => c.ID == courseID)
-                .AsNoTracking()
-                .FirstOrDefaultAsync()).Name;
-            Assignment = await _context.Assignments
-                .Where(a => a.ID == id)
-                .AsNoTracking()
-                .FirstOrDefaultAsync();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Assignment = await _context.Assignments.FindAsync(id);
+
+            if (Assignment == null)
+            {
+                return NotFound();
+            }
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var assignmentToUpdate = await _context.Assignments.FindAsync(id);
+
+            if (assignmentToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            if (await TryUpdateModelAsync<Assignment>(
+                 assignmentToUpdate,
+                 "assignment",   // Prefix for form value.
+                   a => a.Name, a => a.Grade, a => a.Files, a => a.UnitTesters))
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Courses");
+            }
+
+            return Page();
         }
     }
 }
