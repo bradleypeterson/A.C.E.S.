@@ -32,7 +32,7 @@ namespace A.C.E.S.Pages.Sections
             if (await TryUpdateModelAsync<Section>(
                 emptySection,
                 "section",   // Prefix for form value.
-                s => s.Name, s => s.Students, s => s.Students, s => s.Archived))
+                s => s.Name, s => s.Students, s => s.Semester, s => s.Name, s => s.Year, s => s.CourseID, s => s.Archived))
             {
                 _context.Sections.Add(emptySection);
                 await _context.SaveChangesAsync();

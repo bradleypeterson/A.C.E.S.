@@ -17,6 +17,27 @@
             <span asp-validation-for="Section.Students" class="text-danger"></span>
         </div>
         <div class="form-group">
+            <label asp-for="Section.Length" class="control-label"></label>
+            <input asp-for="Section.Length" class="form-control" />
+            <span asp-validation-for="Section.Length" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Section.CourseID" class="control-label"></label>
+            <input asp-for="Section.CourseID" class="form-control" />
+            <span asp-validation-for="Section.CourseID" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Section.Semester" class="control-label"></label>
+            <input asp-for="Section.Semester" class="form-control" />
+            <span asp-validation-for="Section.Semester" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Section.Year" class="control-label"></label>
+            <input asp-for="Section.Year" class="form-control" />
+            <span asp-validation-for="Section.Year" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
             <input type="submit" value="Add" class="btn btn-primary" />
             <input type="button" value="Cancel" />
         </div>
