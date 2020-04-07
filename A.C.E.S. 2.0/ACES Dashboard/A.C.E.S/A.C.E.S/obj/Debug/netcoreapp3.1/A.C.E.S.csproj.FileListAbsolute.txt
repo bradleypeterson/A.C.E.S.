@@ -886,3 +886,6 @@ D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Da
 D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Courses\Course.cshtml.g.cs
 S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Courses\Course.cshtml.g.cs
 D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\Razor\Pages\Sections\Edit.cshtml.g.cs
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.csproj.CoreCompileInputs.cache
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.MvcApplicationPartsAssemblyInfo.cs
+D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\obj\Debug\netcoreapp3.1\A.C.E.S.MvcApplicationPartsAssemblyInfo.cache
