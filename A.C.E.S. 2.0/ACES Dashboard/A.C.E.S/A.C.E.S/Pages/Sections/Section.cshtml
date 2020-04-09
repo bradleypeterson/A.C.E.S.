@@ -105,9 +105,9 @@
                     break;
             }
             if (status == "Enrolled")
-                tr.innerHTML += `<td class="table-button"><a onclick="EnrollStudent(${i});">Remove</a></td>`;
+                tr.innerHTML += `<td class="table-button"><a onclick="RemoveStudent(${i});">Remove</a></td>`;
             else
-                tr.innerHTML += `<td class="table-button"><a onclick="RemoveStudent(${i});">Enroll</a></td>`;
+                tr.innerHTML += `<td class="table-button"><a onclick="EnrollStudent(${i});">Enroll</a></td>`;
             elem.appendChild(tr);
         }
         if (count == 0) {

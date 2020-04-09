@@ -66,6 +66,18 @@ namespace A.C.E.S.Pages.Sections
 
         public JsonResult OnGetRemove(int id, int studentID)
         {
+            var sectionstudent = _context.SectionStudents.Where(s => s.SectionID == id && s.StudentID == studentID).FirstOrDefault();
+
+            if (sectionstudent == null)
+            {
+                return new JsonResult(false);
+            }
+
+            _context.SectionStudents.Remove(sectionstudent);
+
+            if (_context.SaveChanges() == 0)
+                return new JsonResult(false);
+
             return new JsonResult(true);
         }
     }
