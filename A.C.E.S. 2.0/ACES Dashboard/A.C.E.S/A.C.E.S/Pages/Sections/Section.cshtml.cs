@@ -11,8 +11,8 @@ namespace A.C.E.S.Pages.Sections
 {
     public class SectionModel : PageModel
     {
-        public Section section { get; set; }
-        public List<Student> students { get; set; }
+        public Section Section { get; set; }
+        public List<Student> Students { get; set; }
 
         private readonly A.C.E.S.Data.ACESContext _context;
 
@@ -23,16 +23,18 @@ namespace A.C.E.S.Pages.Sections
 
         public async Task OnGetAsync(int id)
         {
-            section = await _context.Sections
-                .Include(s => s.Students)
+            Section = await _context.Sections
                 .Where(s => s.ID == id)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
-            section.Course = await _context.Courses
-                .Where(c => c.ID == section.CourseID)
+            Section.Course = await _context.Courses
+                .Where(c => c.ID == Section.CourseID)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
-            students = await _context.Students
+            var sectionStudent = await _context.
+            Section.Students = await _context.Students
+                .Join()
+            Students = await _context.Students
                 .AsNoTracking()
                 .ToListAsync();
         }

@@ -26,17 +26,6 @@ namespace A.C.E.S.Pages.Courses
             Courses = await _context.Courses
                 .AsNoTracking()
                 .ToListAsync();
-            foreach (var course in Courses)
-            {
-                course.Assignments = await _context.Assignments
-                    .Where(a => a.CourseID == course.ID)
-                    .AsNoTracking()
-                    .ToListAsync();
-                course.Sections = await _context.Sections
-                    .Where(s => s.CourseID == course.ID)
-                    .AsNoTracking()
-                    .ToListAsync();
-            }
         }
 
         public JsonResult OnGetArchive(int id, bool archive)

@@ -1,7 +1,7 @@
 ﻿@page "/Sections/{ID:int}"
 @model A.C.E.S.Pages.Sections.SectionModel
 @{
-    string title = $"{Model.section.Course.Name} {Model.section.Name} {Model.section.Semester} {Model.section.Year}";
+    string title = $"{Model.Section.Course.Name} {Model.Section.Name} {Model.Section.Semester} {Model.Section.Year}";
     ViewData["title"] = title;
     ViewData["Header"] = $"{title}";
 }
@@ -42,8 +42,8 @@
     </table>
 </section>
 <script>
-    section = JSON.parse('@Json.Serialize(Model.section)');
-    students = JSON.parse('@Json.Serialize(Model.students)');
+    section = JSON.parse('@Json.Serialize(Model.Section)');
+    students = JSON.parse('@Json.Serialize(Model.Students)');
     for (var student of students) {
         student.enrolled = false;
         for (var s of section.students) {
@@ -123,7 +123,7 @@
         students[i].enrolled = enroll;
         $.ajax({
             type: 'get',
-            url: '/Sections/@Model.section.ID',
+            url: '/Sections/@Model.Section.ID',
             data: {
                 handler: 'Enroll',
                 id: students[i].id,

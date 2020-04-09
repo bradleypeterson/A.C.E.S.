@@ -12,6 +12,7 @@ namespace A.C.E.S.Pages.Courses
     public class CourseModel : PageModel
     {
         public Course Course { get; set; }
+        public List<Assignment> Assignments { get; set; }
 
         private readonly A.C.E.S.Data.ACESContext _context;
 
@@ -26,7 +27,7 @@ namespace A.C.E.S.Pages.Courses
                 .Where(c => c.ID == id)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
-            Course.Assignments = await _context.Assignments
+            Assignments = await _context.Assignments
                 .Where(a => a.CourseID == Course.ID)
                 .AsNoTracking()
                 .ToListAsync();

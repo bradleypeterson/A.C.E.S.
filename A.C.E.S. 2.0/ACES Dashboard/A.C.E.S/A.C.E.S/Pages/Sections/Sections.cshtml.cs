@@ -12,7 +12,6 @@ namespace A.C.E.S.Pages.Sections
     public class SectionsModel : PageModel
     {
         public List<Section> Sections { get; set; }
-        public List<Student> Students { get; set; }
 
         private readonly A.C.E.S.Data.ACESContext _context;
 
@@ -24,7 +23,6 @@ namespace A.C.E.S.Pages.Sections
         public async Task OnGetAsync()
         {
             Sections = await _context.Sections
-                .Include(s => s.Students)
                 .AsNoTracking()
                 .ToListAsync();
             foreach (var section in Sections)
