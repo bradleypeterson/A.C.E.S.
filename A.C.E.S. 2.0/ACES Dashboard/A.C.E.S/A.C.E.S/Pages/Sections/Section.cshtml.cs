@@ -41,7 +41,12 @@ namespace A.C.E.S.Pages.Sections
                 .ToListAsync();
         }
 
-        public JsonResult OnGetEnroll(int id, bool enroll)
+        public JsonResult OnGetEnroll(int id, int studentID)
+        {
+            return new JsonResult(true);
+        }
+
+        public JsonResult OnGetRemove(int id, int studentID)
         {
             return new JsonResult(true);
         }

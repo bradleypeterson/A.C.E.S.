@@ -105,9 +105,9 @@
                     break;
             }
             if (status == "Enrolled")
-                tr.innerHTML += `<td class="table-button"><a onclick="EnrollStudent(${i}, false);">Remove</a></td>`;
+                tr.innerHTML += `<td class="table-button"><a onclick="EnrollStudent(${i});">Remove</a></td>`;
             else
-                tr.innerHTML += `<td class="table-button"><a onclick="EnrollStudent(${i}, true);">Enroll</a></td>`;
+                tr.innerHTML += `<td class="table-button"><a onclick="RemoveStudent(${i});">Enroll</a></td>`;
             elem.appendChild(tr);
         }
         if (count == 0) {
@@ -119,15 +119,28 @@
         console.log({ request, status, error });
     }
 
-    function EnrollStudent(i, enroll) {
-        students[i].enrolled = enroll;
+    function EnrollStudent(i) {
+        students[i].enrolled = true;
         $.ajax({
             type: 'get',
             url: '/Sections/@Model.Section.ID',
             data: {
                 handler: 'Enroll',
-                id: students[i].id,
-                enroll: enroll
+                studentID: students[i].id
+            },
+            contenttype: "application/json",
+            datatype: "json"
+        }).done(LoadList).fail(DisplayError);
+    }
+
+    function RemoveStudent(i) {
+        students[i].enrolled = false;
+        $.ajax({
+            type: 'get',
+            url: '/Sections/@Model.Section.ID',
+            data: {
+                handler: 'Remove',
+                studentID: students[i].id
             },
             contenttype: "application/json",
             datatype: "json"
