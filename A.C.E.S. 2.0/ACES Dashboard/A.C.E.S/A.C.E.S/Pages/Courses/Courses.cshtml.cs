@@ -49,6 +49,17 @@ namespace A.C.E.S.Pages.Courses
 
         public JsonResult OnGetArchive(int id, bool archive)
         {
+            var course = _context.Courses.Find(id);
+
+            if (course == null)
+            {
+                return new JsonResult(false);
+            }
+
+            course.Archived = archive;
+            if (_context.SaveChanges() == 0)
+                return new JsonResult(false);
+
             return new JsonResult(true);
         }
     }
