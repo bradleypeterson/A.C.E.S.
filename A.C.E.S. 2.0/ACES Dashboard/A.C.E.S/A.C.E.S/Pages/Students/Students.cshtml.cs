@@ -29,8 +29,20 @@ namespace A.C.E.S.Pages.Students
                 .AsNoTracking()
                 .ToListAsync();
         }
+
         public JsonResult OnGetArchive(int id, bool archive)
         {
+            var student = _context.Students.Find(id);
+
+            if (student == null)
+            {
+                return new JsonResult(false);
+            }
+
+            student.Archived = archive;
+            if (_context.SaveChanges() == 0)
+                return new JsonResult(false);
+
             return new JsonResult(true);
         }
     }
