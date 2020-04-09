@@ -43,16 +43,16 @@
 </section>
 <script>
     section = JSON.parse('@Json.Serialize(Model.Section)');
+    sectionStudents = JSON.parse('@Json.Serialize(Model.SectionStudents)');
     students = JSON.parse('@Json.Serialize(Model.Students)');
     for (var student of students) {
         student.enrolled = false;
-        for (var s of section.students) {
-            if (student.id == s.id) {
+        for (var sectionStudent of sectionStudents) {
+            if (student.id == sectionStudent.studentID) {
                 student.enrolled = true;
                 break;
             }
         }
-        if (student.enrolled) break;
     }
     LoadList();
 

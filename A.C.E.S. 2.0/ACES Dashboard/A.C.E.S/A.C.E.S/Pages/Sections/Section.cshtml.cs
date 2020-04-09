@@ -12,6 +12,7 @@ namespace A.C.E.S.Pages.Sections
     public class SectionModel : PageModel
     {
         public Section Section { get; set; }
+        public List<SectionStudent> SectionStudents { get; set; }
         public List<Student> Students { get; set; }
 
         private readonly A.C.E.S.Data.ACESContext _context;
@@ -31,7 +32,7 @@ namespace A.C.E.S.Pages.Sections
                 .Where(c => c.ID == Section.CourseID)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
-            var sectionStudents = await _context.SectionStudents
+            SectionStudents = await _context.SectionStudents
                 .Where(s => s.SectionID == Section.ID)
                 .AsNoTracking()
                 .ToListAsync();

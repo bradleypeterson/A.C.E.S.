@@ -20,12 +20,31 @@ namespace A.C.E.S.Pages.Courses
         }
 
         public IList<Course> Courses { get; set; }
+        public List<List<Assignment>> Assignments { get; set; }
+        public List<List<Section>> Sections { get; set; }
 
         public async Task OnGetAsync()
         {
             Courses = await _context.Courses
                 .AsNoTracking()
                 .ToListAsync();
+            Assignments = new List<List<Assignment>>();
+            Sections = new List<List<Section>>();
+
+            foreach (var course in Courses)
+            {
+                var assignments = await _context.Assignments
+                    .Where(a => a.CourseID == course.ID)
+                    .AsNoTracking()
+                    .ToListAsync();
+                Assignments.Add(assignments);
+
+                var sections = await _context.Sections
+                    .Where(s => s.CourseID == course.ID)
+                    .AsNoTracking()
+                    .ToListAsync();
+                Sections.Add(sections);
+            }
         }
 
         public JsonResult OnGetArchive(int id, bool archive)
