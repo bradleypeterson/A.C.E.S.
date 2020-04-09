@@ -35,7 +35,7 @@
 </section>
 <script>
     course = JSON.parse('@Json.Serialize(Model.Course)');
-    assignments = course.assignments;
+    assignments = JSON.parse('@Json.Serialize(Model.Assignments)');
     LoadList();
 
     function LoadList() {
@@ -59,7 +59,7 @@
 
             var td = document.createElement("td");
             td.classList.add("table-button");
-            td.innerHTML += `<a title="Edit" href="/Assignments/${course.assignments[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
+            td.innerHTML += `<a title="Edit" href="/Assignments/${assignments[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
             if (status == "Active")
                 td.innerHTML += `<a title="Archive" onclick="ArchiveAssignment(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></a>`;
             else
