@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace A.C.E.S.Models
 {
+    /// <summary>
+    /// Student Section base class used to assoiciate a student with 
+    /// a given section
+    /// </summary>
     public class SectionStudent
     {
         [Key]

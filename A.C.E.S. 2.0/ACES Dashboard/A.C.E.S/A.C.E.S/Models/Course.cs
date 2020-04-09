@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace A.C.E.S.Models
-{
+{/// <summary>
+/// this is the Course item base class with all its atributes
+/// </summary>
     public class Course
     {
         public int ID { get; set; }

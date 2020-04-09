@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace A.C.E.S.Models
 {
+    /// <summary>
+    /// Submission base class with all of its atributes.
+    /// Entry Created for each time the student Submits assignment
+    /// </summary>
     public class Submission
     {
         public int ID { get; set; }

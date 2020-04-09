@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace A.C.E.S.Models
 {
-
+    /// <summary>
+    /// Student Base class with all its atributes
+    /// </summary>
     public class Student
     {
         public int ID { get; set; }
