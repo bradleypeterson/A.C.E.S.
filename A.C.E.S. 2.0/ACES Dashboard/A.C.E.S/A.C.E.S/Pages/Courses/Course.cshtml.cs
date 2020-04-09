@@ -31,5 +31,10 @@ namespace A.C.E.S.Pages.Courses
                 .AsNoTracking()
                 .ToListAsync();
         }
+
+        public JsonResult OnGetArchive(int id, bool archive)
+        {
+            return new JsonResult(id);
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿@page "/Sections/{ID:int}"
 @model A.C.E.S.Pages.Sections.SectionModel
 @{
-    ViewData["title"] = Model.section.Name + " " + Model.section.Course.Name;
+    string title = $"{Model.section.Course.Name} {Model.section.Name} {Model.section.Semester} {Model.section.Year}";
+    ViewData["title"] = title;
+    ViewData["Header"] = $"{title}";
 }
 
     <section id="top-bar">
@@ -18,24 +20,21 @@
                 <option>Not Enrolled</option>
             </select>
         </div>
-        <div>
-            <a href="/Sections/@Model.section.ID/Edit" class="button">Edit Section</a>
-        </div>
     </section>
 <section>
     <table class="table">
         <colgroup>
-            <col style="width:110px;" />
             <col />
             <col style="width:45%;" />
             <col style="width:130px;" />
+            <col style="width:110px;" />
         </colgroup>
         <thead>
             <tr>
-                <td></td>
                 <td>Name</td>
                 <td>Email</td>
                 <td>Standing</td>
+                <td></td>
             </tr>
         </thead>
         <tbody id="student-list">
@@ -43,6 +42,20 @@
     </table>
 </section>
 <script>
+    section = JSON.parse('@Json.Serialize(Model.section)');
+    students = JSON.parse('@Json.Serialize(Model.students)');
+    for (var student of students) {
+        student.enrolled = false;
+        for (var s of section.students) {
+            if (student.id == s.id) {
+                student.enrolled = true;
+                break;
+            }
+        }
+        if (student.enrolled) break;
+    }
+    LoadList();
+
     function LoadList() {
         var count = 0;
 
@@ -53,36 +66,31 @@
         var elem = document.getElementById('student-list');
         elem.innerHTML = "";
 
-        var section = JSON.parse('@Json.Serialize(Model.section)');
-        var students = JSON.parse('@Json.Serialize(Model.students)');
-
-        for (var student of students) {
-            if (student.archived) continue;
-            var filter = false;
-            for (var s of section.students) {
-                if (
-                    (status == "Enrolled" && s.id != student.id) ||
-                    (status == "Not Enrolled" && s.id == student.id)
-                ) {
-                    filter = true;
-                    break;
-                }
-            }
-            if (status == "Enrolled" && section.students.length == 0) continue;
-            if (filter) continue;
-            if (!student.name.toLowerCase().includes(name.toLowerCase())) continue;
-            if (standing != 0 && student.standing != standing - 1) continue;
+        for (var i in students) {
+            if (students[i].archived) continue;
+            if (status == "Enrolled" && !students[i].enrolled) continue;
+            if (status == "Not Enrolled" && students[i].enrolled) continue;
+            //var filter = false;
+            //for (var s of section.students) {
+            //    if (
+            //        (status == "Enrolled" && s.id != students[i].id) ||
+            //        (status == "Not Enrolled" && s.id == students[i].id)
+            //    ) {
+            //        filter = true;
+            //        break;
+            //    }
+            //}
+            //if (status == "Enrolled" && section.students.length == 0) continue;
+            //if (filter) continue;
+            if (!students[i].name.toLowerCase().includes(name.toLowerCase())) continue;
+            if (standing != 0 && students[i].standing != standing - 1) continue;
 
             count++;
 
             var tr = document.createElement("tr");
-            if (status == "Enrolled") 
-                tr.innerHTML += '<td><a class="button" onclick="">Remove</a></td>';
-            else
-                tr.innerHTML += '<td><a class="button" onclick="">Enroll</a></td>';
-            tr.innerHTML += '<td><a href="/Students/' + student.id + '">' + student.name + '</a></td>';
-            tr.innerHTML += '<td>' + student.email + '</td>';
-            switch (student.standing) {
+            tr.innerHTML += `<td><a href="/Students/${students[i].id}">${students[i].name}</a></td>`;
+            tr.innerHTML += `<td>${students[i].email}</td>`;
+            switch (students[i].standing) {
                 case 0:
                     tr.innerHTML += '<td><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</td>';
                     break;
@@ -96,6 +104,10 @@
                     tr.innerHTML += '<td><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A</td>';
                     break;
             }
+            if (status == "Enrolled")
+                tr.innerHTML += `<td class="table-button"><a onclick="EnrollStudent(${i}, false);">Remove</a></td>`;
+            else
+                tr.innerHTML += `<td class="table-button"><a onclick="EnrollStudent(${i}, true);">Enroll</a></td>`;
             elem.appendChild(tr);
         }
         if (count == 0) {
@@ -103,5 +115,22 @@
         }
     }
 
-    LoadList();
+    function DisplayError(request, status, error) {
+        console.log({ request, status, error });
+    }
+
+    function EnrollStudent(i, enroll) {
+        students[i].enrolled = enroll;
+        $.ajax({
+            type: 'get',
+            url: '/Sections/@Model.section.ID',
+            data: {
+                handler: 'Enroll',
+                id: students[i].id,
+                enroll: enroll
+            },
+            contenttype: "application/json",
+            datatype: "json"
+        }).done(LoadList).fail(DisplayError);
+    }
 </script>

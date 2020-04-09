@@ -2,6 +2,7 @@
 @model A.C.E.S.Pages.Courses.CoursesModel
 @{
     ViewData["Title"] = "Courses";
+    ViewData["Header"] = "Courses";
 }
 
 
@@ -23,7 +24,7 @@
             <col />
             <col />
             <col />
-            <col style="width:110px;" />
+            <col style="width:120px;" />
         </colgroup>
         <thead>
             <tr>
@@ -51,6 +52,9 @@
     </form>
 </aside>
 <script>
+    courses = JSON.parse('@Json.Serialize(Model.Courses)');
+    LoadList();
+
     function LoadList() {
         var count = 0;
 
@@ -60,24 +64,26 @@
         var elem = document.getElementById('course-list2');
         elem.innerHTML = "";
 
-        var courses = JSON.parse('@Json.Serialize(Model.Courses)');
-
-        for (var course of courses) {
-            if (course.archived && status == "Active") continue;
-            if (!course.archived && status == "Archived") continue;
-            if (!course.name.toLowerCase().includes(cname.toLowerCase())) continue;
+        for (var i = 0; i < courses.length; i++){
+            if (courses[i].archived && status == "Active") continue;
+            if (!courses[i].archived && status == "Archived") continue;
+            if (!courses[i].name.toLowerCase().includes(cname.toLowerCase())) continue;
 
             count++;
 
             var tr = document.createElement("tr");
-            tr.innerHTML += '<td><a href="/Courses/' + course.id + '">' + course.name + '</a></td>';
-            tr.innerHTML += '<td>' + course.sections.length + '</td>';
-            tr.innerHTML += '<td>' + course.assignments.length + '</td>';
+            tr.innerHTML += `<td><a href="/Courses/${courses[i].id}">${courses[i].name}</a></td>`;
+            tr.innerHTML += `<td>${courses[i].sections.length}</td>`;
+            tr.innerHTML += `<td>${courses[i].assignments.length}</td>`;
 
+            var td = document.createElement("td");
+            td.classList.add("table-button");
+            td.innerHTML += `<a title="Edit" href="/Courses/${courses[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
             if (status == "Active")
-                tr.innerHTML += '<td><a class="button" onclick="">Archive</a></td>';
+                td.innerHTML += `<a title="Archive" onclick="ArchiveCourse(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></a>`;
             else
-                tr.innerHTML += '<td><a class="button" onclick="">Restore</a></td>';
+                td.innerHTML += `<a title="Restore" onclick="ArchiveCourse(${i}, false)"><i class="fas fa-fw fa-lg fa-trash-restore"></i></a>`;
+            tr.appendChild(td);
             elem.appendChild(tr);
         }
         if (count == 0) {
@@ -85,5 +91,22 @@
         }
     }
 
-    LoadList();
+    function DisplayError(request, status, error) {
+        console.log({ request, status, error });
+    }
+
+    function ArchiveCourse(i, archive) {
+        courses[i].archived = archive;
+        $.ajax({
+            type: 'get',
+            url: '/Courses',
+            data: {
+                handler: 'Archive',
+                id: courses[i].id,
+                archive: archive
+            },
+            contenttype: "application/json",
+            datatype: "json"
+        }).done(LoadList).fail(DisplayError);
+    }
 </script>

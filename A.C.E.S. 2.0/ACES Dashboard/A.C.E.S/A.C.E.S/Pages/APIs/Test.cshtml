@@ -1,0 +1,27 @@
+﻿@page
+@model A.C.E.S.Pages.APIs.TestModel
+@{
+}
+
+<script>
+    $.ajax({
+        type: "GET",
+        url: "/API/Section/Get",
+        data: {
+            id: 1
+        },
+        contentType: "application/json",
+        dataType: "json",
+        error: function (request, error) {
+            console.log(error);
+        }
+    }).done(
+        function (section) { console.log(section); }
+    ).fail(
+        function () { console.log("Failed") }
+    );
+
+    function displayData(section) {
+        console.log(section);
+    }
+</script>

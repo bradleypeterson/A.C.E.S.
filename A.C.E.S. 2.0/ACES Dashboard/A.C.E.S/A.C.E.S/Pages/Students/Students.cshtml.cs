@@ -29,5 +29,9 @@ namespace A.C.E.S.Pages.Students
                 .AsNoTracking()
                 .ToListAsync();
         }
+        public JsonResult OnGetArchive(int id, bool archive)
+        {
+            return new JsonResult(true);
+        }
     }
 }

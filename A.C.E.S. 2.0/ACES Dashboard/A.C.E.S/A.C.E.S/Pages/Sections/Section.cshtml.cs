@@ -36,5 +36,10 @@ namespace A.C.E.S.Pages.Sections
                 .AsNoTracking()
                 .ToListAsync();
         }
+
+        public JsonResult OnGetEnroll(int id, bool enroll)
+        {
+            return new JsonResult(true);
+        }
     }
 }

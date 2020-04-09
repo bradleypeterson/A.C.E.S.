@@ -2,6 +2,7 @@
 @model A.C.E.S.Pages.Students.StudentModel
 @{
     ViewData["Title"] = Model.student.Name;
+    ViewData["Header"] = $"{Model.student.Name}";
 }
 
 <section class="flex-space margin">
@@ -12,9 +13,6 @@
     <div>
         <h3>Academic Standing:</h3>
         <p>Accademic standing should be computed here.</p>
-    </div>
-    <div>
-        <a href="/Students/@Model.student.ID/Edit" class="button">Edit Student</a>
     </div>
     @*@switch (@Model.student.Standing)
         {

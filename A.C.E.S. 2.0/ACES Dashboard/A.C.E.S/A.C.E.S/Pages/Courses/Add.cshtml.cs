@@ -32,7 +32,7 @@ namespace A.C.E.S.Pages.Courses
             if (await TryUpdateModelAsync<Course>(
                 emptyCourse,
                 "course",   // Prefix for form value.
-                s => s.Name, s => s.Assignments, s => s.Archived))
+                s => s.Name, s => s.Archived))
             {
                 _context.Courses.Add(emptyCourse);
                 await _context.SaveChangesAsync();

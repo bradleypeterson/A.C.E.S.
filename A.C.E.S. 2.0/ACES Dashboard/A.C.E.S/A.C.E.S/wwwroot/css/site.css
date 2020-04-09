@@ -166,6 +166,11 @@
         padding: 10px;
     }
 
+    .table-button a{
+        display: inline-block;
+        padding: 10px;
+    }
+
     .avatar{
         border-radius: 100%;
     }

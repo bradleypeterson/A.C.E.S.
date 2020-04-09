@@ -2,6 +2,7 @@
 @model A.C.E.S.Pages.Courses.CourseModel
 @{
     ViewData["title"] = Model.Course.Name;
+    ViewData["Header"] = $"{Model.Course.Name}";
 }
 
     <section id="top-bar">
@@ -13,8 +14,7 @@
             </select>
         </div>
         <div>
-            <a href="/Courses/@Model.Course.ID/Edit" class="button">Edit Course</a>
-            <a href="/Courses/@Model.Course.ID/Assignments/Add" class="button">Edit Course</a>
+            <a href="/Courses/@Model.Course.ID/Assignments/Add" class="button">+ Add Assignment</a>
         </div>
     </section>
 <section>
@@ -25,7 +25,7 @@
         </colgroup>
         <thead>
             <tr>
-                <td>Name</td>
+                <td>Assignments</td>
                 <td></td>
             </tr>
         </thead>
@@ -34,6 +34,10 @@
     </table>
 </section>
 <script>
+    course = JSON.parse('@Json.Serialize(Model.Course)');
+    assignments = course.assignments;
+    LoadList();
+
     function LoadList() {
         var count = 0;
 
@@ -43,21 +47,24 @@
         var elem = document.getElementById('student-list');
         elem.innerHTML = "";
 
-        var course = JSON.parse('@Json.Serialize(Model.Course)');
-
-        for (var assignment of course.assignments) {
-            if (status == 'Active' && assignment.archived) continue;
-            if (status == 'Archived' && !assignment.archived) continue;
-            if (!assignment.name.toLowerCase().includes(name.toLowerCase())) continue;
+        for (var i in assignments) {
+            if (status == 'Active' && assignments[i].archived) continue;
+            if (status == 'Archived' && !assignments[i].archived) continue;
+            if (!assignments[i].name.toLowerCase().includes(name.toLowerCase())) continue;
 
             count++;
 
             var tr = document.createElement("tr");
-            tr.innerHTML += '<td><a href="/Courses/' + course.id + '/Assignments/' + assignment.id + '">' + assignment.name + '</a></td>';
-            if (status == "Archived")
-                tr.innerHTML += '<td><a class="button" onclick="">Restore</a></td>';
+            tr.innerHTML += `<td><a href="/Assignments/${assignments[i].id}">${assignments[i].name}</a></td>`;
+
+            var td = document.createElement("td");
+            td.classList.add("table-button");
+            td.innerHTML += `<a title="Edit" href="/Assignments/${course.assignments[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
+            if (status == "Active")
+                td.innerHTML += `<a title="Archive" onclick="ArchiveAssignment(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></a>`;
             else
-                tr.innerHTML += '<td><a class="button" onclick="">Archive</a></td>';
+                td.innerHTML += `<a title="Restore" onclick="ArchiveAssignment(${i}, false)"><i class="fas fa-fw fa-lg fa-trash-restore"></i></a>`;
+            tr.appendChild(td);
             elem.appendChild(tr);
         }
         if (count == 0) {
@@ -65,5 +72,21 @@
         }
     }
 
-    LoadList();
+    function DisplayError(request, status, error) {
+        console.log({ request, status, error });
+    }
+
+    function ArchiveAssignment(i, archive) {
+        assignments[i].archived = archive;
+        $.ajax({
+            type: 'get',
+            url: `/Assignments/${assignments[i].id}`,
+            data: {
+                handler: 'Archive',
+                archive: archive
+            },
+            contenttype: "application/json",
+            datatype: "json"
+        }).done(LoadList).fail(DisplayError);
+    }
 </script>

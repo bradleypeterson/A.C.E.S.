@@ -13,7 +13,8 @@ namespace A.C.E.S.Models
         public string Name { get; set; }
 
         public int CourseID { get; set; }
-        public Course Course { get; set; }
+        [ForeignKey("CourseID")]
+        public virtual Course Course { get; set; }
 
         public string Semester { get; set; }
         public string Length { get; set; }

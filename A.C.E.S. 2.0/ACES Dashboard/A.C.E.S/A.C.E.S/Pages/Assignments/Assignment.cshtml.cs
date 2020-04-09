@@ -62,5 +62,10 @@ namespace A.C.E.S.Pages.Courses.Assignments
 
             return Page();
         }
+
+        public JsonResult OnGetArchive(int id, bool archive)
+        {
+            return new JsonResult(true);
+        }
     }
 }

@@ -35,5 +35,10 @@ namespace A.C.E.S.Pages.Sections
                     .FirstOrDefaultAsync();
             }
         }
+
+        public JsonResult OnGetArchive(int id, bool archive)
+        {
+            return new JsonResult(true);
+        }
     }
 }

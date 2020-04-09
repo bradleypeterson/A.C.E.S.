@@ -2,6 +2,7 @@
 @model A.C.E.S.Pages.Sections.SectionsModel
 @{
     ViewData["Title"] = "Sections";
+    ViewData["Header"] = "Sections";
 }
 
 <section id="top-bar">
@@ -22,7 +23,7 @@
             <col />
             <col />
             <col style="width:200px;" />
-            <col style="width:110px;" />
+            <col style="width:120px;" />
         </colgroup>
         <thead>
             <tr>
@@ -71,6 +72,7 @@
 <aside id="add-student" class="pop-up"></aside>
 <script>
     sections = JSON.parse('@Json.Serialize(Model.Sections)');
+    LoadList();
 
     function LoadList() {
         var count = 0;
@@ -81,28 +83,50 @@
         var elem = document.getElementById('section-list');
         elem.innerHTML = "";
 
-        for (var section of sections) {
-            if (section.archived && status == "Active") continue;
-            if (!section.archived && status == "Archived") continue;
-            if (!section.name.toLowerCase().includes(name.toLowerCase())) continue;
+        for (var i = 0; i < sections.length; i++) {
+            if (sections[i].archived && status == "Active") continue;
+            if (!sections[i].archived && status == "Archived") continue;
+            if (!sections[i].name.toLowerCase().includes(name.toLowerCase())) continue;
 
             count++;
 
             var tr = document.createElement("tr");
-            tr.innerHTML += '<td><a href="/Sections/' + section.id + '">' + section.name + '</a></td>';
-            tr.innerHTML += '<td>' + section.course.name + '</td>';
-            tr.innerHTML += `<td>${section.semester} ${section.year}</td>`;
+            tr.innerHTML += `<td><a href="/Sections/${sections[i].id}">${sections[i].name}</a></td>`;
+            tr.innerHTML += `<td>${sections[i].course.name}</td>`;
+            tr.innerHTML += `<td>${sections[i].semester} ${sections[i].year}</td>`;
 
+            var td = document.createElement("td");
+            td.classList.add("table-button");
+            td.innerHTML += `<a title="Edit" href="/Sections/${sections[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
             if (status == "Active")
-                tr.innerHTML += '<td><a class="button" onclick="">Archive</a></td>';
+                td.innerHTML += `<a title="Archive" onclick="ArchiveSection(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></a>`;
             else
-                tr.innerHTML += '<td><a class="button" onclick="">Restore</a></td>';
+                td.innerHTML += `<a title="Restore" onclick="ArchiveSection(${i}, false)"><i class="fas fa-fw fa-lg fa-trash-restore"></i></a>`;
+            tr.appendChild(td);
             elem.appendChild(tr);
+
         }
         if (count == 0) {
             elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
         }
     }
 
-    LoadList();
+    function DisplayError(request, status, error) {
+        console.log({ request, status, error });
+    }
+
+    function ArchiveSection(i, archive) {
+        sections[i].archived = archive;
+        $.ajax({
+            type: 'get',
+            url: '/Sections',
+            data: {
+                handler: 'Archive',
+                id: sections[i].id,
+                archive: archive
+            },
+            contenttype: "application/json",
+            datatype: "json"
+        }).done(LoadList).fail(DisplayError);
+    }
 </script>

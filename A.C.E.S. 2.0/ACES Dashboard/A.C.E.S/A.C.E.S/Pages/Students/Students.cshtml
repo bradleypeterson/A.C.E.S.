@@ -2,6 +2,7 @@
 @model A.C.E.S.Pages.Students.StudentsModel
 @{
     ViewData["Title"] = "Students";
+    ViewData["Header"] = "Students";
 }
 
 <section id="top-bar">
@@ -28,7 +29,7 @@
             <col />
             <col style="width:45%;" />
             <col style="width:130px;" />
-            <col style="width:110px;" />
+            <col style="width:120px;" />
         </colgroup>
         <thead>
             <tr>
@@ -56,6 +57,9 @@
     </form>
 </aside>
 <script>
+    students = JSON.parse('@Json.Serialize(Model.students)');
+    LoadList();
+
     function LoadList() {
         var count = 0;
 
@@ -66,20 +70,18 @@
         var elem = document.getElementById('student-list');
         elem.innerHTML = "";
 
-        var students = JSON.parse('@Json.Serialize(Model.students)');
-
-        for (var student of students) {
-            if (student.archived && status == "Active") continue;
-            if (!student.archived && status == "Archived") continue;
-            if (!student.name.toLowerCase().includes(name.toLowerCase())) continue;
-            if (standing != 0 && student.standing != standing - 1) continue;
+        for (var i = 0; i < students.length; i++){
+            if (students[i].archived && status == "Active") continue;
+            if (!students[i].archived && status == "Archived") continue;
+            if (!students[i].name.toLowerCase().includes(name.toLowerCase())) continue;
+            if (standing != 0 && students[i].standing != standing - 1) continue;
 
             count++;
 
             var tr = document.createElement("tr");
-            tr.innerHTML += '<td><a href="/Students/' + student.id + '">' + student.name + '</a></td>';
-            tr.innerHTML += '<td>' + student.email + '</td>';
-            switch (student.standing) {
+            tr.innerHTML += `<td><a href="/Students/${students[i].id}">${students[i].name}</a></td>`;
+            tr.innerHTML += `<td>${students[i].email}</td>`;
+            switch (students[i].standing) {
                 case 0:
                     tr.innerHTML += '<td><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</td>';
                     break;
@@ -93,10 +95,15 @@
                     tr.innerHTML += '<td><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A</td>';
                     break;
             }
+
+            var td = document.createElement("td");
+            td.classList.add("table-button");
+            td.innerHTML += `<a title="Edit" href="/Students/${students[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
             if (status == "Active")
-                tr.innerHTML += '<td><a class="button" onclick="">Archive</a></td>';
+                td.innerHTML += `<a title="Archive" onclick="ArchiveStudent(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></a>`;
             else
-                tr.innerHTML += '<td><a class="button" onclick="">Restore</a></td>';
+                td.innerHTML += `<a title="Restore" onclick="ArchiveStudent(${i}, false)"><i class="fas fa-fw fa-lg fa-trash-restore"></i></a>`;
+            tr.appendChild(td);
             elem.appendChild(tr);
         }
         if (count == 0) {
@@ -104,5 +111,22 @@
         }
     }
 
-    LoadList();
+    function DisplayError(request, status, error) {
+        console.log({ request, status, error });
+    }
+
+    function ArchiveStudent(i, archive) {
+        students[i].archived = archive;
+        $.ajax({
+            type: 'get',
+            url: '/Students',
+            data: {
+                handler: 'Archive',
+                id: students[i].id,
+                archive: archive
+            },
+            contenttype: "application/json",
+            datatype: "json"
+        }).done(LoadList).fail(DisplayError);
+    }
 </script>

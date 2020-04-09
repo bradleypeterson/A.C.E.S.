@@ -46,13 +46,37 @@ function HideMenu() {
     $('#app-nav').hide();
 }
 
+function GetData(table, id, success, fail) {
+    $.ajax({
+        type: "GET",
+        url: `/API/${table}/Get`,
+        data: {
+            id: id
+        },
+        contentType: "application/json",
+        dataType: "json"
+    }).done(success).fail(fail);
+}
+
+function ArchiveData(table, id, archive, success, fail) {
+    $.ajax({
+        type: 'get',
+        url: `/api/${table}/archive`,
+        data: {
+            id: id,
+            archive: archive
+        },
+        contenttype: "application/json",
+        datatype: "json"
+    }).done(success).fail(fail);
+}
+
 $(document).ready(function () {
     //$('.accordion-header').click(function () {
     //    $(this).next().slideToggle();
     //    $(this).toggleClass('expanded');
     //});
     $(window).resize(function () {
-        console.log($(window).outerWidth());
         if ($(window).outerWidth() < 900) {
             HideMenu()
         }

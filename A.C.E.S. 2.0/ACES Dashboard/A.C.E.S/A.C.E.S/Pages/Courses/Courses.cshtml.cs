@@ -24,14 +24,24 @@ namespace A.C.E.S.Pages.Courses
         public async Task OnGetAsync()
         {
             Courses = await _context.Courses
-                .Include(c => c.Assignments)
                 .AsNoTracking()
                 .ToListAsync();
             foreach (var course in Courses)
             {
-                course.Assignments = new List<Assignment>();
-                course.Sections = new List<Section>();
+                course.Assignments = await _context.Assignments
+                    .Where(a => a.CourseID == course.ID)
+                    .AsNoTracking()
+                    .ToListAsync();
+                course.Sections = await _context.Sections
+                    .Where(s => s.CourseID == course.ID)
+                    .AsNoTracking()
+                    .ToListAsync();
             }
+        }
+
+        public JsonResult OnGetArchive(int id, bool archive)
+        {
+            return new JsonResult(true);
         }
     }
 }
