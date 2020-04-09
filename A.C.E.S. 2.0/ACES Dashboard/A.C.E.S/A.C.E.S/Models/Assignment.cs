@@ -18,6 +18,9 @@ namespace A.C.E.S.Models
         public string Files { get; set; }
         public string UnitTesters { get; set; }
         public int Grade { get; set; }
+        public bool Archived { get; set; }
+
+
 
         //public Assignment(int id, string name)
         //{

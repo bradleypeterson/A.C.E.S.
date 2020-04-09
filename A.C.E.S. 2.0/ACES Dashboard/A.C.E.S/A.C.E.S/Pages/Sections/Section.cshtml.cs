@@ -43,6 +43,24 @@ namespace A.C.E.S.Pages.Sections
 
         public JsonResult OnGetEnroll(int id, int studentID)
         {
+            var sectionstudent = _context.SectionStudents.Where(s => s.SectionID == id && s.StudentID == studentID).FirstOrDefault();
+
+            if (sectionstudent != null)
+            {
+                return new JsonResult(false);
+            }
+
+            var newSectionStudent = new SectionStudent()
+            {
+                SectionID = id,
+                StudentID = studentID
+            };
+
+            _context.SectionStudents.Add(newSectionStudent);
+
+            if (_context.SaveChanges() == 0)
+                return new JsonResult(false);
+
             return new JsonResult(true);
         }
 

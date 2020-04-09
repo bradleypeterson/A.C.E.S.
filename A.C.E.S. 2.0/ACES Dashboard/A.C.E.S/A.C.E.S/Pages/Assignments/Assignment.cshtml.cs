@@ -65,6 +65,17 @@ namespace A.C.E.S.Pages.Courses.Assignments
 
         public JsonResult OnGetArchive(int id, bool archive)
         {
+            var assignment = _context.Assignments.Find(id);
+
+            if (assignment == null)
+            {
+                return new JsonResult(false);
+            }
+
+            assignment.Archived = archive;
+            if (_context.SaveChanges() == 0)
+                return new JsonResult(false);
+
             return new JsonResult(true);
         }
     }

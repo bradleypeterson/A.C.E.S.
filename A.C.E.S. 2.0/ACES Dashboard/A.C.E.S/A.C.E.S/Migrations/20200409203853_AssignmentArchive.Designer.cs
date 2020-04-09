@@ -4,14 +4,16 @@ using A.C.E.S.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace A.C.E.S.Migrations
 {
     [DbContext(typeof(ACESContext))]
-    partial class ACESContextModelSnapshot : ModelSnapshot
+    [Migration("20200409203853_AssignmentArchive")]
+    partial class AssignmentArchive
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
