@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace A.C.E.S.Models
 {
+    /// <summary>
+    /// Section base class with all its atributes
+    /// </summary>
     public class Section
     {
 

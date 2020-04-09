@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace A.C.E.S.Models
 {
+    /// <summary>
+    /// This is base class for Assignment with all of its collums 
+    /// </summary>
     public class Assignment
     {
         public int ID { get; set; }
