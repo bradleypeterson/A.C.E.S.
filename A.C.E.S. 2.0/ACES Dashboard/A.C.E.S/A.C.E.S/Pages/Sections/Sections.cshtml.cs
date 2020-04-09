@@ -36,8 +36,24 @@ namespace A.C.E.S.Pages.Sections
             }
         }
 
+        public async Task<IActionResult> OnPostArchive(int cartId)
+        {
+            var sectionToUpdate = await _context.Sections.FindAsync(cartId);
+
+            if (sectionToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            sectionToUpdate.Archived = true;
+            await _context.SaveChangesAsync();
+            return RedirectToPage("./Sections");
+        }
+
         public JsonResult OnGetArchive(int id, bool archive)
         {
+            
+
             return new JsonResult(true);
         }
     }
