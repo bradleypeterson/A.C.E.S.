@@ -99,9 +99,7 @@
             td.classList.add("table-button");
             td.innerHTML += `<a title="Edit" href="/Sections/${sections[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
             if (status == "Active")
-                td.innerHTML += `<button type="submit" onclick="ArchiveSection(${i}, true)" class="btn btn-primary" asp-page-handler="archive" asp-route-cartId="${i}">
-                                                <i class="fas fa-plus"></i>
-                                            </button>`;
+                td.innerHTML += `<a title="Archive" onclick="ArchiveSection(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></button>`;
             else
                 td.innerHTML += `<a title="Restore" onclick="ArchiveSection(${i}, false)"><i class="fas fa-fw fa-lg fa-trash-restore"></i></a>`;
             tr.appendChild(td);

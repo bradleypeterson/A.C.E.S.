@@ -31,9 +31,10 @@ namespace A.C.E.S.Pages.Sections
                 .Where(c => c.ID == Section.CourseID)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
-            var sectionStudent = await _context.
-            Section.Students = await _context.Students
-                .Join()
+            var sectionStudents = await _context.SectionStudents
+                .Where(s => s.SectionID == Section.ID)
+                .AsNoTracking()
+                .ToListAsync();
             Students = await _context.Students
                 .AsNoTracking()
                 .ToListAsync();
