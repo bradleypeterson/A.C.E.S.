@@ -1,4 +1,4 @@
-# A.C.E.S.
+# A.C.E.S. <img src="Logo.png" height="30"/>
 Anti-Cheat Enforcement Software is a software engineering project of Professor Brad Peterson at Weber State University. The project is composed of three major components.
  1. View the status of each student in a course through a web client.
  2. Run various anti-cheat software to ensure that a student is properly doing their work.
