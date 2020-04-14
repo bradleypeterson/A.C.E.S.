@@ -1,54 +1,75 @@
 ﻿@page "/Students/{ID:int}"
 @model A.C.E.S.Pages.Students.StudentModel
 @{
-    ViewData["Title"] = Model.student.Name;
-    ViewData["Header"] = $"{Model.student.Name}";
+    ViewData["Title"] = Model.Student.Name;
 }
 
 <section class="flex-space margin">
     <div>
         <h3>Contact</h3>
-        <p><a href="mailto:@Model.student.Email">@Model.student.Email</a></p>
+        <p><a href="mailto:@Model.Student.Email">@Model.Student.Email</a></p>
     </div>
     <div>
         <h3>Academic Standing:</h3>
-        <p>Accademic standing should be computed here.</p>
+        <div id="student-standing"></div>
     </div>
-    @*@switch (@Model.student.Standing)
-        {
-            case Models.Standing.Good:
-                <i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good
-                break;
-            case Models.Standing.Moderate:
-                <i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate
-                break;
-            case Models.Standing.Bad:
-                <i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad
-                break;
-            default:
-                <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A
-                break;
-        }*@
 </section>
 
 <section class="margin">
     <h2>Recent Submissions</h2>
-    @if (Model.student.Submissions.Count == 0)
-    {
-        <p>There are no assignment submissions for this student.</p>
-    }
-    @for (int i = 0; i < 5 && i < Model.student.Submissions.Count; i++)
-    {
-        <p>@Model.student.Submissions[i].Standing</p>
-    }
+    <table class="table">
+        <colgroup>
+            <col />
+            <col />
+            <col style="width:100px;" />
+            <col style="width:100px;" />
+            <col style="width:120px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <td>Assignment</td>
+                <td># Submissions</td>
+                <td>Grade</td>
+                <td>Standing</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody id="recent-submissions">
+            @if (Model.RecentSubmissions.Count == 0)
+            {
+            <tr>
+                <td colspan="5">There are no assignment submissions for this student.</td>
+            </tr>
+            }
+            @foreach (var recentSubmission in Model.RecentSubmissions)
+            {
+                var submissions = Model.Submissions.FindAll(s => s.AssignmentID == recentSubmission.ID);
+            <tr>
+                <td><a href="/Students/@Model.Student.ID/Assignment/@recentSubmission.ID">@recentSubmission.Name</a></td>
+                <td class="align-right">@submissions.Count</td>
+                <td class="align-right">@Model.Submissions.Find(s => s.AssignmentID == recentSubmission.ID).Grade/@recentSubmission.Grade</td>
+                @{ 
+                    int sum = 0;
+                    foreach (var submission in submissions)
+                    {
+                        sum += (int)submission.Standing;
+                    }
+                    int avg = sum / submissions.Count;
+                }
+                <td class="align-right">@avg</td>
+                <td></td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </section>
 
 <section class="margin">
     <h2>Past Submissions</h2>
-    @if (Model.student.Submissions.Count == 0)
+    @*@if (Model.Student.Submissions.Count == 0)
     {
         <p>There are no assignment submissions for this student.</p>
-    }
+    }*@
     @* 
         To Do:
             Display Sections the student has enrolled in as an accordion.
@@ -56,3 +77,54 @@
             When user clicks on a assignment, it should take the user to the submissions page.
     *@
 </section>
+
+<script>
+    submissions = JSON.parse('@Json.Serialize(Model.Submissions)');
+    assignments = JSON.parse('@Json.Serialize(Model.Assignments)');
+    recentSubmissions = JSON.parse('@Json.Serialize(Model.RecentSubmissions)');
+
+    UpdateStudentStanding();
+    //UpdateRecentSubmissions();
+
+    function UpdateStudentStanding() {
+        var sum = 0;
+        for (var assignment of assignments) {
+            if (assignment.overrideStanding) {
+                sum += assignment.overrideStanding;
+            }
+            else {
+                var subsum = 0;
+                for (var submission of submissions) {
+                    subsum += submission.standing;
+                }
+                sum += Math.round(subsum / submissions.length);
+            }
+        }
+        var avgStanding = Math.round(sum / assignments.length);
+        console.log(avgStanding);
+        switch (avgStanding) {
+            case 0:
+                $('#student-standing').html('<i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good');
+                break;
+            case 1:
+                $('#student-standing').html('<i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate');
+                break;
+            case 2:
+                $('#student-standing').html('<i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad');
+                break;
+            default:
+                $('#student-standing').html('<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A');
+                break;
+        }
+    }
+
+    function UpdateRecentSubmissions() {
+        if (recentSubmissions.length == 0)
+        {
+            $('#recent-submissions').html('<tr><td colspan="5">There are no assignment submissions for this student.</td></tr>');
+        }
+        for (var recentSubmission of recentSubmissions)
+        {
+        }
+    }
+</script>

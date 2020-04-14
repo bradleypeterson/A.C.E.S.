@@ -144,6 +144,30 @@ namespace A.C.E.S.Migrations
                     b.ToTable("Student");
                 });
 
+            modelBuilder.Entity("A.C.E.S.Models.StudentAssignment", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AssignmentID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AverageStanding")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OverrideStanding")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("StudentAssignment");
+                });
+
             modelBuilder.Entity("A.C.E.S.Models.Submission", b =>
                 {
                     b.Property<int>("ID")
@@ -151,7 +175,7 @@ namespace A.C.E.S.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AssignmentID")
+                    b.Property<int>("AssignmentID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateTime")
@@ -212,7 +236,9 @@ namespace A.C.E.S.Migrations
                 {
                     b.HasOne("A.C.E.S.Models.Assignment", "Assignment")
                         .WithMany()
-                        .HasForeignKey("AssignmentID");
+                        .HasForeignKey("AssignmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("A.C.E.S.Models.Student", "Student")
                         .WithMany("Submissions")
