@@ -21,7 +21,7 @@ Anti-Cheat Enforcement Software is a software engineering project of Professor B
 *Status: Completed*
 
 ## A.C.E.S. Anti-Cheat
-Directory: [/A.C.E.S. 2.0/Anti-Cheat](/A.C.E.S.%202.0/Anti-Cheat)
+Directory: [A.C.E.S. 2.0/Anti-Cheat](../A.C.E.S.%202.0/Anti-Cheat)
 ### Watermarking
 Directory: [/A.C.E.S. 2.0/Anti-Cheat/Watermarking]()
 
