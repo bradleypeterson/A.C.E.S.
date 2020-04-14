@@ -25,6 +25,7 @@ namespace A.C.E.S.Pages.Sections
         [BindProperty]
         public Section Section { get; set; }
 
+        //On submit, create new section, fill with user data, then commit to database
         public async Task<IActionResult> OnPostAsync()
         {
             var emptySection = new Section();

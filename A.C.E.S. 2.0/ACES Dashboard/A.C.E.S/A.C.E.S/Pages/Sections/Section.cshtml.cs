@@ -11,10 +11,12 @@ namespace A.C.E.S.Pages.Sections
 {
     public class SectionModel : PageModel
     {
+        //Local page variables
         public Section Section { get; set; }
         public List<SectionStudent> SectionStudents { get; set; }
         public List<Student> Students { get; set; }
 
+        //Database Context
         private readonly A.C.E.S.Data.ACESContext _context;
 
         public SectionModel(A.C.E.S.Data.ACESContext context)
