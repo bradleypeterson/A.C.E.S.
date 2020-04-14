@@ -32,7 +32,7 @@ Creates a unique watermarked version of an assignment for each individual studen
 ### Student Progress
 Keeps track of the progress of a student on their assignment to determin if they are properly testing their codes, and is incrementally finishing their assignment. An abrupt completion of an assignment can be seen suspicious.
 
-View ## A.C.E.S. Autocommit for more
+View [A.C.E.S. Autocommit](https://github.com/tjh1541/A.C.E.S./blob/master/README.md#aces-autocommit) for more info.
 
 *Status: Started*
 
