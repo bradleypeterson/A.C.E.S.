@@ -21,9 +21,9 @@ Anti-Cheat Enforcement Software is a software engineering project of Professor B
 *Status: Completed*
 
 ## A.C.E.S. Anti-Cheat
-Directory: [/A.C.E.S. 2.0/Anti-Cheat]()
+Directory: [A.C.E.S. 2.0/Anti-Cheat](https://github.com/tjh1541/A.C.E.S./tree/master/A.C.E.S.%202.0/ACES%20Anti-Cheat)
 ### Watermarking
-Directory: [/A.C.E.S. 2.0/Anti-Cheat/Watermarking]()
+Directory: [A.C.E.S. 2.0/Anti-Cheat/Watermarking](https://github.com/tjh1541/A.C.E.S./tree/master/A.C.E.S.%202.0/ACES%20Anti-Cheat/Watermarking)
 
 Creates a unique watermarked version of an assignment for each individual student. When a student submits there source code, the anti-cheat tool will be able to determin if any of the watermarkings have been tampered with or if the student has copied code from another source.
 
