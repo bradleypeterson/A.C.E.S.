@@ -22,6 +22,7 @@ namespace A.C.E.S.Pages.Sections
             _context = context;
         }
 
+        //Initialize local variables with data from database
         public async Task OnGetAsync(int id)
         {
             Section = await _context.Sections
@@ -41,8 +42,10 @@ namespace A.C.E.S.Pages.Sections
                 .ToListAsync();
         }
 
+        //Put the given student and section into the SectionStudent table
         public JsonResult OnGetEnroll(int id, int studentID)
         {
+            //Check if the enrollment already exists
             var sectionstudent = _context.SectionStudents.Where(s => s.SectionID == id && s.StudentID == studentID).FirstOrDefault();
 
             if (sectionstudent != null)
@@ -50,6 +53,7 @@ namespace A.C.E.S.Pages.Sections
                 return new JsonResult(false);
             }
 
+            //Create a new SectionStudent entry
             var newSectionStudent = new SectionStudent()
             {
                 SectionID = id,
@@ -58,14 +62,17 @@ namespace A.C.E.S.Pages.Sections
 
             _context.SectionStudents.Add(newSectionStudent);
 
+            //If database doesn't save, don't show the change on the page
             if (_context.SaveChanges() == 0)
                 return new JsonResult(false);
 
             return new JsonResult(true);
         }
 
+        //Remove the given student and section into the SectionStudent table
         public JsonResult OnGetRemove(int id, int studentID)
         {
+            //Check if the enrollment already exists
             var sectionstudent = _context.SectionStudents.Where(s => s.SectionID == id && s.StudentID == studentID).FirstOrDefault();
 
             if (sectionstudent == null)
@@ -73,8 +80,10 @@ namespace A.C.E.S.Pages.Sections
                 return new JsonResult(false);
             }
 
+            //Remove the enrollment
             _context.SectionStudents.Remove(sectionstudent);
 
+            //If database doesn't save, don't show the change on the page
             if (_context.SaveChanges() == 0)
                 return new JsonResult(false);
 
