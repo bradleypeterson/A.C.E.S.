@@ -1,3 +1,9 @@
+// This is the prototype watermarking program. This program works buy taking a 
+// unique key hashing it then using that as the seed to generate the "random" 
+// dashes and astricks watermarks thoughout the file.  
+// The file is then read and whenever the find any special comment it test it
+// against the unique keys hashed random comment. 
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,6 +12,8 @@
 std::ifstream cfile;
 std::ifstream hfile;
 
+//tester this goes through the file and test the file's unique comments those begining with 
+// "//**", "//UID" or "//--" and see's if they are correct.
 void testFiles() {
 	std::string line;
 	int count = 0;
@@ -94,6 +102,9 @@ void testFiles() {
 	}
 }
 
+
+// this takes the raw file and for ever comment begining with "//**", "//UID" or "//--"
+// adds a "Random" amount of * - or tabs based on the unique hashed key.
 void makeFiles() {
 	std::ofstream newFile;
 	std::string line;
@@ -194,6 +205,7 @@ void makeFiles() {
 	newFile.close();
 }
 
+//main file used to create/test if the file is watermarked
 int main() {
 	std::string cfileName;
 	std::string hfileName;
@@ -225,6 +237,7 @@ int main() {
 		else break;
 	}
 
+	// have to comment out the functions based on which one you wish to test.
 	testFiles();
 	//makeFiles();
 

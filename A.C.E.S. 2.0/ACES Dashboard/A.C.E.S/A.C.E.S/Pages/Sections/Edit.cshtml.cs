@@ -21,6 +21,7 @@ namespace A.C.E.S.Pages.Sections
         [BindProperty]
         public Section Section { get; set; }
 
+        //Get the given section from the database
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -37,6 +38,7 @@ namespace A.C.E.S.Pages.Sections
             return Page();
         }
 
+        //On submit, find the section, assign new user values, and commit to database
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)

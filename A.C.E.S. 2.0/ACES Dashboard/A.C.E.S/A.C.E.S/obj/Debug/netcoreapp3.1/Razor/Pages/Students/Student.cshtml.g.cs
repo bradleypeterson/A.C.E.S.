@@ -13,7 +13,7 @@ namespace A.C.E.S.Pages.Students
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\_ViewImports.cshtml"
+#line 1 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\_ViewImports.cshtml"
 using A.C.E.S;
 
 #line default
@@ -28,8 +28,8 @@ using A.C.E.S;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 3 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
-  
+#line 3 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+
     ViewData["Title"] = Model.Student.Name;
 
 #line default
@@ -39,7 +39,7 @@ using A.C.E.S;
             BeginWriteAttribute("href", " href=\"", 213, "\"", 247, 2);
             WriteAttributeValue("", 220, "mailto:", 220, 7, true);
 #nullable restore
-#line 10 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 10 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
 WriteAttributeValue("", 227, Model.Student.Email, 227, 20, false);
 
 #line default
@@ -48,7 +48,7 @@ WriteAttributeValue("", 227, Model.Student.Email, 227, 20, false);
             EndWriteAttribute();
             WriteLiteral(">");
 #nullable restore
-#line 10 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 10 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
                                             Write(Model.Student.Email);
 
 #line default
@@ -84,7 +84,7 @@ WriteAttributeValue("", 227, Model.Student.Email, 227, 20, false);
         <tbody id=""recent-submissions"">
 ");
 #nullable restore
-#line 38 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 38 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
              if (Model.RecentSubmissions.Count == 0)
             {
 
@@ -93,14 +93,14 @@ WriteAttributeValue("", 227, Model.Student.Email, 227, 20, false);
 #nullable disable
             WriteLiteral("            <tr>\r\n                <td colspan=\"5\">There are no assignment submissions for this student.</td>\r\n            </tr>\r\n");
 #nullable restore
-#line 43 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 43 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
             }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 44 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 44 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
              foreach (var recentSubmission in Model.RecentSubmissions)
             {
                 var submissions = Model.Submissions.FindAll(s => s.AssignmentID == recentSubmission.ID);
@@ -112,7 +112,7 @@ WriteAttributeValue("", 227, Model.Student.Email, 227, 20, false);
             BeginWriteAttribute("href", " href=\"", 1433, "\"", 1499, 4);
             WriteAttributeValue("", 1440, "/Students/", 1440, 10, true);
 #nullable restore
-#line 48 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 48 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
 WriteAttributeValue("", 1450, Model.Student.ID, 1450, 17, false);
 
 #line default
@@ -120,7 +120,7 @@ WriteAttributeValue("", 1450, Model.Student.ID, 1450, 17, false);
 #nullable disable
             WriteAttributeValue("", 1467, "/Assignment/", 1467, 12, true);
 #nullable restore
-#line 48 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 48 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
 WriteAttributeValue("", 1479, recentSubmission.ID, 1479, 20, false);
 
 #line default
@@ -129,7 +129,7 @@ WriteAttributeValue("", 1479, recentSubmission.ID, 1479, 20, false);
             EndWriteAttribute();
             WriteLiteral(">");
 #nullable restore
-#line 48 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 48 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
                                                                                      Write(recentSubmission.Name);
 
 #line default
@@ -137,7 +137,7 @@ WriteAttributeValue("", 1479, recentSubmission.ID, 1479, 20, false);
 #nullable disable
             WriteLiteral("</a></td>\r\n                <td class=\"align-right\">");
 #nullable restore
-#line 49 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 49 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
                                    Write(submissions.Count);
 
 #line default
@@ -145,7 +145,7 @@ WriteAttributeValue("", 1479, recentSubmission.ID, 1479, 20, false);
 #nullable disable
             WriteLiteral("</td>\r\n                <td class=\"align-right\">");
 #nullable restore
-#line 50 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 50 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
                                    Write(Model.Submissions.Find(s => s.AssignmentID == recentSubmission.ID).Grade);
 
 #line default
@@ -153,7 +153,7 @@ WriteAttributeValue("", 1479, recentSubmission.ID, 1479, 20, false);
 #nullable disable
             WriteLiteral("/");
 #nullable restore
-#line 50 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 50 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
                                                                                                              Write(recentSubmission.Grade);
 
 #line default
@@ -161,22 +161,22 @@ WriteAttributeValue("", 1479, recentSubmission.ID, 1479, 20, false);
 #nullable disable
             WriteLiteral("</td>\r\n");
 #nullable restore
-#line 51 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
-                   
+#line 51 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+
                     int sum = 0;
                     foreach (var submission in submissions)
                     {
                         sum += (int)submission.Standing;
                     }
                     int avg = sum / submissions.Count;
-                
+
 
 #line default
 #line hidden
 #nullable disable
             WriteLiteral("                <td class=\"align-right\">");
 #nullable restore
-#line 59 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 59 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
                                    Write(avg);
 
 #line default
@@ -184,7 +184,7 @@ WriteAttributeValue("", 1479, recentSubmission.ID, 1479, 20, false);
 #nullable disable
             WriteLiteral("</td>\r\n                <td></td>\r\n            </tr>\r\n");
 #nullable restore
-#line 62 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
+#line 62 "S:\My Stuff\School\CS 4450\A.C.E.S.-2.0\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
             }
 
 #line default
@@ -294,14 +294,14 @@ WriteAttributeValue("", 3285, recentSubmission.ID, 3285, 20, false);
             WriteLiteral("</td>\r\n");
 #nullable restore
 #line 100 "D:\Documents\_School\2020_1_Spring\CS 4450 Software\A.C.E.S\A.C.E.S. 2.0\ACES Dashboard\A.C.E.S\A.C.E.S\Pages\Students\Student.cshtml"
-                      
+
                         int sum = 0;
                         foreach (var submission in submissions)
                         {
                             sum += (int)submission.Standing;
                         }
                         int avg = sum / submissions.Count;
-                    
+
 
 #line default
 #line hidden
