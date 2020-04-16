@@ -18,8 +18,11 @@ void testFiles() {
 	std::string line;
 	int count = 0;
 	while (std::getline(cfile, line)) {
+		// If line of code starts with //**, that line is a watermark
+		// Check if the watermark has been tampered with
 		if (line.substr(0, 4) == "//**") {
 			std::string code = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			count++;
 			srand(hash + count);
@@ -31,8 +34,10 @@ void testFiles() {
 			if (code == line.substr(line.size() - 64)) std::cout << "Pass" << std::endl;
 			else std::cout << "Fail" << std::endl;
 		}
+		// Check if the student's unique identification has been tampered with
 		else if (line.substr(0, 7) == "//UID: ") {
 			std::string uid = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			srand(hash);
 			for (int i = 0; i < 12; i++) {
@@ -44,8 +49,11 @@ void testFiles() {
 			if (uid == line.substr(7)) std::cout << "Pass" << std::endl;
 			else std::cout << "Fail" << std::endl;
 		}
+		// If line of code starts with //--, that line is a watermark
+		// Check if the watermark has been tampered with
 		else if (line.substr(0, 4) == "//--") {
 			std::string code = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			count++;
 			srand(hash + count);
@@ -60,8 +68,11 @@ void testFiles() {
 	}
 
 	while (std::getline(hfile, line)) {
+		// If line of code starts with //**, that line is a watermark
+		// Check if the watermark has been tampered with
 		if (line.substr(0, 4) == "//**") {
 			std::string code = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			count++;
 			srand(hash + count);
@@ -73,8 +84,10 @@ void testFiles() {
 			if (code == line.substr(4)) std::cout << "Pass" << std::endl;
 			else std::cout << "Fail" << std::endl;
 		}
+		// Check if the student's unique identification has been tampered with
 		else if (line.substr(0, 7) == "//UID: ") {
 			std::string uid = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			srand(hash);
 			for (int i = 0; i < 12; i++) {
@@ -86,8 +99,11 @@ void testFiles() {
 			if (uid == line.substr(7)) std::cout << "Pass" << std::endl;
 			else std::cout << "Fail" << std::endl;
 		}
+		// If line of code starts with //--, that line is a watermark
+		// Check if the watermark has been tampered with
 		else if (line.substr(0, 4) == "//--") {
 			std::string code = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			count++;
 			srand(hash + count);
@@ -112,8 +128,11 @@ void makeFiles() {
 
 	newFile.open("JosephHwang_StacksAndQueues.cpp");
 	while (std::getline(cfile, line)) {
+		// If line of code starts with //**, that line is a watermark
+		// Generate a unique pattern and add it to the document
 		if (line == "//**") {
 			std::string code = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			count++;
 			srand(hash + count);
@@ -127,8 +146,10 @@ void makeFiles() {
 		else if (line == "//Student:") {
 			newFile << "//Student: " << "Joseph Hwang" << std::endl;
 		}
+		// Generate a unique identification for the student and add it to the document
 		else if (line == "//UID:") {
 			std::string uid = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			srand(hash);
 			for (int i = 0; i < 12; i++) {
@@ -139,8 +160,11 @@ void makeFiles() {
 			}
 			newFile << "//UID: " << uid << std::endl;
 		}
+		// If line of code starts with //--, that line is a watermark
+		// Generate a unique pattern and add it to the document
 		else if (line.substr(0, 4) == "//--") {
 			std::string code = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			count++;
 			srand(hash + count);
@@ -159,8 +183,11 @@ void makeFiles() {
 
 	newFile.open("JosephHwang_StacksAndQueues.h");
 	while (std::getline(hfile, line)) {
+		// If line of code starts with //**, that line is a watermark
+		// Generate a unique pattern and add it to the document
 		if (line == "//**") {
 			std::string code = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			count++;
 			srand(hash + count);
@@ -174,8 +201,10 @@ void makeFiles() {
 		else if (line == "//Student:") {
 			newFile << "//Student: " << "Joseph Hwang" << std::endl;
 		}
+		// Generate a unique identification for the student and add it to the document
 		else if (line == "//UID:") {
 			std::string uid = "";
+			// Generate a psudo random hash key for the student
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
 			srand(hash);
 			for (int i = 0; i < 12; i++) {
@@ -186,6 +215,8 @@ void makeFiles() {
 			}
 			newFile << "//UID: " << uid << std::endl;
 		}
+		// If line of code starts with //--, that line is a watermark
+		// Generate a unique pattern and add it to the document
 		else if (line.substr(0, 4) == "//--") {
 			std::string code = "";
 			std::size_t hash = std::hash<std::string>{}("Joseph Hwang");
