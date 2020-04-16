@@ -42,6 +42,9 @@ Directory: [A.C.E.S. 2.0/](https://github.com/tjh1541/A.C.E.S./tree/master/A.C.E
 The auto commit functionallity auto commits the local repo every time the project is run. On every fifth it updates the 
 repo and checks to see if the project is out of date and it if is it will not allow the user to run the unit tests.
 
+## Github Actions
+
+This repo contains a basic example of how to do a simple github action that when run prints out hello world on the githubs linux server. The main files that should be looked at are the github action's main.cpp, CMakelits.txt, and finally the ccpp.ymal file found in github action's github workflows file.
 
 ## A.C.E.S. Anti-Cheat
 Directory: [A.C.E.S. 2.0/Anti-Cheat](https://github.com/tjh1541/A.C.E.S./tree/master/A.C.E.S.%202.0/ACES%20Anti-Cheat)
