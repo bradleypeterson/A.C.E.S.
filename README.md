@@ -4,18 +4,37 @@ Anti-Cheat Enforcement Software is a software engineering project of Professor B
  2. Run various anti-cheat software to ensure that a student is properly doing their work.
  3. Automatically grade assignments operating system agnostically and compiler agnostically.
 ## A.C.E.S. Dashboard
+Directory: [A.C.E.S. 2.0/](https://github.com/tjh1541/A.C.E.S./tree/master/A.C.E.S.%202.0/)
 ### User Interface
 
-*Status: Completed*
-### Database
+*Status: Started*
+#### Overview Page
 
-*Status: Completed*
+*Status: Started*
+#### Sections Page
+
+*Status: Started*
+#### Section Page
+
+*Status: Started*
+#### Courses Page
+
+*Status: Started*
+#### Course Page
+
+*Status: Started*
+#### Students Page
+
+*Status: Started*
+#### Student Page
+
+*Status: Started*
+#### Student Submissions Page
+
+*Status: Started*
 ### Backend
 
 *Status: Planned*
-### Overview Page
-
-*Status: Started*
 ## A.C.E.S. Autocommit
 
 *Status: Completed*
