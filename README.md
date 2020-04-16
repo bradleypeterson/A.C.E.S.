@@ -20,6 +20,10 @@ Anti-Cheat Enforcement Software is a software engineering project of Professor B
 
 *Status: Completed*
 
+The auto commit functionallity auto commits the local repo every time the project is run. On every fifth it updates the 
+repo and checks to see if the project is out of date and it if is it will not allow the user to run the unit tests.
+
+
 ## A.C.E.S. Anti-Cheat
 Directory: [A.C.E.S. 2.0/Anti-Cheat](https://github.com/tjh1541/A.C.E.S./tree/master/A.C.E.S.%202.0/ACES%20Anti-Cheat)
 ### Watermarking
