@@ -66,11 +66,13 @@
         var elem = document.getElementById('course-list2');
         elem.innerHTML = "";
 
-        for (var i = 0; i < courses.length; i++){
+        for (var i = 0; i < courses.length; i++) {
+            // Filter the results based on user input
             if (courses[i].archived && status == "Active") continue;
             if (!courses[i].archived && status == "Archived") continue;
             if (!courses[i].name.toLowerCase().includes(cname.toLowerCase())) continue;
 
+            // There exists a result after filter
             count++;
 
             var tr = document.createElement("tr");
@@ -81,6 +83,7 @@
             var td = document.createElement("td");
             td.classList.add("table-button");
             td.innerHTML += `<a title="Edit" href="/Courses/${courses[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
+            // Display either an option for archiving or restoring according to the filter
             if (status == "Active")
                 td.innerHTML += `<a title="Archive" onclick="ArchiveCourse(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></a>`;
             else
@@ -98,7 +101,9 @@
     }
 
     function ArchiveCourse(i, archive) {
+        // Set archive status in JavaScript for immediate feedback
         courses[i].archived = archive;
+        // Update database
         $.ajax({
             type: 'get',
             url: '/Courses',

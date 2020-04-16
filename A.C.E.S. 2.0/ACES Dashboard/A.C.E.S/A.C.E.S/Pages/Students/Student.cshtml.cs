@@ -36,6 +36,7 @@ namespace A.C.E.S.Pages.Students
                 .AsNoTracking()
                 .ToListAsync();
 
+            // Get the first 5 recent submissions and get those submission's assignment info
             RecentSubmissions = new List<Assignment>();
             int count = 0;
             foreach (var submission in Submissions)
@@ -43,6 +44,7 @@ namespace A.C.E.S.Pages.Students
                 submission.Assignment = await _context.Assignments
                     .FindAsync(submission.AssignmentID);
 
+                // If multiple submissions were made for the same assignment, ignore them
                 if (!RecentSubmissions.Exists(s => s.ID == submission.Assignment.ID))
                 {
                     RecentSubmissions.Add(submission.Assignment);

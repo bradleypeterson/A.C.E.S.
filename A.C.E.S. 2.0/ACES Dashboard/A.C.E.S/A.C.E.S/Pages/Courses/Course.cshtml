@@ -48,10 +48,12 @@
         elem.innerHTML = "";
 
         for (var i in assignments) {
+            // Filter the results based on user input
             if (status == 'Active' && assignments[i].archived) continue;
             if (status == 'Archived' && !assignments[i].archived) continue;
             if (!assignments[i].name.toLowerCase().includes(name.toLowerCase())) continue;
 
+            // There exists a result after filter
             count++;
 
             var tr = document.createElement("tr");
@@ -60,6 +62,7 @@
             var td = document.createElement("td");
             td.classList.add("table-button");
             td.innerHTML += `<a title="Edit" href="/Assignments/${assignments[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
+            // Display either an option for archiving or restoring according to the filter
             if (status == "Active")
                 td.innerHTML += `<a title="Archive" onclick="ArchiveAssignment(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></a>`;
             else
@@ -67,6 +70,7 @@
             tr.appendChild(td);
             elem.appendChild(tr);
         }
+        // If there are no results after filter
         if (count == 0) {
             elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
         }
@@ -77,7 +81,9 @@
     }
 
     function ArchiveAssignment(i, archive) {
+        // Set archive status in JavaScript for immediate feedback
         assignments[i].archived = archive;
+        // Update database
         $.ajax({
             type: 'get',
             url: `/Assignments/${assignments[i].id}`,

@@ -26,6 +26,7 @@ namespace A.C.E.S.Pages.Submissions
             Student = await _context.Students.FindAsync(studentID);
             Assignment = await _context.Assignments.FindAsync(assignmentID);
 
+            // Get all the submission made by the student for this assignment
             Submissions = await _context.Submissions
                 .Where(s => s.AssignmentID == assignmentID)
                 .OrderBy(s => s.DateTime)

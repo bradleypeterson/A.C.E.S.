@@ -84,10 +84,12 @@
         elem.innerHTML = "";
 
         for (var i = 0; i < sections.length; i++) {
+            // Filter the results based on user input
             if (sections[i].archived && status == "Active") continue;
             if (!sections[i].archived && status == "Archived") continue;
             if (!sections[i].name.toLowerCase().includes(name.toLowerCase())) continue;
 
+            // There exists a result after filter
             count++;
 
             var tr = document.createElement("tr");
@@ -98,6 +100,7 @@
             var td = document.createElement("td");
             td.classList.add("table-button");
             td.innerHTML += `<a title="Edit" href="/Sections/${sections[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
+            // Display either an option for archiving or restoring according to the filter
             if (status == "Active")
                 td.innerHTML += `<a title="Archive" onclick="ArchiveSection(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></button>`;
             else
@@ -106,6 +109,7 @@
             elem.appendChild(tr);
 
         }
+        // If there are no results after filter
         if (count == 0) {
             elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
         }
@@ -116,7 +120,9 @@
     }
 
     function ArchiveSection(i, archive) {
+        // Set archive status in JavaScript for immediate feedback
         sections[i].archived = archive;
+        // Update database
         $.ajax({
             type: 'get',
             url: '/Sections',

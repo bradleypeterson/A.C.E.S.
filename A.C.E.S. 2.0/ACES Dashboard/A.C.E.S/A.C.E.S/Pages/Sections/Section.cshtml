@@ -45,6 +45,8 @@
     section = JSON.parse('@Json.Serialize(Model.Section)');
     sectionStudents = JSON.parse('@Json.Serialize(Model.SectionStudents)');
     students = JSON.parse('@Json.Serialize(Model.Students)');
+
+    // Set the enrolled status in JavaScript
     for (var student of students) {
         student.enrolled = false;
         for (var sectionStudent of sectionStudents) {
@@ -67,29 +69,20 @@
         elem.innerHTML = "";
 
         for (var i in students) {
+            // Filter the results based on user input
             if (students[i].archived) continue;
             if (status == "Enrolled" && !students[i].enrolled) continue;
             if (status == "Not Enrolled" && students[i].enrolled) continue;
-            //var filter = false;
-            //for (var s of section.students) {
-            //    if (
-            //        (status == "Enrolled" && s.id != students[i].id) ||
-            //        (status == "Not Enrolled" && s.id == students[i].id)
-            //    ) {
-            //        filter = true;
-            //        break;
-            //    }
-            //}
-            //if (status == "Enrolled" && section.students.length == 0) continue;
-            //if (filter) continue;
             if (!students[i].name.toLowerCase().includes(name.toLowerCase())) continue;
             if (standing != 0 && students[i].standing != standing - 1) continue;
 
+            // There exists a result after filter
             count++;
 
             var tr = document.createElement("tr");
             tr.innerHTML += `<td><a href="/Students/${students[i].id}">${students[i].name}</a></td>`;
             tr.innerHTML += `<td>${students[i].email}</td>`;
+            // Display different numbers of stars based on the students academic standing.
             switch (students[i].standing) {
                 case 0:
                     tr.innerHTML += '<td><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</td>';
@@ -104,12 +97,14 @@
                     tr.innerHTML += '<td><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A</td>';
                     break;
             }
+            // Display either an option for archiving or restoring according to the filter
             if (status == "Enrolled")
                 tr.innerHTML += `<td class="table-button"><a onclick="RemoveStudent(${i});">Remove</a></td>`;
             else
                 tr.innerHTML += `<td class="table-button"><a onclick="EnrollStudent(${i});">Enroll</a></td>`;
             elem.appendChild(tr);
         }
+        // If there are no results after filter
         if (count == 0) {
             elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
         }
@@ -120,7 +115,9 @@
     }
 
     function EnrollStudent(i) {
+        // Set enrolled status in JavaScript for immediate feedback
         students[i].enrolled = true;
+        // Update database
         $.ajax({
             type: 'get',
             url: '/Sections/@Model.Section.ID',
@@ -134,7 +131,9 @@
     }
 
     function RemoveStudent(i) {
+        // Set enrolled status in JavaScript for immediate feedback
         students[i].enrolled = false;
+        // Update database
         $.ajax({
             type: 'get',
             url: '/Sections/@Model.Section.ID',

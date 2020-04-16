@@ -66,16 +66,51 @@
 
 <section class="margin">
     <h2>Past Submissions</h2>
-    @*@if (Model.Student.Submissions.Count == 0)
-    {
-        <p>There are no assignment submissions for this student.</p>
-    }*@
-    @* 
-        To Do:
-            Display Sections the student has enrolled in as an accordion.
-            The accordion content should be the assignments for that section.
-            When user clicks on a assignment, it should take the user to the submissions page.
-    *@
+    <table class="table">
+        <colgroup>
+            <col />
+            <col />
+            <col style="width:100px;" />
+            <col style="width:100px;" />
+            <col style="width:120px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <td>Assignment</td>
+                <td># Submissions</td>
+                <td>Grade</td>
+                <td>Standing</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody id="recent-submissions">
+            @if (Model.RecentSubmissions.Count == 0)
+            {
+                <tr>
+                    <td colspan="5">There are no assignment submissions for this student.</td>
+                </tr>
+            }
+            @foreach (var recentSubmission in Model.RecentSubmissions)
+            {
+                var submissions = Model.Submissions.FindAll(s => s.AssignmentID == recentSubmission.ID);
+                <tr>
+                    <td><a href="/Students/@Model.Student.ID/Assignment/@recentSubmission.ID">@recentSubmission.Name</a></td>
+                    <td class="align-right">@submissions.Count</td>
+                    <td class="align-right">@Model.Submissions.Find(s => s.AssignmentID == recentSubmission.ID).Grade/@recentSubmission.Grade</td>
+                    @{
+                        int sum = 0;
+                        foreach (var submission in submissions)
+                        {
+                            sum += (int)submission.Standing;
+                        }
+                        int avg = sum / submissions.Count;
+                    }
+                    <td class="align-right">@avg</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </section>
 
 <script>
@@ -101,7 +136,7 @@
             }
         }
         var avgStanding = Math.round(sum / assignments.length);
-        console.log(avgStanding);
+        // Display different numbers of stars based on the students academic standing.
         switch (avgStanding) {
             case 0:
                 $('#student-standing').html('<i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good');
@@ -118,6 +153,8 @@
         }
     }
 
+    // This function should be called if the instructor overrides the anti-cheat software's
+    // result for the submission's Academic Standing
     function UpdateRecentSubmissions() {
         if (recentSubmissions.length == 0)
         {

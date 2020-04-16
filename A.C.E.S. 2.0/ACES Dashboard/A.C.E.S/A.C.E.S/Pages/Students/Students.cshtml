@@ -71,16 +71,19 @@
         elem.innerHTML = "";
 
         for (var i = 0; i < students.length; i++){
+            // Filter the results based on user input
             if (students[i].archived && status == "Active") continue;
             if (!students[i].archived && status == "Archived") continue;
             if (!students[i].name.toLowerCase().includes(name.toLowerCase())) continue;
             if (standing != 0 && students[i].standing != standing - 1) continue;
 
+            // There exists a result after filter
             count++;
 
             var tr = document.createElement("tr");
             tr.innerHTML += `<td><a href="/Students/${students[i].id}">${students[i].name}</a></td>`;
             tr.innerHTML += `<td>${students[i].email}</td>`;
+            // Display different numbers of stars based on the students academic standing.
             switch (students[i].standing) {
                 case 0:
                     tr.innerHTML += '<td><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</td>';
@@ -99,6 +102,7 @@
             var td = document.createElement("td");
             td.classList.add("table-button");
             td.innerHTML += `<a title="Edit" href="/Students/${students[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
+            // Display either an option for archiving or restoring according to the filter
             if (status == "Active")
                 td.innerHTML += `<a title="Archive" onclick="ArchiveStudent(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></a>`;
             else
@@ -106,6 +110,7 @@
             tr.appendChild(td);
             elem.appendChild(tr);
         }
+        // If there are no results after filter
         if (count == 0) {
             elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
         }
@@ -116,7 +121,9 @@
     }
 
     function ArchiveStudent(i, archive) {
+        // Set archive status in JavaScript for immediate feedback
         students[i].archived = archive;
+        // Update database
         $.ajax({
             type: 'get',
             url: '/Students',
