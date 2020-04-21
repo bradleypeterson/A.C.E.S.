@@ -14,36 +14,43 @@ Visualize and summarize the many data collected by the client application.
 
 #### Sections Page
 *Status: Done*
+<img src="https://github.com/bradleypeterson/A.C.E.S./blob/master/Images/Sections.png">
 
 Display the list of sections which can be filtered by searching for the section’s name and by its archive status. Able to add a new section, edit a section, and archive/restore a section.
 
 #### Section Page
 *Status: Done*
+<img src="https://github.com/bradleypeterson/A.C.E.S./blob/master/Images/Section.png">
 
 Display the list of students which are enrolled in that section. Students can be filtered by searching for the student’s name and academic standing. Able to enroll/remove students.
 
 #### Courses Page
 *Status: Done*
+<img src="https://github.com/bradleypeterson/A.C.E.S./blob/master/Images/Courses.png">
 
 Display the list of courses which can be filtered by searching for the course’s name and by its archive status. Able to add a new course, edit a course, and archive/restore a course.
 
 #### Course Page
 *Status: Done*
+<img src="https://github.com/bradleypeterson/A.C.E.S./blob/master/Images/Course.png">
 
 Display the list of assignments for that course which can be filtered by searching for the assignment’s name and by its archive status. Able to add a new assignment, edit an assignment, and archive/restore an assignment.
 
 #### Students Page
 *Status: Done*
+<img src="https://github.com/bradleypeterson/A.C.E.S./blob/master/Images/Students.png">
 
 Display the list of students which can be filtered by searching for the student’s name, their academic standing, and by their archive status. Able to add a new student, edit a student, and archive/restore a student.
 
 #### Student Page
 *Status: In Progress*
+<img src="https://github.com/bradleypeterson/A.C.E.S./blob/master/Images/Student.png">
 
 Display details about the student and display the most recently submitted assignments and full history of assignment submissions. Able to override the assignment’s Academic Standing.
 
 #### Student Submissions Page
 *Status: Started*
+<img src="https://github.com/bradleypeterson/A.C.E.S./blob/master/Images/Submissions.png">
 
 Display list of all submissions of a student’s particular assignment. Able to download a submission from Github.
 
