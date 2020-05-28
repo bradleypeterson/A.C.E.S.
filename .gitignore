@@ -365,3 +365,4 @@ MigrationBackup/
 *.pdb
 *.config
 *.xml
+*.exe
