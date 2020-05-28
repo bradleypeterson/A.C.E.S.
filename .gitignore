@@ -357,3 +357,11 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+# Ignore things not set up automatically (05/27/2020)
+*.cshtml.g.cs
+*.cache
+*.dll
+*.json
+*.pdb
+*.config
+*.xml
