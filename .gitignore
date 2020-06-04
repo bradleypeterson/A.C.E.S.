@@ -361,8 +361,5 @@ MigrationBackup/
 *.cshtml.g.cs
 *.cache
 *.dll
-*.json
 *.pdb
-*.config
-*.xml
 *.exe
