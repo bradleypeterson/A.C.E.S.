@@ -1,0 +1,4 @@
+#!/bin/sh
+touch lineDiff.txt
+
+echo `git diff --numstat HEAD~` > lineDiff.txt
