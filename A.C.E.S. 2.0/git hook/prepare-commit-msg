@@ -1,4 +1,14 @@
 #!/bin/sh
 touch lineDiff.txt
+touch lineDiffOriginal.txt
 
-echo `git diff --numstat HEAD~` > lineDiff.txt
+#get all of the changes made
+echo `git diff --numstat HEAD~` > lineDiffOriginal.txt
+cp lineDiffOriginal.txt lineDiff.txt
+
+#get rid of the files that were edited.
+sed -i 's/.txt//g' lineDiff.txt
+sed -i 's|[a-zA-Z]*||g' lineDiff.txt
+
+#add required numbers together.
+
