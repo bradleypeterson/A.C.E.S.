@@ -45,3 +45,4 @@ done
 done < lineDiffOriginal.txt
 
 echo "added: $added deleted: $deleted" > lineDiff.txt
+rm lineDiffOriginal.txt
