@@ -1,16 +1,28 @@
 #!/bin/sh
 
-#create variables
-touch lineDiff.txt
+#create documents and variables
+
 touch lineDiffOriginal.txt
 deleted=0
 added=0
 lineAt=0
+URL=""
+currentDate=`date`
+
+#get what user it is. I will be using a test text file for now.
+if [[ ! -f lineDiff.txt ]]
+then
+    echo `git config --list` >> lineDiff.txt
+sed -i 's/.*user.name=/username: /g' lineDiff.txt
+sed -i 's/user.email=/email: /g' lineDiff.txt
+sed -i 's/core.editor.*//g' lineDiff.txt
+fi
+
+
 
 
 #get all of the changes made
 echo `git diff --numstat HEAD~` > lineDiffOriginal.txt
-cp lineDiffOriginal.txt lineDiff.txt
 
 #get rid of the files that were edited.
 sed -i 's/.txt//g' lineDiffOriginal.txt
@@ -40,9 +52,19 @@ do
 	
 done
 	
-	
-	
 done < lineDiffOriginal.txt
 
-echo "added: $added deleted: $deleted" > lineDiff.txt
+#create URL for the given commit.
+
+echo `git config --list` > lineDiffOriginal.txt
+sed -i 's/.*remote.origin.url=/URL: /g' lineDiffOriginal.txt
+sed -i 's/\.git.*/\/commit\//g' lineDiffOriginal.txt
+URL=`cat lineDiffOriginal.txt`
+
+echo `git rev-parse HEAD` > lineDiffOriginal.txt
+URL+=`cat lineDiffOriginal.txt`
+
+
+
+echo "added: $added deleted: $deleted		$currentDate		$URL" >> lineDiff.txt
 rm lineDiffOriginal.txt
