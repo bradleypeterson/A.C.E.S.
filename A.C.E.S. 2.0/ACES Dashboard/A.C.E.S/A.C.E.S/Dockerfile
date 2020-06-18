@@ -14,3 +14,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "A.C.E.S.dll"]
+
+# Run the following two lines to build & run the program in our container:
+#	docker build -t aces .
+#	docker run -dp 8080:80 --name aces aces
