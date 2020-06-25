@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+    dashboard:
+        build: ./dashboard/aces
+        ports:
+            - "8080:80"
+    gitea:
+        image: gitea/gitea:latest
+        environment:
+            - USER_UID=1000
+            - USER_GID=1000
+        restart: always
+        volumes:
+            - ./gitea:/data
+        ports:
+            - "3000:3000"
+            - "222:22"
