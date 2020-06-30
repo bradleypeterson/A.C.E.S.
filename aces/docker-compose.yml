@@ -18,7 +18,7 @@ services:
             - "222:22"
 
     db:
-        image: microsoft/mssql-server-linux
+        build: ./database
         environment: 
             - ACCEPT_EULA=Y
             - SA_PASSWORD=mySecurepass1979**
