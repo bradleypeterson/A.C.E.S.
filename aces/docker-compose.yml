@@ -2,7 +2,7 @@ version: '3'
 
 services:
     dashboard:
-        build: ./dashboard/aces
+        build: ./dashboard/A.C.E.S
         ports:
             - "8080:80"
     gitea:
