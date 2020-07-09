@@ -54,7 +54,7 @@ namespace A.C.E.S.Pages.Courses.Assignments
             if (await TryUpdateModelAsync<Assignment>(
                  assignmentToUpdate,
                  "assignment",   // Prefix for form value.
-                   a => a.Name, a => a.Grade, a => a.Files, a => a.UnitTesters))
+                   a => a.Name, a => a.RepositoryUrl, a => a.AssignmentCode, a => a.CourseId))
             {
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Courses");
@@ -72,7 +72,6 @@ namespace A.C.E.S.Pages.Courses.Assignments
                 return new JsonResult(false);
             }
 
-            assignment.Archived = archive;
             if (_context.SaveChanges() == 0)
                 return new JsonResult(false);
 

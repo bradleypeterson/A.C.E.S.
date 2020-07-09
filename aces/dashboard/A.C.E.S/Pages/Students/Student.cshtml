@@ -43,7 +43,7 @@
             {
                 var submissions = Model.Submissions.FindAll(s => s.Id == recentSubmission.Id);
             <tr>
-                <td><a href="/Students/@Model.Student.Id/Assignment/@recentSubmission.Id">@recentSubmission.Name</a></td>
+                <td><a href="/Students/@Model.Student.Id/Assignment/@recentSubmission.Id">@recentSubmission.DateSubmitted.ToShortTimeString()</a></td>
                 <td class="align-right">@submissions.Count</td>
             </tr>
             }
@@ -79,7 +79,7 @@
             {
                 var submissions = Model.Submissions.FindAll(s => s.Id == recentSubmission.Id);
                 <tr>
-                    <td><a href="/Students/@Model.Student.Id/Assignment/@recentSubmission.Id">@recentSubmission.Name</a></td>
+                    <td><a href="/Students/@Model.Student.Id/Assignment/@recentSubmission.Id">@recentSubmission.DateSubmitted.ToShortTimeString()</a></td>
                     <td class="align-right">@submissions.Count</td>
                 </tr>
             }

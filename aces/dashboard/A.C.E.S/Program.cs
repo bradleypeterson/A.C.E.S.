@@ -33,7 +33,7 @@ namespace A.C.E.S
                     var context = services.GetRequiredService<ACESContext>();
                     //context.Database.EnsureCreated();
                     //context.DatabaseMigrate();
-                    DbInitializer.Initialize(context);
+                    //DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {

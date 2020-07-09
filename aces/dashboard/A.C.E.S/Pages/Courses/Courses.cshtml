@@ -29,7 +29,6 @@
         <thead>
             <tr>
                 <td>Name</td>
-                <td># Sections</td>
                 <td># Assignments</td>
                 <td></td>
             </tr>
@@ -54,7 +53,6 @@
 <script>
     courses = JSON.parse('@Json.Serialize(Model.Courses)');
     assignments = JSON.parse('@Json.Serialize(Model.Assignments)');
-    sections = JSON.parse('@Json.Serialize(Model.Sections)');
     LoadList();
 
     function LoadList() {
@@ -77,7 +75,6 @@
 
             var tr = document.createElement("tr");
             tr.innerHTML += `<td><a href="/Courses/${courses[i].id}">${courses[i].name}</a></td>`;
-            tr.innerHTML += `<td>${sections[i].length}</td>`;
             tr.innerHTML += `<td>${assignments[i].length}</td>`;
 
             var td = document.createElement("td");

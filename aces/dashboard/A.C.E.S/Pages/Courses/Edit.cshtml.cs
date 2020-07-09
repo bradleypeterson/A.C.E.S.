@@ -54,7 +54,7 @@ namespace A.C.E.S.Pages.Courses
             if (await TryUpdateModelAsync<Course>(
                  courseToUpdate,
                  "course",   // Prefix for form value.
-                   c => c.Name))
+                   c => c.CourseName))
             {
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Courses");
