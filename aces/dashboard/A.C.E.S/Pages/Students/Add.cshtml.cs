@@ -10,9 +10,9 @@ namespace A.C.E.S.Pages.Students
 {
     public class AddModel : PageModel
     {
-        private readonly A.C.E.S.Data.ACESContext _context;
+        private readonly Data.ACESContext _context;
 
-        public AddModel(A.C.E.S.Data.ACESContext context)
+        public AddModel(Data.ACESContext context)
         {
             _context = context;
         }
@@ -29,10 +29,10 @@ namespace A.C.E.S.Pages.Students
         {
             var emptyStudent = new Student();
 
-            if (await TryUpdateModelAsync<Student>(
+            if (await TryUpdateModelAsync(
                 emptyStudent,
                 "student",   // Prefix for form value.
-                s => s.Name, s => s.Email, s => s.Archived))
+                s => s.FullName, s => s.Email))
             {
                 _context.Students.Add(emptyStudent);
                 await _context.SaveChangesAsync();

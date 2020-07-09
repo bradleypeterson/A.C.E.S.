@@ -1,8 +1,8 @@
 ﻿@page "/Courses/{ID:int}"
 @model A.C.E.S.Pages.Courses.CourseModel
 @{
-    ViewData["title"] = Model.Course.Name;
-    ViewData["Header"] = $"{Model.Course.Name}";
+    ViewData["title"] = Model.Course.CourseName;
+    ViewData["Header"] = $"{Model.Course.CourseName}";
 }
 
     <section id="top-bar">
@@ -14,7 +14,7 @@
             </select>
         </div>
         <div>
-            <a href="/Courses/@Model.Course.ID/Assignments/Add" class="button">+ Add Assignment</a>
+            <a href="/Courses/@Model.Course.Id/Assignments/Add" class="button">+ Add Assignment</a>
         </div>
     </section>
 <section>

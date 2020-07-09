@@ -16,9 +16,9 @@ namespace A.C.E.S.Pages.Students
         [BindProperty]
         public Student Student { get; set; }
 
-        private readonly A.C.E.S.Data.ACESContext _context;
+        private readonly Data.ACESContext _context;
 
-        public StudentsModel(A.C.E.S.Data.ACESContext context)
+        public StudentsModel(Data.ACESContext context)
         {
             _context = context;
         }
@@ -39,7 +39,6 @@ namespace A.C.E.S.Pages.Students
                 return new JsonResult(false);
             }
 
-            student.Archived = archive;
             if (_context.SaveChanges() == 0)
                 return new JsonResult(false);
 

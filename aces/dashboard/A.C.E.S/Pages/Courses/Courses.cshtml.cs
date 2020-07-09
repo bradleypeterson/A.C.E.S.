@@ -12,16 +12,15 @@ namespace A.C.E.S.Pages.Courses
 {
     public class CoursesModel : PageModel
     {
-        private readonly A.C.E.S.Data.ACESContext _context;
+        private readonly ACESContext _context;
 
-        public CoursesModel(A.C.E.S.Data.ACESContext context)
+        public CoursesModel(ACESContext context)
         {
             _context = context;
         }
 
         public IList<Course> Courses { get; set; }
         public List<List<Assignment>> Assignments { get; set; }
-        public List<List<Section>> Sections { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -29,21 +28,14 @@ namespace A.C.E.S.Pages.Courses
                 .AsNoTracking()
                 .ToListAsync();
             Assignments = new List<List<Assignment>>();
-            Sections = new List<List<Section>>();
 
             foreach (var course in Courses)
             {
                 var assignments = await _context.Assignments
-                    .Where(a => a.CourseID == course.ID)
+                    .Where(a => a.Id == course.Id)
                     .AsNoTracking()
                     .ToListAsync();
                 Assignments.Add(assignments);
-
-                var sections = await _context.Sections
-                    .Where(s => s.CourseID == course.ID)
-                    .AsNoTracking()
-                    .ToListAsync();
-                Sections.Add(sections);
             }
         }
 
@@ -56,7 +48,6 @@ namespace A.C.E.S.Pages.Courses
                 return new JsonResult(false);
             }
 
-            course.Archived = archive;
             if (_context.SaveChanges() == 0)
                 return new JsonResult(false);
 

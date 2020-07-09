@@ -11,9 +11,9 @@ namespace A.C.E.S.Pages.Students
 {
     public class EditModel : PageModel
     {
-        private readonly A.C.E.S.Data.ACESContext _context;
+        private readonly Data.ACESContext _context;
 
-        public EditModel(A.C.E.S.Data.ACESContext context)
+        public EditModel(Data.ACESContext context)
         {
             _context = context;
         }
@@ -54,7 +54,7 @@ namespace A.C.E.S.Pages.Students
             if (await TryUpdateModelAsync<Student>(
                  studentToUpdate,
                  "student",   // Prefix for form value.
-                   c => c.Name, c => c.Email))
+                   c => c.FullName, c => c.Email))
             {
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Students");

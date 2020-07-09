@@ -1,7 +1,7 @@
 ﻿@page "/Students/{StudentID:int}/Assignment/{AssignmentID:int}"
 @model A.C.E.S.Pages.Submissions.SubmissionsModel
 @{
-    ViewData["Title"] = $"{Model.Student.Name} {Model.Assignment.Name}";
+    ViewData["Title"] = $"{Model.Student.FullName} {Model.Assignment.Name}";
 }
 
 
@@ -15,8 +15,6 @@
     <thead>
         <tr>
             <td>Date</td>
-            <td>Grade</td>
-            <td>Standing</td>
             <td>Download</td>
         </tr>
     </thead>
@@ -30,9 +28,7 @@
         @foreach (var submission in Model.Submissions)
         {
             <tr>
-                <td>@submission.DateTime</td>
-                <td>@submission.Grade/@Model.Assignment.Grade</td>
-                <td>@submission.Standing</td>
+                <td>@submission.DateSubmitted</td>
                 <td class="table-button"><a><i class="fas fa-cloud-download-alt"></i></a></td>
             </tr>
         }

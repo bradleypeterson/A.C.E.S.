@@ -5,30 +5,30 @@
 }
 
 <!--Need to add proper edit page for assignment-->
-    <form>
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Assignment.Name" class="control-label"></label>
-            <input asp-for="Assignment.Name" class="form-control" value="@Model.Assignment.Name" />
-            <span asp-validation-for="Assignment.Name" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Assignment.Grade" class="control-label"></label>
-            <input asp-for="Assignment.Grade" class="form-control" value="@Model.Assignment.Grade" />
-            <span asp-validation-for="Assignment.Grade" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Assignment.Files" class="control-label"></label>
-            <input asp-for="Assignment.Files" type="file" class="form-control" value="@Model.Assignment.Files" multiple />
-            <span asp-validation-for="Assignment.Files" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Assignment.UnitTesters" class="control-label"></label>
-            <input asp-for="Assignment.UnitTesters" type="file" class="form-control" value="@Model.Assignment.UnitTesters" multiple />
-            <span asp-validation-for="Assignment.UnitTesters" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Add" class="btn btn-primary" />
-            <input type="button" value="Cancel" />
-        </div>
-    </form>
+<form>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Assignment.Name" class="control-label"></label>
+        <input asp-for="Assignment.Name" class="form-control" value="@Model.Assignment.Name" />
+        <span asp-validation-for="Assignment.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Assignment.RepositoryUrl" class="control-label"></label>
+        <input asp-for="Assignment.RepositoryUrl" class="form-control" value="@Model.Assignment.RepositoryUrl" />
+        <span asp-validation-for="Assignment.RepositoryUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Assignment.AssignmentCode" class="control-label"></label>
+        <input asp-for="Assignment.AssignmentCode" class="form-control" value="@Model.Assignment.AssignmentCode" />
+        <span asp-validation-for="Assignment.AssignmentCode" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Assignment.CourseId" class="control-label"></label>
+        <input asp-for="Assignment.CourseId" class="form-control" value="@Model.Assignment.CourseId" />
+        <span asp-validation-for="Assignment.CourseId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Add" class="btn btn-primary" />
+        <input type="button" value="Cancel" />
+    </div>
+</form>

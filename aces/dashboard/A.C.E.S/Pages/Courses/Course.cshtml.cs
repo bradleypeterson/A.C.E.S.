@@ -14,9 +14,9 @@ namespace A.C.E.S.Pages.Courses
         public Course Course { get; set; }
         public List<Assignment> Assignments { get; set; }
 
-        private readonly A.C.E.S.Data.ACESContext _context;
+        private readonly Data.ACESContext _context;
 
-        public CourseModel(A.C.E.S.Data.ACESContext context)
+        public CourseModel(Data.ACESContext context)
         {
             _context = context;
         }
@@ -24,11 +24,11 @@ namespace A.C.E.S.Pages.Courses
         public async Task OnGetAsync(int id)
         {
             Course = await _context.Courses
-                .Where(c => c.ID == id)
+                .Where(c => c.Id == id)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
             Assignments = await _context.Assignments
-                .Where(a => a.CourseID == Course.ID)
+                .Where(a => a.CourseId == Course.Id)
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -42,7 +42,6 @@ namespace A.C.E.S.Pages.Courses
                 return new JsonResult(false);
             }
 
-            assignment.Archived = archive;
             if (_context.SaveChanges() == 0)
                 return new JsonResult(false);
 

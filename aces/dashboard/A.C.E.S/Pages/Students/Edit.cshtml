@@ -7,9 +7,9 @@
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="student.Name" class="control-label"></label>
-        <input asp-for="student.Name" class="form-control" value="@Model.student.Name" />
-        <span asp-validation-for="student.Name" class="text-danger"></span>
+        <label asp-for="student.FullName" class="control-label"></label>
+        <input asp-for="student.FullName" class="form-control" value="@Model.student.FullName" />
+        <span asp-validation-for="student.FullName" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="student.Email" class="control-label"></label>

@@ -1,7 +1,7 @@
 ﻿@page "/Students/{ID:int}"
 @model A.C.E.S.Pages.Students.StudentModel
 @{
-    ViewData["Title"] = Model.Student.Name;
+    ViewData["Title"] = Model.Student.FullName;
 }
 
 <section class="flex-space margin">
@@ -29,8 +29,6 @@
             <tr>
                 <td>Assignment</td>
                 <td># Submissions</td>
-                <td>Grade</td>
-                <td>Standing</td>
                 <td></td>
             </tr>
         </thead>
@@ -43,21 +41,10 @@
             }
             @foreach (var recentSubmission in Model.RecentSubmissions)
             {
-                var submissions = Model.Submissions.FindAll(s => s.AssignmentID == recentSubmission.ID);
+                var submissions = Model.Submissions.FindAll(s => s.Id == recentSubmission.Id);
             <tr>
-                <td><a href="/Students/@Model.Student.ID/Assignment/@recentSubmission.ID">@recentSubmission.Name</a></td>
+                <td><a href="/Students/@Model.Student.Id/Assignment/@recentSubmission.Id">@recentSubmission.Name</a></td>
                 <td class="align-right">@submissions.Count</td>
-                <td class="align-right">@Model.Submissions.Find(s => s.AssignmentID == recentSubmission.ID).Grade/@recentSubmission.Grade</td>
-                @{ 
-                    int sum = 0;
-                    foreach (var submission in submissions)
-                    {
-                        sum += (int)submission.Standing;
-                    }
-                    int avg = sum / submissions.Count;
-                }
-                <td class="align-right">@avg</td>
-                <td></td>
             </tr>
             }
         </tbody>
@@ -78,8 +65,6 @@
             <tr>
                 <td>Assignment</td>
                 <td># Submissions</td>
-                <td>Grade</td>
-                <td>Standing</td>
                 <td></td>
             </tr>
         </thead>
@@ -92,21 +77,10 @@
             }
             @foreach (var recentSubmission in Model.RecentSubmissions)
             {
-                var submissions = Model.Submissions.FindAll(s => s.AssignmentID == recentSubmission.ID);
+                var submissions = Model.Submissions.FindAll(s => s.Id == recentSubmission.Id);
                 <tr>
-                    <td><a href="/Students/@Model.Student.ID/Assignment/@recentSubmission.ID">@recentSubmission.Name</a></td>
+                    <td><a href="/Students/@Model.Student.Id/Assignment/@recentSubmission.Id">@recentSubmission.Name</a></td>
                     <td class="align-right">@submissions.Count</td>
-                    <td class="align-right">@Model.Submissions.Find(s => s.AssignmentID == recentSubmission.ID).Grade/@recentSubmission.Grade</td>
-                    @{
-                        int sum = 0;
-                        foreach (var submission in submissions)
-                        {
-                            sum += (int)submission.Standing;
-                        }
-                        int avg = sum / submissions.Count;
-                    }
-                    <td class="align-right">@avg</td>
-                    <td></td>
                 </tr>
             }
         </tbody>

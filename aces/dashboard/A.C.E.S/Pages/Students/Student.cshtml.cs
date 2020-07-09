@@ -12,51 +12,50 @@ namespace A.C.E.S.Pages.Students
     public class StudentModel : PageModel
     {
         public Student Student { get; set; }
-        public List<SectionStudent> SectionStudents { get; set; }
         public List<Assignment> Assignments { get; set; }
         public List<Submission> Submissions { get; set; }
-        public List<Assignment> RecentSubmissions { get; set; }
+        public List<Submission> RecentSubmissions { get; set; }
 
-        private readonly A.C.E.S.Data.ACESContext _context;
+        private readonly Data.ACESContext _context;
 
-        public StudentModel(A.C.E.S.Data.ACESContext context)
+        public StudentModel(Data.ACESContext context)
         {
             _context = context;
         }
 
-        public async Task OnGetAsync(int id)
+        public async Task OnGetAsync(int studentId)
         {
+            // Initialize stuff:
+            Assignments = new List<Assignment>();
+            Submissions = new List<Submission>();
+
+            // Get Student:
             Student = await _context.Students
-                .Where(s => s.ID == id)
+                .Where(s => s.Id == studentId)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
-            Submissions = await _context.Submissions
-                .Where(s => s.StudentID == id)
-                .OrderBy(s => s.DateTime)
-                .AsNoTracking()
-                .ToListAsync();
 
-            // Get the first 5 recent submissions and get those submission's assignment info
-            RecentSubmissions = new List<Assignment>();
-            int count = 0;
-            foreach (var submission in Submissions)
+            // Get StudentAssignments:
+            var studentAssignments = await _context.StudentAssignments
+                .Where(s => s.StudentId == studentId).ToListAsync();
+
+            // Get all Assignments related to student:
+            foreach (var itm in studentAssignments)
             {
-                submission.Assignment = await _context.Assignments
-                    .FindAsync(submission.AssignmentID);
-
-                // If multiple submissions were made for the same assignment, ignore them
-                if (!RecentSubmissions.Exists(s => s.ID == submission.Assignment.ID))
-                {
-                    RecentSubmissions.Add(submission.Assignment);
-                    count++;
-                }
-                if (count == 5) break;
+                Assignments.Add(itm.Assignment);
             }
-            SectionStudents = await _context.SectionStudents
-                .Where(s => s.StudentID == id)
-                .AsNoTracking()
-                .ToListAsync();
-            Assignments = await _context.Assignments.ToListAsync();
+
+            // Gets the all submissions:
+            foreach (var itm in studentAssignments)
+            {
+                foreach (var submission in itm.Submissions)
+                {
+                    Submissions.Add(submission);
+                }
+            }
+
+            // Get the most recent 5 sumissions:
+            RecentSubmissions = Submissions.OrderBy(s => s.DateSubmitted).Take(5).ToList();
         }
     }
 }
