@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    dashboard:
+        build: ./dashboard/A.C.E.S
+        ports:
+            - "8080:80"
+    gitea:
+        image: gitea/gitea:latest
+        environment:
+            - USER_UID=1000
+            - USER_GID=1000
+        restart: always
+        volumes:
+            - ./gitea:/data
+        ports:
+            - "3000:3000"
+            - "222:22"
+
+    db:
+        build: ./database
+        environment: 
+            SA_PASSWORD: "mySecurepass1979**"
+            ACCEPT_EULA: "Y"
+        ports:
+            - "1433:1433"

@@ -1,0 +1,148 @@
+﻿@page "/Sections/{ID:int}"
+@model A.C.E.S.Pages.Sections.SectionModel
+@{
+    string title = $"{Model.Section.Course.Name} {Model.Section.Name} {Model.Section.Semester} {Model.Section.Year}";
+    ViewData["title"] = title;
+    ViewData["Header"] = $"{title}";
+}
+
+    <section id="top-bar">
+        <div>
+            <input id="filter-student-name" type="text" placeholder="Search Student" onkeyup="LoadList()" />
+            <select id="filter-student-standing" onchange="LoadList()">
+                <option>All Standing</option>
+                <option>Good Standing</option>
+                <option>Moderate Standing</option>
+                <option>Bad Standing</option>
+            </select>
+            <select id="filter-student-status" onchange="LoadList()">
+                <option>Enrolled</option>
+                <option>Not Enrolled</option>
+            </select>
+        </div>
+    </section>
+<section>
+    <table class="table">
+        <colgroup>
+            <col />
+            <col style="width:45%;" />
+            <col style="width:130px;" />
+            <col style="width:110px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Standing</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody id="student-list">
+        </tbody>
+    </table>
+</section>
+<script>
+    section = JSON.parse('@Json.Serialize(Model.Section)');
+    sectionStudents = JSON.parse('@Json.Serialize(Model.SectionStudents)');
+    students = JSON.parse('@Json.Serialize(Model.Students)');
+
+    // Set the enrolled status in JavaScript
+    for (var student of students) {
+        student.enrolled = false;
+        for (var sectionStudent of sectionStudents) {
+            if (student.id == sectionStudent.studentID) {
+                student.enrolled = true;
+                break;
+            }
+        }
+    }
+    LoadList();
+
+    function LoadList() {
+        var count = 0;
+
+        var name = document.getElementById('filter-student-name').value;
+        var standing = document.getElementById('filter-student-standing').selectedIndex;
+        var status = document.getElementById('filter-student-status').value;
+
+        var elem = document.getElementById('student-list');
+        elem.innerHTML = "";
+
+        for (var i in students) {
+            // Filter the results based on user input
+            if (students[i].archived) continue;
+            if (status == "Enrolled" && !students[i].enrolled) continue;
+            if (status == "Not Enrolled" && students[i].enrolled) continue;
+            if (!students[i].name.toLowerCase().includes(name.toLowerCase())) continue;
+            if (standing != 0 && students[i].standing != standing - 1) continue;
+
+            // There exists a result after filter
+            count++;
+
+            var tr = document.createElement("tr");
+            tr.innerHTML += `<td><a href="/Students/${students[i].id}">${students[i].name}</a></td>`;
+            tr.innerHTML += `<td>${students[i].email}</td>`;
+            // Display different numbers of stars based on the students academic standing.
+            switch (students[i].standing) {
+                case 0:
+                    tr.innerHTML += '<td><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good</td>';
+                    break;
+                case 1:
+                    tr.innerHTML += '<td><i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate</td>';
+                    break;
+                case 2:
+                    tr.innerHTML += '<td><i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad</td>';
+                    break;
+                default:
+                    tr.innerHTML += '<td><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A</td>';
+                    break;
+            }
+            // Display either an option for archiving or restoring according to the filter
+            if (status == "Enrolled")
+                tr.innerHTML += `<td class="table-button"><a onclick="RemoveStudent(${i});">Remove</a></td>`;
+            else
+                tr.innerHTML += `<td class="table-button"><a onclick="EnrollStudent(${i});">Enroll</a></td>`;
+            elem.appendChild(tr);
+        }
+        // If there are no results after filter
+        if (count == 0) {
+            elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
+        }
+    }
+
+    function DisplayError(request, status, error) {
+        console.log({ request, status, error });
+    }
+
+    function EnrollStudent(i) {
+        // Set enrolled status in JavaScript for immediate feedback
+        students[i].enrolled = true;
+        // Update database
+        $.ajax({
+            type: 'get',
+            url: '/Sections/@Model.Section.ID',
+            data: {
+                handler: 'Enroll',
+                studentID: students[i].id
+            },
+            contenttype: "application/json",
+            datatype: "json"
+        }).done(LoadList).fail(DisplayError);
+    }
+
+    function RemoveStudent(i) {
+        // Set enrolled status in JavaScript for immediate feedback
+        students[i].enrolled = false;
+        // Update database
+        $.ajax({
+            type: 'get',
+            url: '/Sections/@Model.Section.ID',
+            data: {
+                handler: 'Remove',
+                studentID: students[i].id
+            },
+            contenttype: "application/json",
+            datatype: "json"
+        }).done(LoadList).fail(DisplayError);
+    }
+</script>

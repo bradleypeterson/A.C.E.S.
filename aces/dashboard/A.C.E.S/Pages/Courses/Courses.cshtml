@@ -1,0 +1,119 @@
+﻿@page "/Courses"
+@model A.C.E.S.Pages.Courses.CoursesModel
+@{
+    ViewData["Title"] = "Courses";
+    ViewData["Header"] = "Courses";
+}
+
+<!--Uses ASP pages to pass data to the Add and Edit pages-->
+<section id="top-bar">
+    <div>
+        <input id="filter-course-name" type="text" placeholder="Search Course" onkeyup="LoadList()" />
+        <select id="filter-course-status" onchange="LoadList()">
+            <option>Active</option>
+            <option>Archived</option>
+        </select>
+    </div>
+    <div>
+        <a asp-page="Add" class="button">+ Add Course</a>
+    </div>
+</section>
+<section>
+    <table class="table">
+        <colgroup>
+            <col />
+            <col />
+            <col />
+            <col style="width:120px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td># Sections</td>
+                <td># Assignments</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody id="course-list2">
+        </tbody>
+    </table>
+</section>
+<section id="course-list">
+</section>
+<aside class="pop-up">
+    <h2>Add Course</h2>
+    <form action="/Courses/Add">
+        <div><label for="name">Name:</label></div>
+        <div><input id="name" name="name" type="text" /></div>
+        <p>
+            <input type="submit" value="Add" />
+            <input type="button" value="Cancel" onclick="$('.pop-up').animate({ width: 'toggle' });" />
+        </p>
+    </form>
+</aside>
+<script>
+    courses = JSON.parse('@Json.Serialize(Model.Courses)');
+    assignments = JSON.parse('@Json.Serialize(Model.Assignments)');
+    sections = JSON.parse('@Json.Serialize(Model.Sections)');
+    LoadList();
+
+    function LoadList() {
+        var count = 0;
+
+        var cname = document.getElementById('filter-course-name').value;
+        var status = document.getElementById('filter-course-status').value;
+
+        var elem = document.getElementById('course-list2');
+        elem.innerHTML = "";
+
+        for (var i = 0; i < courses.length; i++) {
+            // Filter the results based on user input
+            if (courses[i].archived && status == "Active") continue;
+            if (!courses[i].archived && status == "Archived") continue;
+            if (!courses[i].name.toLowerCase().includes(cname.toLowerCase())) continue;
+
+            // There exists a result after filter
+            count++;
+
+            var tr = document.createElement("tr");
+            tr.innerHTML += `<td><a href="/Courses/${courses[i].id}">${courses[i].name}</a></td>`;
+            tr.innerHTML += `<td>${sections[i].length}</td>`;
+            tr.innerHTML += `<td>${assignments[i].length}</td>`;
+
+            var td = document.createElement("td");
+            td.classList.add("table-button");
+            td.innerHTML += `<a title="Edit" href="/Courses/${courses[i].id}/Edit"><i class="fas fa-fw fa-lg fa-pencil-alt"></i></a>`;
+            // Display either an option for archiving or restoring according to the filter
+            if (status == "Active")
+                td.innerHTML += `<a title="Archive" onclick="ArchiveCourse(${i}, true)"><i class="fas fa-fw fa-lg fa-trash"></i></a>`;
+            else
+                td.innerHTML += `<a title="Restore" onclick="ArchiveCourse(${i}, false)"><i class="fas fa-fw fa-lg fa-trash-restore"></i></a>`;
+            tr.appendChild(td);
+            elem.appendChild(tr);
+        }
+        if (count == 0) {
+            elem.innerHTML += '<tr><td colspan="4"><center>No Result.</center></td></tr>';
+        }
+    }
+
+    function DisplayError(request, status, error) {
+        console.log({ request, status, error });
+    }
+
+    function ArchiveCourse(i, archive) {
+        // Set archive status in JavaScript for immediate feedback
+        courses[i].archived = archive;
+        // Update database
+        $.ajax({
+            type: 'get',
+            url: '/Courses',
+            data: {
+                handler: 'Archive',
+                id: courses[i].id,
+                archive: archive
+            },
+            contenttype: "application/json",
+            datatype: "json"
+        }).done(LoadList).fail(DisplayError);
+    }
+</script>

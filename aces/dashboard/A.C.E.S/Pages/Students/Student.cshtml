@@ -1,0 +1,167 @@
+﻿@page "/Students/{ID:int}"
+@model A.C.E.S.Pages.Students.StudentModel
+@{
+    ViewData["Title"] = Model.Student.Name;
+}
+
+<section class="flex-space margin">
+    <div>
+        <h3>Contact</h3>
+        <p><a href="mailto:@Model.Student.Email">@Model.Student.Email</a></p>
+    </div>
+    <div>
+        <h3>Academic Standing:</h3>
+        <div id="student-standing"></div>
+    </div>
+</section>
+
+<section class="margin">
+    <h2>Recent Submissions</h2>
+    <table class="table">
+        <colgroup>
+            <col />
+            <col />
+            <col style="width:100px;" />
+            <col style="width:100px;" />
+            <col style="width:120px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <td>Assignment</td>
+                <td># Submissions</td>
+                <td>Grade</td>
+                <td>Standing</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody id="recent-submissions">
+            @if (Model.RecentSubmissions.Count == 0)
+            {
+            <tr>
+                <td colspan="5">There are no assignment submissions for this student.</td>
+            </tr>
+            }
+            @foreach (var recentSubmission in Model.RecentSubmissions)
+            {
+                var submissions = Model.Submissions.FindAll(s => s.AssignmentID == recentSubmission.ID);
+            <tr>
+                <td><a href="/Students/@Model.Student.ID/Assignment/@recentSubmission.ID">@recentSubmission.Name</a></td>
+                <td class="align-right">@submissions.Count</td>
+                <td class="align-right">@Model.Submissions.Find(s => s.AssignmentID == recentSubmission.ID).Grade/@recentSubmission.Grade</td>
+                @{ 
+                    int sum = 0;
+                    foreach (var submission in submissions)
+                    {
+                        sum += (int)submission.Standing;
+                    }
+                    int avg = sum / submissions.Count;
+                }
+                <td class="align-right">@avg</td>
+                <td></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+<section class="margin">
+    <h2>Past Submissions</h2>
+    <table class="table">
+        <colgroup>
+            <col />
+            <col />
+            <col style="width:100px;" />
+            <col style="width:100px;" />
+            <col style="width:120px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <td>Assignment</td>
+                <td># Submissions</td>
+                <td>Grade</td>
+                <td>Standing</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody id="recent-submissions">
+            @if (Model.RecentSubmissions.Count == 0)
+            {
+                <tr>
+                    <td colspan="5">There are no assignment submissions for this student.</td>
+                </tr>
+            }
+            @foreach (var recentSubmission in Model.RecentSubmissions)
+            {
+                var submissions = Model.Submissions.FindAll(s => s.AssignmentID == recentSubmission.ID);
+                <tr>
+                    <td><a href="/Students/@Model.Student.ID/Assignment/@recentSubmission.ID">@recentSubmission.Name</a></td>
+                    <td class="align-right">@submissions.Count</td>
+                    <td class="align-right">@Model.Submissions.Find(s => s.AssignmentID == recentSubmission.ID).Grade/@recentSubmission.Grade</td>
+                    @{
+                        int sum = 0;
+                        foreach (var submission in submissions)
+                        {
+                            sum += (int)submission.Standing;
+                        }
+                        int avg = sum / submissions.Count;
+                    }
+                    <td class="align-right">@avg</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+<script>
+    submissions = JSON.parse('@Json.Serialize(Model.Submissions)');
+    assignments = JSON.parse('@Json.Serialize(Model.Assignments)');
+    recentSubmissions = JSON.parse('@Json.Serialize(Model.RecentSubmissions)');
+
+    UpdateStudentStanding();
+    //UpdateRecentSubmissions();
+
+    function UpdateStudentStanding() {
+        var sum = 0;
+        for (var assignment of assignments) {
+            if (assignment.overrideStanding) {
+                sum += assignment.overrideStanding;
+            }
+            else {
+                var subsum = 0;
+                for (var submission of submissions) {
+                    subsum += submission.standing;
+                }
+                sum += Math.round(subsum / submissions.length);
+            }
+        }
+        var avgStanding = Math.round(sum / assignments.length);
+        // Display different numbers of stars based on the students academic standing.
+        switch (avgStanding) {
+            case 0:
+                $('#student-standing').html('<i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i><i class="green-text fas fa-star"></i> Good');
+                break;
+            case 1:
+                $('#student-standing').html('<i class="orange-text fas fa-star"></i><i class="orange-text fas fa-star"></i><i class="far fa-star"></i> Moderate');
+                break;
+            case 2:
+                $('#student-standing').html('<i class="red-text fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> Bad');
+                break;
+            default:
+                $('#student-standing').html('<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> N/A');
+                break;
+        }
+    }
+
+    // This function should be called if the instructor overrides the anti-cheat software's
+    // result for the submission's Academic Standing
+    function UpdateRecentSubmissions() {
+        if (recentSubmissions.length == 0)
+        {
+            $('#recent-submissions').html('<tr><td colspan="5">There are no assignment submissions for this student.</td></tr>');
+        }
+        for (var recentSubmission of recentSubmissions)
+        {
+        }
+    }
+</script>

@@ -4,6 +4,13 @@ electron.exe
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Ignore OS X folder information
+.DS_Store
+
+# Ignore IDE-specific config folders
+.vs/
+.vscode/
+
 # User-specific files
 *.rsuser
 *.suo

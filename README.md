@@ -3,6 +3,15 @@ Anti-Cheat Enforcement Software is a software engineering project of Professor B
  1. View the status of each student in a course through a web client.
  2. Run various anti-cheat software to ensure that a student is properly doing their work.
  3. Automatically grade assignments operating system agnostically and compiler agnostically.
+ 
+## A.C.E.S. in Docker Containers
+ There are three containers for three parts of the project:
+ 1. The dashboard (user interface)
+ 2. Gitea (source control for the app, not development 😉 )
+ 3. The database
+ 
+ *Note: to run these containers, navigate to the directory containing the docker-compose.yml in the console. Then run `docker-compose up -d`. To stop it, run `docker-compose down`. For persistant issues, run `docker system prune -a` to utterly destroy all containers, enabling you to start from scratch. For more detail about what is going on behind the scenes, checkout the Wiki.*  
+ 
 ## A.C.E.S. Dashboard
 Directory: [A.C.E.S. 2.0/](https://github.com/tjh1541/A.C.E.S./tree/master/A.C.E.S.%202.0/)
 ### User Interface
