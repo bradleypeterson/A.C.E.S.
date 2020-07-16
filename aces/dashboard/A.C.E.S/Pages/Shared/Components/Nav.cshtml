@@ -11,14 +11,6 @@
         </div>
     </a>
     <hr>
-    @if (Context.Request.Path.StartsWithSegments("/") || Context.Request.Path.StartsWithSegments("/Sections"))
-    {
-        <a href="/" class="selected"><i class="fas fa-fw fa-chalkboard-teacher"></i> Sections</a>
-    }
-    else
-    {
-        <a href="/"><i class="fas fa-fw fa-chalkboard-teacher"></i> Sections</a>
-    }
     @if (Context.Request.Path.StartsWithSegments("/Courses"))
     {
         <a href="/Courses" class="selected"><i class="fas fa-fw fa-book"></i> Courses</a>
