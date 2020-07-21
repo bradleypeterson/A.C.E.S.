@@ -1,0 +1,106 @@
+import sys
+import random
+import hashlib
+import os
+import zipfile
+
+#creates the watermark
+def createMark(filename, email):#create the hash value from the filename, and email
+	rand = random.getrandbits(16) #create salt to add on the end of the filename and email
+	Hstring = filename + email + str(rand)
+	#print(Hstring)
+	hashed = hashlib.sha256(Hstring.encode()).hexdigest() #hash the string value and save it
+	#print(hashed)
+	return hashed #return the GUID
+
+#mark the single file passed in
+def markPassedFile(file, hashValue):
+	Ofile = open(file, "rt") #open the file and read it into a string
+	data = Ofile.read()
+	Ofile.close() #close the file
+	countMark = data.count('ACESWatermark') #count how many watermarks are going to get placed
+	data = data.replace('ACESWatermark', hashValue) #replace all places with watermark
+	Ofile = open(file, "wt") #open file to write to
+	Ofile.write(data)	#write to the file with watermarks now.
+	Ofile.close()
+
+	return countMark #pass back how many watermarks were added
+
+#loop through the folder to find what files need to be watermarked
+def markFromFolder(folder, hashValue): # marks all files under a folder with the watermark.
+	numMarks = 0
+	#loop through folders to find the file
+	for filename in os.listdir(folder):
+		if filename.endswith(".cpp"):
+			fileLocation = os.path.realpath(folder) + "\\" +filename
+			numMarks += markPassedFile(fileLocation, hashValue) # mark the file at the location with the watermark and save number of watermarks that were placed
+			continue
+		else:
+			continue
+	#return the total number of watermarks
+	return numMarks
+
+#find out if using the .aces file extensions to add watermark to specified folders.
+
+# Declare the function to return all file paths of the particular directory
+def retrieve_file_paths(dirName):
+
+  # setup file paths variable
+  filePaths = []
+
+  # Read all directory, subdirectories and file lists
+  for root, directories, files in os.walk(dirName):
+    for filename in files:
+        # Create the full filepath by using os module.
+        filePath = os.path.join(root, filename)
+        filePaths.append(filePath)
+
+  # return all paths
+  return filePaths
+
+# Declare the main function
+def ZipFiles(Files):
+# Assign the name of the directory to zip
+  dir_name = Files
+
+  # Call the function to retrieve all files and folders of the assigned directory
+  filePaths = retrieve_file_paths(dir_name)
+
+  # printing the list of all files to be zipped
+  print('The following list of files will be zipped:')
+  for fileName in filePaths:
+    print(fileName)
+
+  # writing files to a zipfile
+  zip_file = zipfile.ZipFile(dir_name+'.zip', 'w')
+  with zip_file:
+    # writing each file one by one
+    for file in filePaths:
+      zip_file.write(file)
+
+  print(dir_name+'.zip file is created successfully!')
+
+if __name__ == "__main__":
+
+	#try:
+		file = "MarkMe.txt"# sys.argv[1] #get the file being passed in from the command line
+		folder = "AssignmentFolder"#sys.argv[1] #get the folder being passed in from command line
+		email = "TannerLaw@weber.edu"#sys.argv[2] # get email from the command line
+		hashValue = createMark(file, email) #get hash value
+
+		#if sys.argv[1] is a directory do the markfromfolder
+		if os.path.isdir(folder): #sys.argv[1]):
+			numMarks = markFromFolder(folder, hashValue)#sys.argv[1], hashValue)
+			print(numMarks)
+
+
+		#else it is a file, do markpassedfile
+		else:
+			marks = markPassedFile(file, hashValue)#sys.argv[1], hashValue)
+			print(marks)
+
+		ZipFiles(folder)
+
+	#except:
+	#	file = input("Had an error reading the file.")
+	#	print(file)
