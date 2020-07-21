@@ -28,7 +28,7 @@ namespace A.C.E.S
             services.AddRazorPages();
             services.AddMvc().AddRazorPagesOptions(option =>
             {
-                option.Conventions.AddPageRoute("/Courses/Courses", "");
+                option.Conventions.AddPageRoute("/Login/Login", "");
             });
             services.AddDbContext<ACESContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ACESContext")));
