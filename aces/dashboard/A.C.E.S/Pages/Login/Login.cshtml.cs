@@ -27,10 +27,6 @@ namespace A.C.E.S.Pages.Login
             _context = context;
         }
 
-        public void OnGet()
-        {
-        }
-
         public async Task OnGetAsync()
         {
             Instructors = await _context.Instructors

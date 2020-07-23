@@ -13,7 +13,7 @@ namespace A.C.E.S.Models
         public int Id { get; set; }
         public int StudentId { get; set; }
         public int AssignmentId { get; set; }
-        public Guid Watermaker { get; set; }
+        public string Watermaker { get; set; }
         public string RepositoryUrl { get; set; }
     }
 }
