@@ -12,6 +12,5 @@ namespace A.C.E.S.Models
         public string RepositoryUrl { get; set; }
         public int AssignmentCode { get; set; }
         public int CourseId { get; set; }
-        public Course Course { get; set; }
     }
 }

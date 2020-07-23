@@ -14,7 +14,6 @@ namespace A.C.E.S.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public Guid Salt { get; set; }
-        public List<Course> Courses { get; set; }
 
         [NotMapped]
         public string FullName

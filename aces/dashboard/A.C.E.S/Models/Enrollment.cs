@@ -13,7 +13,6 @@ namespace A.C.E.S.Models
         public int Id { get; set; }
         public int StudentId { get; set; }
         public int CourseId { get; set; }
-        public Course Course { get; set; }
         /// <summary>
         /// If inactive, enrollment belongs to a past semester
         /// </summary>

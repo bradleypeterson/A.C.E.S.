@@ -24,7 +24,7 @@ namespace A.C.E.S.Pages.Login
         public IActionResult OnPost()
         {
             if (UserName == null || Password == null) return Page();
-            if (UserName.Equals("test@weber.edu") && Password.Equals("123"))
+            if (UserName.Equals("test@weber.edu") && Password.Equals("AppleSauce123"))
             {
                 return RedirectToPage("../Courses/Courses");
             }

@@ -42,16 +42,16 @@ namespace A.C.E.S.Pages.Students
             // Get all Assignments related to student:
             foreach (var itm in studentAssignments)
             {
-                Assignments.Add(itm.Assignment);
+                //Assignments.Add(itm.Assignment);
             }
 
             // Gets the all submissions:
             foreach (var itm in studentAssignments)
             {
-                foreach (var submission in itm.Submissions)
-                {
-                    Submissions.Add(submission);
-                }
+                //foreach (var submission in itm.Submissions)
+                //{
+                //    Submissions.Add(submission);
+                //}
             }
 
             // Get the most recent 5 sumissions:
