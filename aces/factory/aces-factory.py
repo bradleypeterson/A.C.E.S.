@@ -2,6 +2,21 @@
 import argparse, os, re, random, string, json, zipfile
 from hashlib import sha256
 
+def zipdirectory(dir: str) -> str:
+    filepaths: list = list()
+    for root, directories, files in os.walk(dir):
+        for filename in files:
+            filepaths.append(os.path.join(root, filename))
+
+    zipdirlocation = "out.zip"
+    zipped_dir = zipfile.ZipFile(zipdirlocation, 'w')
+    for filename in filepaths:
+        zipped_dir.write(filename)
+
+    zipped_dir.close()
+    return zipdirlocation
+
+
 def watermark_file(path: str) -> int:
     print("-> Searching " + path + " for watermarkable lines...", end="")
     wf = open(path, "r")
@@ -52,24 +67,24 @@ def generate_watermark(email: str, asn_no: str):
         for i in range(5))
     return sha256(en(asn_no) + en(email) + en(salt)).hexdigest()
 
-def factory_create(directory: str, email: str, asn_no: str) -> bool:
+def factory_create(directory: str, email: str, asn_no: str) -> str:
     # Check validity of each parameter.
     if not os.path.isdir(directory):
         print("Error: directory does not exist.")
-        return False
+        return ''
     
     if not os.path.exists(directory + "/.acesconfig.json"):
         print("Error: directory does not contain a .acesconfig.json file.")
-        return False
+        return ''
 
     email_regex = re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
     if not email_regex.match(email):
         print("Error: email argument is not an email address.")
-        return False
+        return ''
 
     if not len(asn_no) > 2:
         print("Error: asn_no must be greater than two characters.")
-        return False
+        return ''
 
     print("Preparing " + directory + " for " + email + " as " + asn_no)
 
@@ -96,6 +111,11 @@ def factory_create(directory: str, email: str, asn_no: str) -> bool:
 
     print("Total watermarks generated: " + str(total_marks))
 
+    zipdir: str = zipdirectory(directory)
+
+    print("Created zipped folder at " + zipdir)
+
+    return zipdir
     pass
 
 # Note that main() should only be called if testing this module
