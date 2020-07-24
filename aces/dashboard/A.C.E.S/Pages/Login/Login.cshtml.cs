@@ -27,7 +27,7 @@ namespace A.C.E.S.Pages.Login
             _context = context;
         }
 
-        public async Task OnGetAsync()
+        public async Task OnPostAsync()
         {
             Instructors = await _context.Instructors
                 .AsNoTracking()
@@ -36,9 +36,11 @@ namespace A.C.E.S.Pages.Login
             Students = await _context.Students
                 .AsNoTracking()
                 .ToListAsync();
+
+            AttemptLogin();
         }
 
-        public IActionResult OnPost()
+        public IActionResult AttemptLogin()
         {
             if (UserName == null || Password == null) return Page();
 

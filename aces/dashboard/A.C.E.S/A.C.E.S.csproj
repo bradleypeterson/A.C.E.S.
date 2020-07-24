@@ -17,6 +17,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Vendor\animate\animate.css" />
+    <None Include="wwwroot\Vendor\animsition\css\animsition.css" />
+    <None Include="wwwroot\Vendor\animsition\css\animsition.min.css" />
+    <None Include="wwwroot\Vendor\animsition\js\animsition.js" />
+    <None Include="wwwroot\Vendor\animsition\js\animsition.min.js" />
+    <None Include="wwwroot\Vendor\countdowntime\countdowntime.js" />
+    <None Include="wwwroot\Vendor\css-hamburgers\hamburgers.css" />
+    <None Include="wwwroot\Vendor\css-hamburgers\hamburgers.min.css" />
+    <None Include="wwwroot\Vendor\daterangepicker\daterangepicker.css" />
+    <None Include="wwwroot\Vendor\daterangepicker\daterangepicker.js" />
+    <None Include="wwwroot\Vendor\daterangepicker\moment.js" />
+    <None Include="wwwroot\Vendor\daterangepicker\moment.min.js" />
+    <None Include="wwwroot\Vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <None Include="wwwroot\Vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <None Include="wwwroot\Vendor\select2\select2.css" />
+    <None Include="wwwroot\Vendor\select2\select2.js" />
+    <None Include="wwwroot\Vendor\select2\select2.min.css" />
+    <None Include="wwwroot\Vendor\select2\select2.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Identity.EntityFrameworkCore" Version="1.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.3" />
