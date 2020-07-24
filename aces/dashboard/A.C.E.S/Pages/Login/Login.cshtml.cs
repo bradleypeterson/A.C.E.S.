@@ -45,7 +45,6 @@ namespace A.C.E.S.Pages.Login
             if (UserName == null || Password == null) return Page();
 
             var Instructor = Instructors.Where(x => x.Email == UserName).FirstOrDefault();
-
             // Only check student if it wasn't found in the instructor
             Student Student = null;
             if (Instructor == null)
@@ -53,16 +52,19 @@ namespace A.C.E.S.Pages.Login
 
             if (Instructor != null)
             {
-                var hashedPass = Hashing.ComputeSha256Hash(Password);
-                if (hashedPass == Instructor.Password)
+                //NOTE: CURRENTLY, ALL PRE-ENTERED DATA HAS mypass111 AS THE PASSWORD
+                var hashedPass = Hashing.ComputeSha256Hash(Password + Instructor.Salt);
+                
+                if (hashedPass.ToUpper() == Instructor.Password.ToUpper())
                 {
                     // figure out cookies and all that jazz...
                     return RedirectToPage("../Courses/Courses");
                 }
             } else if (Student != null)
             {
-                var hashedPass = Hashing.ComputeSha256Hash(Password);
-                if (hashedPass == Student.Password)
+                var hashedPass = Hashing.ComputeSha256Hash(Password + Student.Salt);
+
+                if (hashedPass.ToUpper() == Student.Password.ToUpper())
                 {
                     // figure out cookies and all that jazz...
                     return RedirectToPage("../Courses/Courses");
