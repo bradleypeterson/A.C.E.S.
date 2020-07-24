@@ -4,7 +4,7 @@ from hashlib import sha256
 
 def zipdirectory(dir: str) -> str:
     filepaths: list = list()
-    for root, directories, files in os.walk(dir):
+    for root, _, files in os.walk(dir):
         for filename in files:
             filepaths.append(os.path.join(root, filename))
 
@@ -69,15 +69,15 @@ def generate_watermark(email: str, asn_no: str):
 
 def factory_create(directory: str, email: str, asn_no: str) -> str:
     # Check validity of each parameter.
-    if not os.path.isdir(directory):
-        print("Error: directory does not exist.")
-        return ''
+    # if not os.path.isdir(directory):
+    #     print("Error: directory does not exist.")
+    #     return ''
     
-    if not os.path.exists(directory + "/.acesconfig.json"):
-        print("Error: directory does not contain a .acesconfig.json file.")
-        return ''
+    # if not os.path.exists(directory + "/.acesconfig.json"):
+    #     print("Error: directory does not contain a .acesconfig.json file.")
+    #     return ''
 
-    email_regex = re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+    email_regex = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
     if not email_regex.match(email):
         print("Error: email argument is not an email address.")
         return ''
@@ -116,7 +116,6 @@ def factory_create(directory: str, email: str, asn_no: str) -> str:
     print("Created zipped folder at " + zipdir)
 
     return zipdir
-    pass
 
 # Note that main() should only be called if testing this module
 # individually. The actual main point of entry is factory_create(),
