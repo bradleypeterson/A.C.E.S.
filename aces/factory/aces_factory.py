@@ -69,13 +69,13 @@ def generate_watermark(email: str, asn_no: str):
 
 def factory_create(directory: str, email: str, asn_no: str) -> str:
     # Check validity of each parameter.
-    # if not os.path.isdir(directory):
-    #     print("Error: directory does not exist.")
-    #     return ''
+    if not os.path.isdir(directory):
+        print("Error: directory does not exist.")
+        return ''
     
-    # if not os.path.exists(directory + "/.acesconfig.json"):
-    #     print("Error: directory does not contain a .acesconfig.json file.")
-    #     return ''
+    if not os.path.exists(directory + "/.acesconfig.json"):
+        print("Error: directory does not contain a .acesconfig.json file.")
+        return ''
 
     email_regex = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
     if not email_regex.match(email):
