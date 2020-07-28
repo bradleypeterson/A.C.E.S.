@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace A.C.E.S.Models
+﻿namespace A.C.E.S.Models
 {
     /// <summary>
     /// This class links an assignment to a particular student
@@ -13,7 +8,7 @@ namespace A.C.E.S.Models
         public int Id { get; set; }
         public int StudentId { get; set; }
         public int AssignmentId { get; set; }
-        public string Watermaker { get; set; }
+        public string Watermark { get; set; }
         public string RepositoryUrl { get; set; }
     }
 }

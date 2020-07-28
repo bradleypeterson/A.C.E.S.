@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace A.C.E.S.Models
+﻿namespace A.C.E.S.Models
 {
     /// <summary>
     /// This class links the student to a course
