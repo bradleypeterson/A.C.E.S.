@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ACES.Data;
 using ACES.Models;
+using ACES.Models.ViewModels;
 
 namespace ACES.Controllers
 {
@@ -22,7 +23,13 @@ namespace ACES.Controllers
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Course.ToListAsync());
+            var instructorId = int.Parse(Request.Cookies["UserID"]);
+            var vm = new CoursesVM()
+            {
+                Instructor = _context.Instructor.FirstOrDefault(x => x.Id == instructorId),
+                Courses = _context.Course.Where(x => x.InstructorId == instructorId).ToList()
+            };
+            return View(vm);
         }
 
         // GET: Courses/Details/5

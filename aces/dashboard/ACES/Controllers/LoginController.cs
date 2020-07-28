@@ -43,7 +43,8 @@ namespace ACES.Controllers
                 if (hashedPass.ToUpper() == instructor.Password.ToUpper())
                 {
                     // figure out cookies and all that jazz...
-                    return RedirectToAction("Index", "Courses"); //, new { instructorId = instructor.Id });
+                    Response.Cookies.Append("UserID", instructor.Id.ToString());
+                    return RedirectToAction("Index", "Courses", new { instructorId = instructor.Id });
                 }
             } else if (student != null)
             {
