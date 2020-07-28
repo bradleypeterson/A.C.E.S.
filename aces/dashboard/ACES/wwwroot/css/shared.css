@@ -1,0 +1,10 @@
+﻿.navbar {
+    background-color: #492365 !important;
+    color: #fff !important;
+}
+.nav-link{
+    color: white !important;
+}
+    .nav-link:hover {
+        color: aliceblue !important;
+    }
