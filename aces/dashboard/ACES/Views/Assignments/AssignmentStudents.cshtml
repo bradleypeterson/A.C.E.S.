@@ -17,14 +17,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var student in Model.StudentAssignments)
+            @foreach (var sAssignment in Model.StudentAssignments)
             {
             <tr>
-                <td>@student.StudentName</td>
-                <td>@student.StudentEmail</td>
-                <td>@student.NumSubmissions</td>
+                <td>@sAssignment.StudentName</td>
+                <td>@sAssignment.StudentEmail</td>
+                <td>@sAssignment.NumSubmissions</td>
                 <td>
-                    <a asp-controller="Assignments" asp-action="AssignmentStudents">Submissions</a>
+                    <a asp-controller="Assignments" asp-action="AssignmentStudentSubmissions" asp-route-id="@sAssignment.Id">Submissions</a>
                 </td>
             </tr>
             }
@@ -32,5 +32,5 @@
     </table>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Courses" asp-action="CourseAssignments">Back to List</a>
 </div>

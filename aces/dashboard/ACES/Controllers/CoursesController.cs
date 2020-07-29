@@ -35,24 +35,6 @@ namespace ACES.Controllers
             return View(courses);
         }
 
-        // GET: Courses/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var course = await _context.Course
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (course == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(course);
-        //}
-        // GET: Courses/Details/5
         public async Task<IActionResult> CourseAssignments(int? id)
         {
             if (id == null)

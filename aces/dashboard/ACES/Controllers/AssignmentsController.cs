@@ -34,8 +34,7 @@ namespace ACES.Controllers
                 return NotFound();
             }
 
-            var assignment = await _context.Assignment
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var assignment = await _context.Assignment.FirstOrDefaultAsync(m => m.Id == id);
             if (assignment == null)
             {
                 return NotFound();
@@ -55,6 +54,35 @@ namespace ACES.Controllers
                 AssignmentId = id.Value,
                 AssignmentName = assignment.Name,
                 StudentAssignments = studentAssignments
+            };
+
+            return View(vm);
+        }
+
+        // GET: Assignments/AssignmentStudentSubmissions/5
+        public async Task<IActionResult> AssignmentStudentSubmissions(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var studentAssignment = await _context.StudentAssignment.FirstOrDefaultAsync(m => m.Id == id);
+            if (studentAssignment == null)
+            {
+                return NotFound();
+            }
+
+            var submissions = await _context.Submission.Where(x => x.StudentAssignmentId == id).ToListAsync();
+            var studentName = _context.Student.FirstOrDefault(x => x.Id == studentAssignment.StudentId).FullName;
+            var assignmentName = _context.Assignment.FirstOrDefault(x => x.Id == studentAssignment.AssignmentId).Name;
+
+            var vm = new AssignmentStudentSubmissionsVM()
+            {
+                StudentAssignmentId = id.Value,
+                StudentName = studentName,
+                AssignmentName = assignmentName,
+                Submissions = submissions
             };
 
             return View(vm);
