@@ -24,30 +24,57 @@ namespace ACES.Controllers
         public async Task<IActionResult> Index()
         {
             var instructorId = int.Parse(Request.Cookies["UserID"]);
-            var vm = new CoursesVM()
+            var courses = await _context.Course.Where(x => x.InstructorId == instructorId).ToListAsync();
+
+            // Get more info about courses (total number of assignments and students):
+            foreach (var course in courses)
             {
-                Instructor = _context.Instructor.FirstOrDefault(x => x.Id == instructorId),
-                Courses = _context.Course.Where(x => x.InstructorId == instructorId).ToList()
-            };
-            return View(vm);
+                course.NumAssignments = _context.Assignment.Where(x => x.CourseId == course.Id).ToList().Count();
+                course.NumStudents = _context.Enrollment.Where(x => x.CourseId == course.Id).ToList().Count();
+            }
+            return View(courses);
         }
 
         // GET: Courses/Details/5
-        public async Task<IActionResult> Details(int? id)
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var course = await _context.Course
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (course == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(course);
+        //}
+        // GET: Courses/Details/5
+        public async Task<IActionResult> CourseAssignments(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (course == null)
+            var courseName = _context.Course.FirstOrDefault(m => m.Id == id).CourseName;
+            if (string.IsNullOrEmpty(courseName))
             {
                 return NotFound();
             }
 
-            return View(course);
+            var assignments = await _context.Assignment.Where(x => x.CourseId == id).ToListAsync();
+            var vm = new CourseAssignmentsVM()
+            {
+                CourseId = id.Value,
+                CouseName = courseName,
+                Assignments = assignments
+            };
+
+            return View(vm);
         }
 
         // GET: Courses/Create

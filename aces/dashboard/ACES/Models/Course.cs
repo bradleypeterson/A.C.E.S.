@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,5 +14,12 @@ namespace ACES.Models
         public string CourseName { get; set; }
         [DisplayName("Instructor ID")]
         public int InstructorId { get; set; }
+
+        #region For Views
+        [NotMapped]
+        public int? NumAssignments { get; set; }
+        [NotMapped]
+        public int? NumStudents { get; set; }
+        #endregion
     }
 }

@@ -15,6 +15,7 @@ namespace ACES.Models
         public string Password { get; set; }
         public string Salt { get; set; }
 
+        #region For Views
         [NotMapped]
         public string FullName
         {
@@ -23,5 +24,6 @@ namespace ACES.Models
                 return FirstName + " " + LastName;
             }
         }
+        #endregion
     }
 }

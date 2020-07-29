@@ -5,9 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h2>Edit Assignment</h2>
 
-<h4>Assignment</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -42,7 +41,15 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    @*This takes us back to CourseAssignments if that's where we came from*@
+    @if (ViewBag.From == "courses")
+    {
+        <a asp-controller="Courses" asp-action="CourseAssignments" asp-route-id="@Model.CourseId">Back to List</a>
+    }
+    else
+    {
+        <a asp-action="Index">Back to List</a>
+    }
 </div>
 
 @section Scripts {

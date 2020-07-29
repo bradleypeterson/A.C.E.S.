@@ -1,0 +1,39 @@
+﻿@model ACES.Models.ViewModels.CourseAssignmentsVM
+
+@{
+    ViewData["Title"] = "Course Assignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.CouseName Assignments</h2>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Assignment</th>
+                <th>Repository URL</th>
+                <th>Assignment Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var assignment in Model.Assignments)
+            {
+                <tr>
+                    <td>@assignment.Name</td>
+                    <td>@assignment.RepositoryUrl</td>
+                    <td>@assignment.AssignmentCode</td>
+                    <td>
+                        <a asp-controller="Assignments" asp-action="Edit" asp-route-id="@assignment.Id" asp-route-from="courses">Edit</a> |
+                        <a asp-controller="Assignments" asp-action="AssignmentStudents" asp-route-id="@assignment.Id">Student Submissions</a> |
+                        <a asp-controller="Assignments" asp-action="Delete" asp-route-id="@assignment.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CourseId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

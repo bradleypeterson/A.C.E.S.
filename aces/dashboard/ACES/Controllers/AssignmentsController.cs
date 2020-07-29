@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ACES.Data;
 using ACES.Models;
+using ACES.Models.ViewModels;
 
 namespace ACES.Controllers
 {
@@ -25,8 +26,8 @@ namespace ACES.Controllers
             return View(await _context.Assignment.ToListAsync());
         }
 
-        // GET: Assignments/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Assignments/AssignmentStudents/5
+        public async Task<IActionResult> AssignmentStudents(int? id)
         {
             if (id == null)
             {
@@ -40,7 +41,23 @@ namespace ACES.Controllers
                 return NotFound();
             }
 
-            return View(assignment);
+            var studentAssignments = await _context.StudentAssignment.Where(x => x.AssignmentId == id).ToListAsync();
+            foreach(var sAssignment in studentAssignments)
+            {
+                var student = await _context.Student.FirstOrDefaultAsync(x => x.Id == sAssignment.StudentId);
+                sAssignment.NumSubmissions = _context.Submission.Where(x => x.StudentAssignmentId == sAssignment.AssignmentId).Count();
+                sAssignment.StudentName = student.FullName;
+                sAssignment.StudentEmail = student.Email;
+            }
+
+            var vm = new AssignmentStudentsVM()
+            {
+                AssignmentId = id.Value,
+                AssignmentName = assignment.Name,
+                StudentAssignments = studentAssignments
+            };
+
+            return View(vm);
         }
 
         // GET: Assignments/Create
@@ -66,7 +83,7 @@ namespace ACES.Controllers
         }
 
         // GET: Assignments/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, string from = "")
         {
             if (id == null)
             {
@@ -78,6 +95,8 @@ namespace ACES.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.From = from; // This helps take us back to CourseAssignments if that's where we came from
             return View(assignment);
         }
 
