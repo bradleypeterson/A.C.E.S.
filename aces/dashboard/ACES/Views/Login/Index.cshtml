@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     Layout = null; // This makes the login not inherit _Layout.cshtml
 }
 <!DOCTYPE html>
@@ -12,30 +12,19 @@
 </head>
 <body>
     <style>
-
     </style>
     @using (Html.BeginForm("AttemptLogin", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="wrapper fadeInDown">
             <div id="formContent">
-                <!-- Tabs Titles -->
-                <!-- Icon -->
-                <div class="fadeIn first" style="padding-top: 15px;">
-                    <h3>Welcome</h3>
+                <div class="fadeIn first" style="padding-top: 25px;">
+                    <h3>ACES Login</h3>
                 </div>
-
-                <!-- Login Form -->
                 <form>
                     <input type="text" id="login" class="fadeIn second" name="username" placeholder="login">
                     <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
                     <input type="submit" class="fadeIn fourth" value="Log In">
                 </form>
-
-                <!-- Remind Passowrd -->
-                <div id="formFooter">
-                    <a class="underlineHover" href="#">Forgot Password?</a>
-                </div>
-
             </div>
         </div>
     }

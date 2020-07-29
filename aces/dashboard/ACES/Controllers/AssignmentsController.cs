@@ -74,8 +74,8 @@ namespace ACES.Controllers
             }
 
             var submissions = await _context.Submission.Where(x => x.StudentAssignmentId == id).ToListAsync();
-            var studentName = _context.Student.FirstOrDefault(x => x.Id == studentAssignment.StudentId).FullName;
-            var assignmentName = _context.Assignment.FirstOrDefault(x => x.Id == studentAssignment.AssignmentId).Name;
+            var studentName = (await _context.Student.FirstOrDefaultAsync(x => x.Id == studentAssignment.StudentId)).FullName;
+            var assignmentName = (await _context.Assignment.FirstOrDefaultAsync(x => x.Id == studentAssignment.AssignmentId)).Name;
 
             var vm = new AssignmentStudentSubmissionsVM()
             {
