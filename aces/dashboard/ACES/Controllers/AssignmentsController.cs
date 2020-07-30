@@ -51,6 +51,7 @@ namespace ACES.Controllers
 
             var vm = new AssignmentStudentsVM()
             {
+                CourseId = assignment.CourseId,
                 AssignmentId = id.Value,
                 AssignmentName = assignment.Name,
                 StudentAssignments = studentAssignments
@@ -73,7 +74,8 @@ namespace ACES.Controllers
                 return NotFound();
             }
 
-            var submissions = await _context.Submission.Where(x => x.StudentAssignmentId == id).ToListAsync();
+            //var submissions = await _context.Submission.Where(x => x.StudentAssignmentId == id).ToListAsync();
+            var submissions = new List<Submission>();
             var studentName = (await _context.Student.FirstOrDefaultAsync(x => x.Id == studentAssignment.StudentId)).FullName;
             var assignmentName = (await _context.Assignment.FirstOrDefaultAsync(x => x.Id == studentAssignment.AssignmentId)).Name;
 

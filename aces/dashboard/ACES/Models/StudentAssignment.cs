@@ -13,6 +13,11 @@ namespace ACES.Models
         public int AssignmentId { get; set; }
         public string Watermark { get; set; }
         public string RepositoryUrl { get; set; }
+        /// <summary>
+        /// Compared with Commit.NumWatermarks to see if they have been tampered with.
+        /// </summary>
+        //public int NumWatermarks { get; set; }
+        //public int PointsEarned { get; set; }
 
         #region For Views
         [NotMapped]

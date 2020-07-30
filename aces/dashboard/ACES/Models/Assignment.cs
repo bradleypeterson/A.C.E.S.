@@ -12,5 +12,6 @@ namespace ACES.Models
         public string RepositoryUrl { get; set; }
         public int AssignmentCode { get; set; }
         public int CourseId { get; set; }
+        //public int TotalPoints { get; set; }
     }
 }
