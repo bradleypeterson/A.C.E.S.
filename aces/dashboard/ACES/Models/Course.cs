@@ -12,7 +12,6 @@ namespace ACES.Models
         public int Id { get; set; }
         [DisplayName("Course Name")]
         public string CourseName { get; set; }
-        [DisplayName("Instructor ID")]
         public int InstructorId { get; set; }
 
         #region For Views

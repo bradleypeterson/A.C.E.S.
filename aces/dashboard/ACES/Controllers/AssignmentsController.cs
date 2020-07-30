@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ACES.Data;
 using ACES.Models;
 using ACES.Models.ViewModels;
+using System.Collections.Immutable;
 
 namespace ACES.Controllers
 {
@@ -46,7 +47,31 @@ namespace ACES.Controllers
                 var student = await _context.Student.FirstOrDefaultAsync(x => x.Id == sAssignment.StudentId);
                 sAssignment.NumSubmissions = _context.Submission.Where(x => x.StudentAssignmentId == sAssignment.AssignmentId).Count();
                 sAssignment.StudentName = student.FullName;
-                sAssignment.StudentEmail = student.Email;
+
+                // Get the points ratio: 175/200
+                var submission = await _context.Submission.FirstOrDefaultAsync(x => x.StudentAssignmentId == sAssignment.Id);
+                sAssignment.PointsRatio = submission.PointsEarned + "/" + assignment.PointsPossible;
+
+                // Get watermarks ratio: 2/3
+                var commits = await _context.Commit.Where(x => x.StudentAssignmentId == sAssignment.Id).ToListAsync();
+                var watermarkAvg = 0.0;
+                var linesModifiedAvg = 0.0;
+                var timeBetweenAvg = 0.0;
+                for (var i = 0; i < commits.Count(); i++)
+                {
+                    watermarkAvg += commits[i].NumWatermarks;
+                    linesModifiedAvg += (commits[i].LinesAdded + commits[i].LinesDeleted);
+                    if ((i - 1) > -1)
+                    {
+                        timeBetweenAvg += (commits[i].DateCommitted - commits[i - 1].DateCommitted).TotalHours;
+                    }
+                }
+                watermarkAvg /= commits.Count();
+                linesModifiedAvg /= commits.Count();
+                timeBetweenAvg /= commits.Count();
+                sAssignment.WatermarksRatio = watermarkAvg + "/" + sAssignment.NumWatermarks;
+                sAssignment.LinesModifiedAvg = linesModifiedAvg;
+                sAssignment.TimeBetweenAvg = timeBetweenAvg;
             }
 
             var vm = new AssignmentStudentsVM()
@@ -91,8 +116,9 @@ namespace ACES.Controllers
         }
 
         // GET: Assignments/Create
-        public IActionResult Create()
+        public IActionResult Create(int? courseId)
         {
+            ViewBag.CourseId = courseId;
             return View();
         }
 
@@ -101,13 +127,13 @@ namespace ACES.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,RepositoryUrl,AssignmentCode,CourseId")] Assignment assignment)
+        public async Task<IActionResult> Create([Bind("Id,Name,RepositoryUrl,AssignmentCode,CourseId,PointsPossible")] Assignment assignment)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(assignment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("CourseAssignments", "Courses", new { id = assignment.CourseId });
             }
             return View(assignment);
         }
@@ -191,7 +217,7 @@ namespace ACES.Controllers
             var assignment = await _context.Assignment.FindAsync(id);
             _context.Assignment.Remove(assignment);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("CourseAssignments", "Courses", new { id = assignment.CourseId });
         }
 
         private bool AssignmentExists(int id)

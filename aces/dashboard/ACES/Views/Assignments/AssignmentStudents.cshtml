@@ -12,8 +12,11 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Total Submissions</th>
+                <th>Submissions</th>
+                <th>Points</th>
+                <th>Watermarks</th>
+                <th>Lines Modified (Avg)</th>
+                <th>Hours Between Submission (Avg)</th>
                 <th></th>
             </tr>
         </thead>
@@ -22,8 +25,11 @@
             {
             <tr>
                 <td>@sAssignment.StudentName</td>
-                <td>@sAssignment.StudentEmail</td>
                 <td>@sAssignment.NumSubmissions</td>
+                <td>@sAssignment.PointsRatio</td>
+                <td>@sAssignment.WatermarksRatio</td>
+                <td>@sAssignment.LinesModifiedAvg</td>
+                <td>@sAssignment.TimeBetweenAvg</td>
                 <td>
                     <a asp-controller="Assignments" asp-action="AssignmentStudentSubmissions" asp-route-id="@sAssignment.Id">Submissions</a>
                 </td>

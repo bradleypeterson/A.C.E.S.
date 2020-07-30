@@ -8,6 +8,9 @@
 <h2>@Model.CouseName Assignments</h2>
 
 <div>
+    <p>
+        <a asp-controller="Assignments" asp-action="Create" asp-route-courseId="@Model.CourseId">Create New</a>
+    </p>
     <table class="table">
         <thead>
             <tr>

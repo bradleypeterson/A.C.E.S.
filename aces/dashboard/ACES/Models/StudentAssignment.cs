@@ -14,10 +14,10 @@ namespace ACES.Models
         public string Watermark { get; set; }
         public string RepositoryUrl { get; set; }
         /// <summary>
-        /// Compared with Commit.NumWatermarks to see if they have been tampered with.
+        /// This represents the number of watermarks a students personal assignment should have. 
+        /// It is compared with Commit.NumWatermarks to see if they have tampered with the code.
         /// </summary>
-        //public int NumWatermarks { get; set; }
-        //public int PointsEarned { get; set; }
+        public int NumWatermarks { get; set; }
 
         #region For Views
         [NotMapped]
@@ -25,7 +25,13 @@ namespace ACES.Models
         [NotMapped]
         public string StudentName { get; set; }
         [NotMapped]
-        public string StudentEmail { get; set; }
+        public string PointsRatio { get; set; }
+        [NotMapped]
+        public string WatermarksRatio { get; set; }
+        [NotMapped]
+        public double LinesModifiedAvg { get; set; }
+        [NotMapped]
+        public double TimeBetweenAvg { get; set; }
         #endregion
     }
 }

@@ -70,10 +70,11 @@ namespace ACES.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CourseName,InstructorId")] Course course)
+        public async Task<IActionResult> Create([Bind("Id,CourseName")] Course course)
         {
             if (ModelState.IsValid)
             {
+                course.InstructorId = int.Parse(Request.Cookies["UserID"]);
                 _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

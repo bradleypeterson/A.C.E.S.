@@ -10,6 +10,9 @@ namespace ACES.Models
         public int Id { get; set; }
         public int StudentAssignmentId { get; set; }
         public DateTime DateSubmitted { get; set; }
-        public float Grade { get; set; }
+        /// <summary>
+        /// Compared with PointsPossible in Assignment to calculate grade.
+        /// </summary>
+        public int PointsEarned { get; set; }
     }
 }

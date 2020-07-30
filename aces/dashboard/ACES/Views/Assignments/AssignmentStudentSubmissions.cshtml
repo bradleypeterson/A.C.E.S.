@@ -26,7 +26,7 @@
                 <tr>
                     <td>Submission @count</td>
                     <td>@submission.DateSubmitted.ToShortTimeString()</td>
-                    <td>@submission.Grade</td>
+                    <td>@submission.PointsEarned</td>
                     <td>
                         <a asp-controller="Assignments" asp-action="AssignmentStudentSubmissions" asp-route-id="@submission.Id">Commits</a>
                     </td>
