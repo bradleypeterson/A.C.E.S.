@@ -1,0 +1,37 @@
+﻿@model ACES.Models.ViewModels.AssignmentStudentCommitsVM
+
+@{
+    ViewData["Title"] = "Course Assignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.StudentName</h2>
+<h3>@Model.Assignment.Name - Commits</h3>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Commit Date</th>
+                <th>Lines Added</th>
+                <th>Lines Deleted</th>
+                <th>Number of Watermarks</th>
+                <th>Points Earned</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var commit in Model.Commits)
+            {
+            <tr>
+                <td>@commit.DateCommitted.ToString("MM/dd/yyyy hh:mm tt")</td>
+                <td>@commit.LinesAdded</td>
+                <td>@commit.LinesDeleted</td>
+                <td>@commit.NumWatermarks/@Model.NumWatermarks</td>
+                <td>@commit.PointsEarned/@Model.Assignment.PointsPossible</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="AssignmentStudents" asp-route-id="@Model.StudentAssignmentId">Back to List</a>
+</div>
