@@ -9,6 +9,8 @@ using ACES.Data;
 using ACES.Models;
 using ACES.Models.ViewModels;
 using System.Collections.Immutable;
+using System.Drawing;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace ACES.Controllers
 {
@@ -45,33 +47,39 @@ namespace ACES.Controllers
             foreach(var sAssignment in studentAssignments)
             {
                 var student = await _context.Student.FirstOrDefaultAsync(x => x.Id == sAssignment.StudentId);
-                sAssignment.NumSubmissions = _context.Submission.Where(x => x.StudentAssignmentId == sAssignment.AssignmentId).Count();
+                var commits = await _context.Commit.Where(x => x.StudentAssignmentId == sAssignment.Id).ToListAsync();
+                sAssignment.NumCommits = commits.Count();
                 sAssignment.StudentName = student.FullName;
 
-                // Get the points ratio: 175/200
-                var submission = await _context.Submission.FirstOrDefaultAsync(x => x.StudentAssignmentId == sAssignment.Id);
-                sAssignment.PointsRatio = submission.PointsEarned + "/" + assignment.PointsPossible;
-
-                // Get watermarks ratio: 2/3
-                var commits = await _context.Commit.Where(x => x.StudentAssignmentId == sAssignment.Id).ToListAsync();
+                // Get rations
                 var watermarkAvg = 0.0;
                 var linesModifiedAvg = 0.0;
                 var timeBetweenAvg = 0.0;
-                for (var i = 0; i < commits.Count(); i++)
+                var pointsAvg = 0;
+
+                if (commits.Count() > 0)
                 {
-                    watermarkAvg += commits[i].NumWatermarks;
-                    linesModifiedAvg += (commits[i].LinesAdded + commits[i].LinesDeleted);
-                    if ((i - 1) > -1)
+                    for (var i = 0; i < commits.Count(); i++)
                     {
-                        timeBetweenAvg += (commits[i].DateCommitted - commits[i - 1].DateCommitted).TotalHours;
+                        watermarkAvg += commits[i].NumWatermarks;
+                        linesModifiedAvg += (commits[i].LinesAdded + commits[i].LinesDeleted);
+                        pointsAvg += commits[i].PointsEarned;
+                        if ((i - 1) > -1)
+                        {
+                            timeBetweenAvg += (commits[i].DateCommitted - commits[i - 1].DateCommitted).TotalHours;
+                        }
                     }
+                    watermarkAvg /= commits.Count();
+                    linesModifiedAvg /= commits.Count();
+                    timeBetweenAvg /= commits.Count();
+                    pointsAvg /= commits.Count();
                 }
-                watermarkAvg /= commits.Count();
-                linesModifiedAvg /= commits.Count();
-                timeBetweenAvg /= commits.Count();
+
+                // Otherwise they are all 0
                 sAssignment.WatermarksRatio = watermarkAvg + "/" + sAssignment.NumWatermarks;
                 sAssignment.LinesModifiedAvg = linesModifiedAvg;
                 sAssignment.TimeBetweenAvg = timeBetweenAvg;
+                sAssignment.PointsRatio = pointsAvg + "/" + assignment.PointsPossible;
             }
 
             var vm = new AssignmentStudentsVM()
@@ -85,31 +93,27 @@ namespace ACES.Controllers
             return View(vm);
         }
 
-        // GET: Assignments/AssignmentStudentSubmissions/5
-        public async Task<IActionResult> AssignmentStudentSubmissions(int? id)
+        // GET: Assignments/AssignmentStudentCommits/5
+        public async Task<IActionResult> AssignmentStudentCommits(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var studentAssignment = await _context.StudentAssignment.FirstOrDefaultAsync(m => m.Id == id);
-            if (studentAssignment == null)
-            {
-                return NotFound();
-            }
+            var commits = await _context.Commit.Where(x => x.StudentAssignmentId == id).ToListAsync();
+            var sAssingment = await _context.StudentAssignment.FirstOrDefaultAsync(x => x.Id == id);
+            var assignment = await _context.Assignment.FirstOrDefaultAsync(x => x.Id == sAssingment.AssignmentId);
 
-            //var submissions = await _context.Submission.Where(x => x.StudentAssignmentId == id).ToListAsync();
-            var submissions = new List<Submission>();
-            var studentName = (await _context.Student.FirstOrDefaultAsync(x => x.Id == studentAssignment.StudentId)).FullName;
-            var assignmentName = (await _context.Assignment.FirstOrDefaultAsync(x => x.Id == studentAssignment.AssignmentId)).Name;
+            var studentName = (await _context.Student.FirstOrDefaultAsync(x => x.Id == sAssingment.StudentId)).FullName;
 
-            var vm = new AssignmentStudentSubmissionsVM()
+            var vm = new AssignmentStudentCommitsVM()
             {
-                StudentAssignmentId = id.Value,
+                StudentAssignmentId = (int)id,
                 StudentName = studentName,
-                AssignmentName = assignmentName,
-                Submissions = submissions
+                NumWatermarks = sAssingment.NumWatermarks,
+                Assignment = assignment,
+                Commits = commits
             };
 
             return View(vm);

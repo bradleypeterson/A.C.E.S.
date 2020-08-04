@@ -21,7 +21,7 @@ namespace ACES.Models
 
         #region For Views
         [NotMapped]
-        public int? NumSubmissions { get; set; }
+        public int? NumCommits { get; set; }
         [NotMapped]
         public string StudentName { get; set; }
         [NotMapped]

@@ -19,7 +19,6 @@ namespace ACES.Data
         public DbSet<Instructor> Instructor { get; set; }
         public DbSet<Enrollment> Enrollment { get; set; }
         public DbSet<StudentAssignment> StudentAssignment { get; set; }
-        public DbSet<Submission> Submission { get; set; }
         public DbSet<Commit> Commit { get; set; }
 
     }
