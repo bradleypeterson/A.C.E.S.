@@ -49,7 +49,7 @@ namespace ACES
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
+                    pattern: "{controller=StudentInterface}/{action=Index}/{id?}");
             });
         }
     }
