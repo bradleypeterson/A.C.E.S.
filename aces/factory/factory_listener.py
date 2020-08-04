@@ -5,6 +5,7 @@ Usage::
     ./server.py [<port>]
 """
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from os import curdir, sep
 import logging
 import aces_factory as af
 import json
@@ -16,9 +17,19 @@ class S(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
-        self._set_response()
-        self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
+        try:
+            if self.path.endswith(".zip"):
+                f = open(curdir + sep + self.path, 'rb')
+                self.send_response(200)
+                self.send_header('Content-type', 'application/zip')
+                self.end_headers()
+                self.wfile.write(f.read())
+                f.close()
+                return
+
+        except IOError:
+            self.send_error(404, 'File Not Found: %s' % self.path)
+
 
     def do_POST(self):
         content_length = int(self.headers['Content-Length']) # <--- Gets the size of data

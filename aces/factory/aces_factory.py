@@ -1,21 +1,12 @@
 #!/usr/bin/env python3
-import argparse, os, re, random, string, json, zipfile
+import argparse, os, re, random, string, json
+import shutil
 from hashlib import sha256
 
-def zipdirectory(dir: str) -> str:
-    filepaths: list = list()
-    for root, _, files in os.walk(dir):
-        for filename in files:
-            filepaths.append(os.path.join(root, filename))
-
-    zipdirlocation = "out.zip"
-    zipped_dir = zipfile.ZipFile(zipdirlocation, 'w')
-    for filename in filepaths:
-        zipped_dir.write(filename)
-
-    zipped_dir.close()
-    return zipdirlocation
-
+def zipdirectory(outzip: str) -> str:
+    print("attempting zip of " + outzip)
+    shutil.make_archive(outzip, 'zip')
+    return outzip + ".zip"
 
 def watermark_file(path: str) -> int:
     print("-> Searching " + path + " for watermarkable lines...", end="")
@@ -72,11 +63,9 @@ def factory_create(directory: str, email: str, asn_no: str) -> str:
     if not os.path.isdir(directory):
         print("Error: directory does not exist.")
         return ''
-    
     if not os.path.exists(directory + "/.acesconfig.json"):
         print("Error: directory does not contain a .acesconfig.json file.")
         return ''
-
     email_regex = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
     if not email_regex.match(email):
         print("Error: email argument is not an email address.")
@@ -105,13 +94,18 @@ def factory_create(directory: str, email: str, asn_no: str) -> str:
 
     total_marks: int = 0
 
+    print("Attempting copytree...")
+    copiedpath: str = "/app/out/" + watermark[0:8] + "/" + asn_no
+    shutil.copytree(directory, copiedpath)
+
     for f in markable_files:
-        if os.path.exists(directory + "/" + f):
-            total_marks += watermark_file(directory + "/" + f)
+        if os.path.exists(copiedpath + "/" + f):
+            total_marks += watermark_file(copiedpath + "/" + f)
 
     print("Total watermarks generated: " + str(total_marks))
 
-    zipdir: str = zipdirectory(directory)
+    outzip: str = copiedpath + "/prepared"
+    zipdir: str = zipdirectory(outzip)
 
     print("Created zipped folder at " + zipdir)
 
