@@ -1,0 +1,40 @@
+﻿@model ACES.Models.ViewModels.AssignmentStudentSubmissionsVM
+
+@{
+    ViewData["Title"] = "Course Assignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var count = 0;
+}
+
+<h2>@Model.StudentName</h2>
+<h3>@Model.AssignmentName - Submissions</h3>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Submission</th>
+                <th>Date</th>
+                <th>Grade</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var submission in Model.Submissions)
+            {
+                ++count;
+                <tr>
+                    <td>Submission @count</td>
+                    <td>@submission.DateSubmitted.ToShortTimeString()</td>
+                    <td>@submission.PointsEarned</td>
+                    <td>
+                        <a asp-controller="Assignments" asp-action="AssignmentStudentSubmissions" asp-route-id="@submission.Id">Commits</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="AssignmentStudents" asp-route-id="@Model.StudentAssignmentId">Back to List</a>
+</div>

@@ -1,0 +1,20 @@
+﻿.navbar {
+    background-color: #5a1b88 !important;
+    color: #fff !important;
+    box-shadow: #969696 0px 2px 5px 1px;
+}
+.nav-link{
+    color: white !important;
+}
+    .nav-link:hover {
+        color: aliceblue !important;
+    }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: #fff;
+}

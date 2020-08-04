@@ -1,0 +1,37 @@
+﻿@model List<ACES.Models.Course>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your Courses</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Total Assignments</th>
+            <th>Total Students</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var course in Model) {
+        <tr>
+            <td>@course.CourseName</td>
+            <td>@course.NumAssignments</td>
+            <td>@course.NumStudents</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@course.Id">Edit</a> |
+                <a asp-action="CourseAssignments" asp-route-id="@course.Id">Assignments</a> |
+                @*<a asp-action="Students" asp-route-id="@course.Id">Students</a> |*@
+                <a asp-action="Delete" asp-route-id="@course.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

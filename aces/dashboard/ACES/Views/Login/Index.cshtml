@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null; // This makes the login not inherit _Layout.cshtml
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ACES Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/login.css" rel="stylesheet" />
+</head>
+<body>
+    <style>
+    </style>
+    @using (Html.BeginForm("AttemptLogin", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <div class="fadeIn first" style="padding-top: 25px;">
+                    <h3>ACES Login</h3>
+                </div>
+                <form>
+                    <input type="text" id="login" class="fadeIn second" name="username" placeholder="login">
+                    <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+                    <input type="submit" class="fadeIn fourth" value="Log In">
+                </form>
+            </div>
+        </div>
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

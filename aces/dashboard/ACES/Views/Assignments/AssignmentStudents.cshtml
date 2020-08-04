@@ -1,0 +1,43 @@
+﻿@model ACES.Models.ViewModels.AssignmentStudentsVM
+
+@{
+    ViewData["Title"] = "Course Assignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.AssignmentName</h2>
+<h3>Students with Submissions</h3>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Submissions</th>
+                <th>Points</th>
+                <th>Watermarks</th>
+                <th>Lines Modified (Avg)</th>
+                <th>Hours Between Submission (Avg)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sAssignment in Model.StudentAssignments)
+            {
+            <tr>
+                <td>@sAssignment.StudentName</td>
+                <td>@sAssignment.NumSubmissions</td>
+                <td>@sAssignment.PointsRatio</td>
+                <td>@sAssignment.WatermarksRatio</td>
+                <td>@sAssignment.LinesModifiedAvg</td>
+                <td>@sAssignment.TimeBetweenAvg</td>
+                <td>
+                    <a asp-controller="Assignments" asp-action="AssignmentStudentSubmissions" asp-route-id="@sAssignment.Id">Submissions</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-controller="Courses" asp-action="CourseAssignments" asp-route-id="@Model.CourseId">Back to List</a>
+</div>
