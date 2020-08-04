@@ -3,10 +3,11 @@ import argparse, os, re, random, string, json
 import shutil
 from hashlib import sha256
 
-def zipdirectory(outzip: str) -> str:
-    print("attempting zip of " + outzip)
-    shutil.make_archive(outzip, 'zip')
-    return outzip + ".zip"
+def zipdirectory(path_to_zip: str) -> str:
+    print("attempting zip of " + path_to_zip)
+    shutil.make_archive(path_to_zip + 'prepared', 'zip', path_to_zip)
+    shutil.rmtree(path_to_zip)
+    return path_to_zip + "prepared" + ".zip"
 
 def watermark_file(path: str) -> int:
     print("-> Searching " + path + " for watermarkable lines...", end="")
@@ -95,7 +96,7 @@ def factory_create(directory: str, email: str, asn_no: str) -> str:
     total_marks: int = 0
 
     print("Attempting copytree...")
-    copiedpath: str = "/app/out/" + watermark[0:8] + "/" + asn_no
+    copiedpath: str = "../assignments/out/" + watermark[0:8] + "/" + asn_no
     shutil.copytree(directory, copiedpath)
 
     for f in markable_files:
@@ -104,8 +105,7 @@ def factory_create(directory: str, email: str, asn_no: str) -> str:
 
     print("Total watermarks generated: " + str(total_marks))
 
-    outzip: str = copiedpath + "/prepared"
-    zipdir: str = zipdirectory(outzip)
+    zipdir: str = zipdirectory(copiedpath)
 
     print("Created zipped folder at " + zipdir)
 
