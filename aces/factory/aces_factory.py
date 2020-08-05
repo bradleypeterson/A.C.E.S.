@@ -96,7 +96,7 @@ def factory_create(directory: str, email: str, asn_no: str) -> str:
     total_marks: int = 0
 
     print("Attempting copytree...")
-    copiedpath: str = "../assignments/out/" + watermark[0:8] + "/" + asn_no
+    copiedpath: str = "out/" + watermark[0:8] + "/" + asn_no
     shutil.copytree(directory, copiedpath)
 
     for f in markable_files:
