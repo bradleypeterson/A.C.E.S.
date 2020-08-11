@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ACES.Data;
 using ACES.Models;
+using System.Runtime.Serialization;
 
 namespace ACES.Controllers
 {
@@ -22,7 +23,19 @@ namespace ACES.Controllers
         // GET: StudentInterface
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Course.ToListAsync());
+            // request.Cookies["UserID"]
+            var studentId = int.Parse(Request.Cookies["UserID"]);
+            var enrollments = await _context.Enrollment.Where(x => x.StudentId == studentId).ToListAsync();
+            List<Course> coursesList = new List<Course>();
+            foreach (var enrollment in enrollments)
+            {
+                List<Course> temp = await _context.Course.Where(x => x.Id == enrollment.CourseId).ToListAsync();
+                foreach (var course in temp)
+                {
+                    coursesList.Add(course);
+                }
+            }
+            return View(coursesList);
         }
 
         // GET: StudentInterface/Details/5
@@ -143,6 +156,12 @@ namespace ACES.Controllers
             _context.Course.Remove(course);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> StudentAssignments(int courseId)
+        {
+            var assignments = await _context.Assignment.Where(x => x.CourseId == courseId).ToListAsync();
+            return View(assignments);
         }
 
         private bool CourseExists(int id)
