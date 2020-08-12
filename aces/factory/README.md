@@ -54,31 +54,27 @@ $ docker-compose up factory
 Creating network "aces_default" with the default driver
 Creating aces_factory_1 ... done
 Attaching to aces_factory_1
-factory_1    | Collecting pyodbc==4.0.30
-factory_1    |   Downloading pyodbc-4.0.30.tar.gz (266 kB)
-factory_1    | Building wheels for collected packages: pyodbc
-factory_1    |   Building wheel for pyodbc (setup.py): started
-factory_1    |   Building wheel for pyodbc (setup.py): finished with status 'done'
-factory_1    |   Created wheel for pyodbc: filename=pyodbc-4.0.30-cp38-cp38-linux_x86_64.whl size=68322 sha256=44e85b148a385613e420944e4bd3dc74f81c6845e75883720d3433e8eea08ce4
-factory_1    |   Stored in directory: /root/.cache/pip/wheels/0e/6c/b9/4349f7ee206f997dcde5675372aed185a788729278ad749953
-factory_1    | Successfully built pyodbc
-factory_1    | Installing collected packages: pyodbc
-factory_1    | Successfully installed pyodbc-4.0.30
-factory_1    | WARNING: You are using pip version 20.2.1; however, version 20.2.2 is available.
-factory_1    | You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+[...]
 factory_1    | INFO:root:Starting httpd...
-factory_1    |
 ```
 
 If the last line of output, `INFO:root:Starting httpd` is observed, then the Factory container has successfully booted!
 
 ### Local Development
 
+For ease of development (and since we haven't quite yet figured out how to debug within a Docker container), you can develop on ACES-Factory with just a standard Python3 installation for your platform. 
 
+The main entrypoint can be accessed from the `$PROJECT_ROOT/aces/factory` directory.
+
+```bash
+python3 ./factory_listener.py
+```
+
+**Note**: the command may differ between `python` or `python3`, depending on your platform. Either way, make sure the scripts are being run with Python 3.8.5 or newer.
 
 ### Running the Tests
 
-Coming soon!
+Coming soon! Some refactoring will have to occur to make the code more testable.
 
 ## Deployment
 
@@ -119,6 +115,7 @@ docker-compose up -d factory
 * [x] Use POST to create watermarked assignments
 * [x] Use GET to download prepared ZIP file downloads
 * [ ] Use POST to upload new assignments and specify configuration
+* [ ] Develop unit tests for major use cases
 
 For smaller enhancements, we currently have an open [issue](https://github.com/bradleypeterson/ACES/issues/7).
 
