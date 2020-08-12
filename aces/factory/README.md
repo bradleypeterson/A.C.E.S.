@@ -2,6 +2,8 @@
 
 A REST-influenced Python HTTP API that forms the backend logic of ACES assignment generation and management. Frontend services (or instructors leveraging the API) can upload new assignments to be made available to students, from which students may download prepared versions (watermarked and git-templated). 
 
+Basic usage for this service is reviewed in [this video](https://www.youtube.com/watch?v=19Zmw9mQgRk).
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -70,17 +72,55 @@ factory_1    |
 
 If the last line of output, `INFO:root:Starting httpd` is observed, then the Factory container has successfully booted!
 
+### Local Development
+
+
+
 ### Running the Tests
 
 Coming soon!
 
 ## Deployment
 
-TODO
+The true beauty of containerized applications is that running in development and running in production is virtually the same! Eventually a true CI/CD pipeline can replace this process, but for now, deployment is pretty trivial. Make sure you have SSH access to a server that has Docker, Docker-Compose, and Git.
 
-## Built With
+Clone the repository onto the server, `cd` into the correct folder, and run `docker-compose up -d`. 
 
-TODO
+```bash
+git clone https://github.com/bradleypeterson/ACES.git aces
+cd aces/aces
+docker-compose up -d
+```
+
+Once everything is built, use `docker-compose ps` to observe all the running pieces of the application.
+
+```
+$ docker-compose ps
+      Name                   Command              State              Ports
+-------------------------------------------------------------------------------------
+aces_dashboard_1   dotnet A.C.E.S.dll             Up      0.0.0.0:8080->80/tcp
+aces_db_1          /opt/mssql/bin/sqlservr        Up      0.0.0.0:1433->1433/tcp
+aces_factory_1     ash /app/entrypoint.sh         Up      0.0.0.0:8081->8080/tcp
+aces_gitea_1       /usr/bin/entrypoint /bin/s     Up      0.0.0.0:222->22/tcp,
+                   ...                                    0.0.0.0:3000->3000/tcp
+```
+
+To deploy the Factory service on its own, run the following command:
+
+```bash
+docker-compose up -d factory
+```
+
+...and feel free to make requests against `localhost:8081`. 
+
+## Roadmap
+
+**Major Features**
+* [x] Use POST to create watermarked assignments
+* [x] Use GET to download prepared ZIP file downloads
+* [ ] Use POST to upload new assignments and specify configuration
+
+For smaller enhancements, we currently have an open [issue](https://github.com/bradleypeterson/ACES/issues/7).
 
 ## Authors
 
