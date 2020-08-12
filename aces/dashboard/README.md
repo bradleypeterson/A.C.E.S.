@@ -6,7 +6,7 @@
 The login page accepts an email or username, and a password. It then checks against the students and instructors in the database to see if a matching login exists. If it does, it will hash the entered password and compare it against the stored password for that user to see if it is correct. If everything checks out, the user will be taken to the *Courses* page.
 
 ### Courses 
-![Courses](../../Images/Courses.PNG)
+![Courses](../../Images/Courses.png)
 
 The courses page filters based on the courses assigned to the instructor or the student in the database. Clicking on the *Assignments* page takes you to the assignments available in each course.
 
