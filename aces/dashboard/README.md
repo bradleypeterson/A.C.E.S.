@@ -1,5 +1,21 @@
-# How to Run the ACES Dashboard:
+## A.C.E.S. Dashboard
 
+### Login
+![Login](../../Images/Login.png)
+
+The login page accepts an email or username, and a password. It then checks against the students and instructors in the database to see if a matching login exists. If it does, it will hash the entered password and compare it against the stored password for that user to see if it is correct. If everything checks out, the user will be taken to the *Courses* page.
+
+### Courses 
+![Courses](../../Images/Courses.png)
+
+The courses page filters based on the courses assigned to the instructor or the student in the database. Clicking on the *Assignments* page takes you to the assignments available in each course.
+
+### Assignments 
+![Assignments](../../Images/Assignments.PNG)
+
+The assignments page shows the assignments for the selected course. Clicking on the *Download Assignment* button will download a copy of the assignment (not yet implemented). # How to Run the ACES Dashboard:
+
+### How to Run the ACES Dashboard:
 #### Step 1: Install Necessary Software
  - Install Docker
  - Install Git
