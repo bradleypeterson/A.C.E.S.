@@ -71,7 +71,7 @@ From here, navigate to `http://localhost:8080` to verify that the web frontend a
 
 [Factory](aces/factory/README.md)
 
-[Git Hooks]("aces/git hook/README.md")
+[Git Hooks](aces/git\ hook/README.md)
 
 ## Running the tests
 
