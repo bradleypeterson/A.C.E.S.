@@ -13,55 +13,76 @@ When the need arises to make a change to the database schema, you can [restore t
 
 ### Schema
 **Assignment:**
-Id : int
-Name : nvarchar(100)
-RepositoryUrl : nvarchar(MAX)
-AssignmentCode : int
-CourseId : int (FK)
-PointsPossible : int (Compared with PointsEarned in Submission to calculate grade.)
+
+	Id : int
+
+	Name : nvarchar(100)
+
+	RepositoryUrl : nvarchar(MAX)
+
+	AssignmentCode : int
+
+	CourseId : int (FK)
+
+	PointsPossible : int (Compared with PointsEarned in Submission to calculate grade.)
+
 
 **Course:**
+
 	Id : int
 	CourseName : nvarchar(100)
 	InstructorId : int (FK)
+	
 
 **Student:**
+
 	Id : int
 	FirstName : nvarchar(100)
+	
 LastName : nvarchar(100)
+
 	Email : nvarchar(MAX)
 	Password : nvarchar(MAX)
 	Salt : nvarchar(MAX)
+	
 
 **Instructor:**
+
 	Id : int 
-FirstName : nvarchar(100)
+	FirstName : nvarchar(100)
 	LastName : nvarchar(100)
 	Email : nvarchar(MAX)
 	Password : nvarchar(MAX)
 	Salt : nvarchar(MAX)
+	
 
 **Enrollment:**
+
 	Id : int
 	StudentId : int (FK)
 	CourseId : int (FK)
 	Active : boolean (If an enrollment is inactive, that means the student is from a past semester)
+	
 
 **StudentAssignment:**
-Id : int
+
+	Id : int
 	StudentId : int (FK)
 	AssignmentId : int (FK)
 	Watermark : nvarchar(MAX)
 	RepositoryUrl : nvarchar(MAX)	
 	NumWatermarks : int (This represents the number of watermarks a students personal assignment should have. It is compared with Commit.NumWatermarks to see if they have tampered with the code.)
+	
 		
 **Commit:**
+
 	Id : int 
 	StudentAssignmentId : int (FK)
 	PointsEarned : int (Compared with PointsPossible in Assignment to calculate grade.)
 	DateCommitted : datetime
 	LinesAdded : int
-LinesDeleted : int
-NumWatermarks : int (Compared with StudentAssignment.NumWatermarks to see if they have been tampered with.)
+	LinesDeleted : int
+	NumWatermarks : int (Compared with StudentAssignment.NumWatermarks to see if they have been tampered with.)
+
 
 ![Relationships](../../Images/ACES_Schema_Draft.png)
