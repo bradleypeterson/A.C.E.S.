@@ -1,3 +1,3 @@
 FROM python:alpine
-
-RUN apk add --no-cache g++ libc-dev unixodbc-dev
+COPY . /app
+RUN pip install -r /app/requirements.txt
